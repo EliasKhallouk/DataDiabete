@@ -1,30 +1,51 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Accueil</router-link> |
-      <router-link to="/connexion">Connexion</router-link>
+      <img alt="Vue logo" src="./assets/image.png">
+      <router-link to="/connexion"  style="margin-right: 10%;float: right;">Connexion</router-link>
+      <router-link to="/histogramme" style="margin-right: 50px;float: right;">Histogramme</router-link>
+      <router-link to="/diagramme" style="margin-right: 50px;float: right;">Diagramme</router-link>
+      <router-link to="/carte" style="margin-right: 50px;float: right;">Carte</router-link>
+      <router-link to="/" style="margin-right: 50px;float: right;">Accueil</router-link>
     </nav>
     <router-view/>
   </div>
 </template>
 
 <style lang="scss">
-  $font-family: Helvetica, Arial, sans-serif;
+
+  body{
+    margin: 0;
+  }
   $color-text: #212529;
   $color-active: #CA2B30;
   $color-hover: #F25C54;
+  img{
+    width: 150px;
+    height: 100px;
+    margin-top: -33px;
+    margin-left: 10%;
+    float: left;
+  }
 
+  @font-face {
+    font-family: Poppins;
+    src: url(assets/Poppins/Poppins-Medium.ttf);
+    font-weight: bold;
+  }
   #app{
-      font-family: $font-family;
+      font-family: Poppins;
       color: $color-text;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-align: center;
+
   }
 
   nav {
-      padding: 30px;
-
+      padding-top: 30px;
+      height: 58px;
+      background-color: #F8EDEB;
       a{
           font-weight: bold;
           color: $color-text;
@@ -40,4 +61,5 @@
           color: $color-active;
       }
   }
+
 </style>

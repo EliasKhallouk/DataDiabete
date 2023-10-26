@@ -1,27 +1,41 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/image.png">
-    <HelloWorld msg="Bienvenue sue le site de visualisation de données concernant le diabète"/>
+    <h1>Acceuil</h1>
+    <p>
+      Bienvenue sur notre plateforme de visualisation de données sur le diabète. Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé.
+    </p>
+
+    <carousel :per-page="1" :navigation-enabled="true">
+      <slide v-for="(image, index) in images" :key="index">
+        <img :src="image.src" :alt="'Image ' + (index + 1)">
+      </slide>
+    </carousel>
   </div>
 </template>
 
+
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import carousel from 'vue-carousel';
 
 export default {
-  name: 'HomeView',
   components: {
-    HelloWorld
-  }
-}
+    carousel,
+  },
+  data() {
+    return {
+      images: [
+        { src: '../assets/logo.png' },
+        { src: '../assets/image.png' },
+        { src: '../assets/logo.png' },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped lang="scss">
-
-  img{
-    width: 300px;
-    height: 200px;
-  }
-
+img {
+  width: 300px;
+  height: 200px;
+}
 </style>
