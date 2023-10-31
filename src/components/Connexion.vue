@@ -1,110 +1,140 @@
 <template>
-    <div class="centered-container">
-        <div class="connexion">
-            <h1>{{ msg }}</h1>
-            <form>
-            <label for="email">Email</label>
-            <input class="input" type="email" id="email" name="email" placeholder="Email">
-            <br>
-            <label for="password">Mot de passe</label>
-            <input class="input" type="password" id="password" name="password" placeholder="Mot de passe">
-            <br>
-            <button class="button" type="submit">Se connecter</button>
-            </form>
-        </div>
+  <div class="centered-container">
+    <div class="connexion">
+      <h1>{{ msg }}</h1>
+      <form>
+        <label for="email">Email</label>
+        <input class="input" type="email" id="email" name="email" placeholder="Email" />
+        <br />
+        <label for="password">Mot de passe</label>
+        <input
+          class="input"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Mot de passe"
+        />
+        <br />
+        <button class="button" type="submit">Se connecter</button>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'connexion-form',
+  name: "connexion-form",
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+};
 </script>
 
 <style scoped lang="scss">
+$pixel1: 4px;
+$pixel2: 10px;
+$pixel3: 20px;
+$color-red: #ca2b30;
+$color-red-soft: #f25c54;
+$color-red-pastel: #f8edeb;
+$color-black: #212529;
 
-    $pixel1 : 4px;
-    $pixel2 : 10px;
-    $pixel3 : 20px;
-    $color-red : #CA2B30;
-    $color-red-soft : #F25C54;
-    $color-red-pastel : #f8edeb;
-    $color-black : #212529;
+input {
+  /* border-radius: 5px; */
+  border-bottom: 2px solid $color-red-soft;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-top: $pixel1;
+  margin-bottom: $pixel2;
+  margin-left: $pixel1;
+  margin-right: $pixel1;
+  font-size: $pixel3;
+  background-color: transparent;
+}
 
-    input{
-        /* border-radius: 5px; */
-        border-bottom: 2px solid $color-red-soft;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        margin-top: $pixel1;
-        margin-bottom: $pixel2;
-        margin-left: $pixel1;
-        margin-right: $pixel1;
-        font-size: $pixel3;
-        background-color: transparent;
-    }
+input:focus {
+  outline: none;
+}
 
-    input:focus{
-        outline: none;
-    }
-
-    label{
-        margin-top: $pixel1;
-        margin-bottom: $pixel1;
-        margin-left: $pixel1;
-        margin-right: $pixel1;
-        font-size: $pixel3;
-        color: $color-black;
-    }
-    button{
-        margin-top: $pixel3;
-        font-size: 26px;
-        background-color: $color-red;
-        color: $color-red-pastel;
-        border: 2px solid transparent;
-        border-radius: 5px;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 4px;
-        padding-bottom: 5px;
-        transition-duration: 0.2s;
-    }
-    button:hover{
-        color: $color-red;
-        background-color: white;
-        border: 2px solid $color-red;
-    }
-    .connexion{
-        padding: 40px;
-        box-shadow: inset;
-        border-radius: 10px;
-        background-color: #f8edeb;
-        display: flex;
-        //flex-direction: column;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-        text-align: center; /* Center text */
-    }
-    h1{
-        margin-right: 60px;
-        color: $color-red;
-    }
-    form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .centered-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color:transparent;
-        
-    }
-
-    
+label {
+  margin-top: $pixel1;
+  margin-bottom: $pixel1;
+  margin-left: $pixel1;
+  margin-right: $pixel1;
+  font-size: $pixel3;
+  color: $color-black;
+}
+button {
+  margin-top: $pixel3;
+  font-size: 26px;
+  background-color: $color-red;
+  color: $color-red-pastel;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 4px;
+  padding-bottom: 5px;
+  transition-duration: 0.2s;
+}
+button:hover {
+  color: $color-red;
+  background-color: white;
+  border: 2px solid $color-red;
+}
+.connexion {
+  padding: 40px;
+  box-shadow: inset;
+  border-radius: 10px;
+  background-color: #f8edeb;
+  display: flex;
+  //flex-direction: column;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Center text */
+}
+h1 {
+  margin-right: 60px;
+  color: $color-red;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+@media screen and (max-width: 600px) {
+  .connexion {
+    padding: 20px;
+    box-shadow: inset;
+    border-radius: 10px;
+    background-color: #f8edeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center text */
+  }
+  h1 {
+    margin-right: 0px;
+    color: $color-red;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+}
 </style>
