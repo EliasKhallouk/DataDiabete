@@ -136,6 +136,7 @@ nav {
     color: $color-active;
   }
 }
+<<<<<<< Updated upstream
 
 .pg-footer {
   font-family: 'Roboto', sans-serif;
@@ -417,4 +418,8 @@ nav {
   } */
 }
 
+=======
+@media screen and (max-width: 767px) {
+}
+>>>>>>> Stashed changes
 </style>
