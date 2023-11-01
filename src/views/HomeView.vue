@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+h1 {
+  font-size: 40px;
+  margin-top: 50px;
+}
 img {
   width: 20%;
   height: 300px;
@@ -62,6 +66,6 @@ p {
   margin-left: 10%;
   margin-right: 10%;
   font-size: 20px;
-  text-justify: auto;
+  //text-align: justify;
 }
 </style>
