@@ -21,6 +21,11 @@ const routes = [
     path: '/connexion',
     name: 'connexion',
     component: () => import('../views/ConnexionView.vue')
+  },
+  {
+    path: '/carte',
+    name: 'carte',
+    component: () => import('../views/CarteView.vue')
   }
 ]
 

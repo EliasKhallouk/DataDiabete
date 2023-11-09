@@ -1,15 +1,28 @@
 <template>
   <div class="home">
-    <h1 class="elegantshadow">Data Diabete</h1>
-    <p style="text-align: center">
-      Bienvenue sur notre plateforme de visualisation de données sur le diabète. Explorez
-      les chiffres, les tendances et les informations cruciales pour mieux comprendre
-      cette condition et prendre des décisions éclairées pour votre santé.
-    </p>
+    <div style="position:relative; height:1164px">
+      <div style="position:absolute;z-index:1;width: -webkit-fill-available;">
+        <video autoplay muted playsinline loop id="VideoAccueil" class="base-image">
+          <source src="../assets/Medical_Background.mp4" type="video/mp4" >
+        </video>
+      </div>
+      <div style="position:absolute;top:360px;height:400px; z-index:2;font-size:200%">
+        <p style="text-align: center;color:#F8EDEB" class="text1">
+          Bienvenue sur notre plateforme de visualisation de données sur le diabète. Explorez
+          les chiffres, les tendances et les informations cruciales pour mieux comprendre
+          cette condition et prendre des décisions éclairées pour votre santé.
+        </p>
+        <a class="a" @click.prevent="scrollToCarousel" >
+          En savoir plus
+        </a>
+      </div>
+    </div>
 
-    <carousel :per-page="1" :navigation-enabled="true">
+
+
+    <carousel :per-page="1" :navigation-enabled="true" id="carousel" style="padding-top: 100px;">
       <slide>
-        <img src="../assets/carte.png" alt="Image 1" />
+        <img src="../assets/carte2.jpg" alt="Image 1" />
       </slide>
       <slide>
         <img src="../assets/diagramme.png" alt="Image 2" />
@@ -73,16 +86,56 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
+//import Typewriter from 'typewriter'; // Assurez-vous que le chemin d'importation est correct
 
 export default {
   components: {
     Carousel,
     Slide,
   },
+  methods: {
+    scrollToCarousel() {
+      const carouselElement = document.getElementById('carousel');
+      if (carouselElement) {
+        carouselElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    },
+  },
+  /*mounted() {
+    let text1 = document.querySelector(".text1");
+
+    // utilisation de la librairie typeWhriter pour animer le texte de class 'text1'
+    var animText = new Typewriter(text1, {
+      deleteSpeed: 30, // initialise la vitesse entre chaque lettre de 25ms
+    });
+
+    animText
+        .changeDelay(30)
+        .typeString(
+            "Dans une démarche ludique et éducative, notre projet a pour but de vous sensibiliser aux enjeux futurs en matière d'émissions de gaz à effet de serre.\n"
+        ) // texte tapé
+        .typeString("A cet effet, nous vous proposons une page interactive modélisant des solutions concrètes autour de la sylviculture.");
+
+    // ajoute un évènement sur le scroll de telle sorte que lorsque le haut de la page est égale à la position en y de l'élément text alors l'animation peut commencer
+    window.addEventListener("scroll", () => {
+      if (window.scrollY >= text1.getBoundingClientRect().y) {
+        animText.start();
+      }
+    });
+  },*/
 };
 </script>
 
 <style scoped lang="scss">
+.base-image{
+  width: 100%;
+  //border-bottom-right-radius: 824px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 45px 45px 90px #808080, -45px -45px 90px #ffffff;
+}
 img {
   width: 20%;
   height: 300px;
@@ -107,19 +160,47 @@ h1 {
   text-rendering: optimizeLegibility;
 }
 
-h1.elegantshadow {
-  color: #131313;
-  background-color: #e7e5e4;
-  letter-spacing: 0.15em;
-  text-shadow: 1px -1px 0 #767676, -1px 2px 1px #737272, -2px 4px 1px #767474,
-    -3px 6px 1px #787777, -4px 8px 1px #7b7a7a, -5px 10px 1px #7f7d7d,
-    -6px 12px 1px #828181, -7px 14px 1px #868585, -8px 16px 1px #8b8a89,
-    -9px 18px 1px #8f8e8d, -10px 20px 1px #949392, -11px 22px 1px #999897,
-    -12px 24px 1px #9e9c9c, -13px 26px 1px #a3a1a1, -14px 28px 1px #a8a6a6,
-    -15px 30px 1px #adabab, -16px 32px 1px #b2b1b0, -17px 34px 1px #b7b6b5,
-    -18px 36px 1px #bcbbba, -19px 38px 1px #c1bfbf, -20px 40px 1px #c6c4c4,
-    -21px 42px 1px #cbc9c8, -22px 44px 1px #cfcdcd, -23px 46px 1px #d4d2d1,
-    -24px 48px 1px #d8d6d5, -25px 50px 1px #dbdad9, -26px 52px 1px #dfdddc,
-    -27px 54px 1px #e2e0df, -28px 56px 1px #e4e3e2;
+a{
+  text-decoration:none;
 }
+.a {
+  --font-color: #fefefe;
+  --bg-color: #111;
+  --main-color: #fefefe;
+  width: 120px;
+  height: 70px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+  padding: 9px
+}
+
+.a:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}
+
+
+@media screen and (max-width: 1500px) {
+  img {
+    width: 25%;
+    height: 300px;
+    margin-top: 50px;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  p {
+    margin-top: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 20px;
+    //text-align: justify;
+  }
+}
+
 </style>
+

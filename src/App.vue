@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav>
-      <img alt="Vue logo" src="./assets/image.png" />
+      <img alt="Vue logo" class="logo" src="./assets/image.png"/>
       <router-link to="/connexion" style="margin-right: 10%; float: right"
         >Connexion</router-link
       >
@@ -33,7 +33,8 @@
         <div class="footer-content">
           <div class="footer-content-column">
             <div class="footer-menu">
-              <img alt="Vue logo" src="./assets/image.png" style="padding-top: 27px" />
+
+                <img alt="Vue logo"  class="logo" src="./assets/image.png" style="padding-top: 27px;"/>
             </div>
           </div>
           <div class="footer-content-column">
@@ -95,7 +96,7 @@ $color-text: #212529;
 $color-text-titre: white;
 $color-active: #ca2b30;
 $color-hover: #f25c54;
-img {
+.logo {
   width: 150px;
   height: 100px;
   margin-top: -33px;
@@ -124,7 +125,7 @@ nav {
   padding-top: 30px;
   height: 58px;
   z-index: 100;
-  background-color: #333;
+  background-color: rgba(33, 37, 41,0.7);
   a {
     font-weight: bold;
     color: $color-text-titre;
@@ -433,5 +434,8 @@ nav {
   /* .footer-content-column {
       width: 49.99%;
   } */
+}
+
+@media screen and (max-width: 767px) {
 }
 </style>
