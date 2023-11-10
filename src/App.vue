@@ -54,15 +54,18 @@ nav {
   left: 0;
   width: 100%;
   padding-top: 30px;
-  height: 58px;
+  height: 72px;
   z-index: 100;
-  background-color: rgba(33, 37, 41,0.7);
-  a {
-    font-weight: bold;
-    color: $color-text-titre;
-    text-decoration: none;
-    font-size: 20px;
-  }
+
+  background-color: rgba(33, 37, 41, 0.7);
+  backdrop-filter: blur(8px);
+
+a {
+  font-weight: bold;
+  color: $color-text-titre;
+  text-decoration: none;
+  font-size: 20px;
+}
 
   a:hover {
     color: $color-hover;
@@ -79,10 +82,12 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    padding-top: 30px;
+    padding-top: 25px;
     height: 58px;
     z-index: 100;
-    background-color: #333;
+
+    background-color: rgba(33, 37, 41, 0.7);
+    backdrop-filter: blur(8px);
     a {
       font-weight: bold;
       color: $color-text-titre;
@@ -108,7 +113,7 @@ nav {
 }
 
 .footer {
-  background-color: #333;
+  background-color: #212529;
   color: #fff;
 }
 .footer-wave-svg {

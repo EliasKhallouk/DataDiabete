@@ -149,7 +149,7 @@ export default {
 
 <style scoped lang="scss">
 #carousel{
-  padding-top: 100px;
+  padding-top: 128px;
 }
 .base-image{
   width: 100%;

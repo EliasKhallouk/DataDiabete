@@ -1,9 +1,9 @@
 <template>
   <nav>
-    <img alt="Vue logo" class="logo" src="../assets/image.png"/>
-    <router-link to="/connexion" style="margin-right: 10%; float: right"
+    <img alt="Vue logo" class="logo" src="../assets/logoDDfixe.png"/>
+   <!-- <router-link to="/connexion" style="margin-right: 10%; float: right"
     >Connexion</router-link
-    >
+    >-->
     <router-link to="/histogramme" style="margin-right: 50px; float: right"
     >Histogramme</router-link
     >

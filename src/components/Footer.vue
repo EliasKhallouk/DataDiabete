@@ -16,7 +16,10 @@
         <div class="footer-content-column">
           <div class="footer-menu">
 
-            <img alt="Vue logo"  class="logo" src="../assets/image.png" style="padding-top: 27px;"/>
+            <!--img alt="Vue logo"  class="logo" src="../assets/image.png" style="padding-top: 27px;"/>-->
+            <video autoplay muted playsinline loop class="logo">
+              <source src="../assets/logoDDvague.mp4" type="video/mp4" >
+            </video>
           </div>
         </div>
         <div class="footer-content-column">
