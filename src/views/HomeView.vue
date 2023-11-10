@@ -1,36 +1,30 @@
 <template>
   <div class="home">
-    <div style="position:relative; height:1164px">
-      <div style="position:absolute;z-index:1;width: -webkit-fill-available;">
+    <div style="position: relative; height: 1164px">
+      <div style="position: absolute; z-index: 1; width: -webkit-fill-available">
         <video autoplay muted playsinline loop id="VideoAccueil" class="base-image">
-          <source src="../assets/Medical_Background.mp4" type="video/mp4" >
+          <source src="../assets/Medical_Background.mp4" type="video/mp4" />
         </video>
       </div>
-      <div style="position:absolute;top:360px;height:400px; z-index:2;font-size:200%">
-        <p style="text-align: center;color:#F8EDEB" class="text1">
-          Bienvenue sur notre plateforme de visualisation de données sur le diabète. Explorez
-          les chiffres, les tendances et les informations cruciales pour mieux comprendre
-          cette condition et prendre des décisions éclairées pour votre santé.
+      <div
+        style="position: absolute; top: 360px; height: 400px; z-index: 2; font-size: 200%"
+      >
+        <p style="text-align: center; color: #f8edeb" class="text1">
+          Bienvenue sur notre plateforme de visualisation de données sur le diabète.
+          Explorez les chiffres, les tendances et les informations cruciales pour mieux
+          comprendre cette condition et prendre des décisions éclairées pour votre santé.
         </p>
-        <a class="a" @click.prevent="scrollToCarousel" >
-          En savoir plus
-        </a>
+        <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
       </div>
     </div>
 
-
-
-    <carousel :per-page="1" :navigation-enabled="true" id="carousel" style="padding-top: 100px;">
-      <slide>
-        <img src="../assets/carte2.jpg" alt="Image 1" />
-      </slide>
-      <slide>
-        <img src="../assets/diagramme.png" alt="Image 2" />
-      </slide>
-      <slide>
-        <img src="../assets/histogramme.png" alt="Image 3" />
-      </slide>
-    </carousel>
+    <div class="carousel-container">
+      <carousel :per-page="1" :pagination-enabled="true" id="carousel">
+        <slide v-for="(image, index) in carouselImages" :key="index">
+          <img :src="image.src" :alt="image.alt" class="carousel-image" />
+        </slide>
+      </carousel>
+    </div>
     <p>
       Le diabète est une condition médicale mondiale en constante croissance, affectant
       des millions de personnes de tous âges, de tous sexes et de tous horizons. Pour
@@ -93,16 +87,14 @@ export default {
     Carousel,
     Slide,
   },
-  methods: {
-    scrollToCarousel() {
-      const carouselElement = document.getElementById('carousel');
-      if (carouselElement) {
-        carouselElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
-    },
+  data() {
+    return {
+      carouselImages: [
+        { src: require("../assets/carte2.jpg"), alt: "Image 1" },
+        { src: require("../assets/diagramme.png"), alt: "Image 2" },
+        { src: require("../assets/histogramme.png"), alt: "Image 3" },
+      ],
+    };
   },
   /*mounted() {
     let text1 = document.querySelector(".text1");
@@ -130,18 +122,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.base-image{
+.base-image {
   width: 100%;
   //border-bottom-right-radius: 824px;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
   box-shadow: 45px 45px 90px #808080, -45px -45px 90px #ffffff;
-}
-img {
-  width: 20%;
-  height: 300px;
-  margin-top: 50px;
-  margin-left: 40%;
-  margin-right: 40%;
 }
 p {
   margin-top: 50px;
@@ -160,8 +145,8 @@ h1 {
   text-rendering: optimizeLegibility;
 }
 
-a{
-  text-decoration:none;
+a {
+  text-decoration: none;
 }
 .a {
   --font-color: #fefefe;
@@ -176,7 +161,7 @@ a{
   font-weight: 600;
   color: var(--font-color);
   cursor: pointer;
-  padding: 9px
+  padding: 9px;
 }
 
 .a:active {
@@ -184,15 +169,52 @@ a{
   transform: translate(3px, 3px);
 }
 
+.carousel-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+/* Additional styles for pagination */
+.vue-carousel-pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vue-carousel-pagination-item {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #888;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.vue-carousel-pagination-item.active {
+  background-color: #333;
+}
 
 @media screen and (max-width: 1500px) {
-  img {
-    width: 25%;
-    height: 300px;
-    margin-top: 50px;
-    margin-left: 25%;
-    margin-right: 25%;
-  }
+  // img {
+  //   width: 25%;
+  //   height: 300px;
+  //   margin-top: 50px;
+  //   margin-left: 25%;
+  //   margin-right: 25%;
+  // }
   p {
     margin-top: 50px;
     margin-left: 10%;
@@ -201,6 +223,4 @@ a{
     //text-align: justify;
   }
 }
-
 </style>
-
