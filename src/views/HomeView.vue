@@ -1,20 +1,16 @@
 <template>
   <div class="home">
-    <div style="position: relative; height: 1164px">
-      <div style="position: absolute; z-index: 1; width: -webkit-fill-available">
+    <div style="position:relative; height:1164px">
+      <div style="position:absolute;z-index:0;width: 100%;">
         <video autoplay muted playsinline loop id="VideoAccueil" class="base-image">
-          <source src="../assets/Medical_Background.mp4" type="video/mp4" />
+          <source src="../assets/Medical_Background.mp4" type="video/mp4" >
         </video>
       </div>
-      <div
-        style="position: absolute; top: 360px; height: 400px; z-index: 2; font-size: 200%"
-      >
-        <p style="text-align: center; color: #f8edeb" class="text1">
-          Bienvenue sur notre plateforme de visualisation de données sur le diabète.
-          Explorez les chiffres, les tendances et les informations cruciales pour mieux
-          comprendre cette condition et prendre des décisions éclairées pour votre santé.
-        </p>
-        <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
+      <div style="position:relative;top:360px;height:400px; z-index:1;font-size:200%">
+        <p  style="text-align: center;color:#F8EDEB;"  id="text2" onload="ecritur"></p>
+        <a class="a" @click.prevent="scrollToCarousel" >
+          En savoir plus
+        </a>
       </div>
     </div>
 
@@ -80,7 +76,7 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-//import Typewriter from 'typewriter'; // Assurez-vous que le chemin d'importation est correct
+import Typewriter from 'typewriter-effect/dist/core';
 
 export default {
   components: {
@@ -96,8 +92,38 @@ export default {
       ],
     };
   },
-  /*mounted() {
-    let text1 = document.querySelector(".text1");
+  mounted() {
+    this.ecritur();
+  },
+  methods: {
+    scrollToCarousel() {
+      const carouselElement = document.getElementById('carousel');
+      if (carouselElement) {
+        carouselElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    },
+    ecritur() {
+      var app = document.getElementById('text2');
+
+      var typewriter = new Typewriter(app, {
+        //loop: true,
+        delay: 50,
+      });
+
+      typewriter
+          .typeString('Bienvenue sur notre plateforme de visualisation de données sur le <strong>diabète</strong>. ')
+          .pauseFor(500)
+          .typeString('Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé.')
+          .pauseFor(100)
+          .start();
+    },
+  }
+    /*
+    mounted() {
+      let text1 = document.querySelector(".text1");
 
     // utilisation de la librairie typeWhriter pour animer le texte de class 'text1'
     var animText = new Typewriter(text1, {
@@ -122,11 +148,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.base-image {
+#carousel{
+  padding-top: 100px;
+}
+.base-image{
   width: 100%;
   //border-bottom-right-radius: 824px;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
   box-shadow: 45px 45px 90px #808080, -45px -45px 90px #ffffff;
+  margin-top: -4%;
 }
 p {
   margin-top: 50px;
@@ -145,8 +175,8 @@ h1 {
   text-rendering: optimizeLegibility;
 }
 
-a {
-  text-decoration: none;
+a{
+  text-decoration:none;
 }
 .a {
   --font-color: #fefefe;
@@ -223,4 +253,6 @@ a {
     //text-align: justify;
   }
 }
+
 </style>
+
