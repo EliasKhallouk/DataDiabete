@@ -15,7 +15,15 @@
     </div>
 
     <div class="carousel-container">
-      <carousel :per-page="1" :pagination-enabled="true" id="carousel">
+      <carousel
+        :per-page="1"
+        :pagination-enabled="true"
+        id="carousel"
+        autoplay="true"
+        autoplayTimeout="4000"
+        loop="true"
+        ref="carousel"
+      >
         <slide v-for="(image, index) in carouselImages" :key="index">
           <img :src="image.src" :alt="image.alt" class="carousel-image" />
         </slide>
@@ -128,7 +136,7 @@ export default {
       const carousel = this.$refs.carousel; // Accédez au composant Carousel via une référence
 
       // Vérifiez si le composant Carousel existe et s'il a des slides
-      if (carousel && carousel.slides && carousel.slides.length > 1) {
+      if (carousel && carousel.slides && carousel.slides.length >= 1) {
         const currentIndex = carousel.currentIndex; // Obtenez l'index du slide actuel
         const nextIndex = (currentIndex + 1) % carousel.slides.length; // Calculez l'index du prochain slide
 
