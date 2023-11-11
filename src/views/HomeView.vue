@@ -1,16 +1,16 @@
 <template>
   <div class="home">
-    <div style="position:relative; height:1164px">
-      <div style="position:absolute;z-index:0;width: 100%;">
+    <div style="position: relative; height: 1164px">
+      <div style="position: absolute; z-index: 0; width: 100%">
         <video autoplay muted playsinline loop id="VideoAccueil" class="base-image">
-          <source src="../assets/Medical_Background.mp4" type="video/mp4" >
+          <source src="../assets/Medical_Background.mp4" type="video/mp4" />
         </video>
       </div>
-      <div style="position:relative;top:360px;height:400px; z-index:1;font-size:200%">
-        <p  style="text-align: center;color:#F8EDEB;"  id="text2" onload="ecritur"></p>
-        <a class="a" @click.prevent="scrollToCarousel" >
-          En savoir plus
-        </a>
+      <div
+        style="position: relative; top: 360px; height: 400px; z-index: 1; font-size: 200%"
+      >
+        <p style="text-align: center; color: #f8edeb" id="text2" onload="ecritur"></p>
+        <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
       </div>
     </div>
 
@@ -76,7 +76,7 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-import Typewriter from 'typewriter-effect/dist/core';
+import Typewriter from "typewriter-effect/dist/core";
 
 export default {
   components: {
@@ -97,16 +97,16 @@ export default {
   },
   methods: {
     scrollToCarousel() {
-      const carouselElement = document.getElementById('carousel');
+      const carouselElement = document.getElementById("carousel");
       if (carouselElement) {
         carouselElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
+          behavior: "smooth",
+          block: "start",
         });
       }
     },
     ecritur() {
-      var app = document.getElementById('text2');
+      var app = document.getElementById("text2");
 
       var typewriter = new Typewriter(app, {
         //loop: true,
@@ -114,14 +114,29 @@ export default {
       });
 
       typewriter
-          .typeString('Bienvenue sur notre plateforme de visualisation de données sur le <strong>diabète</strong>. ')
-          .pauseFor(500)
-          .typeString('Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé.')
-          .pauseFor(100)
-          .start();
+        .typeString(
+          "Bienvenue sur notre plateforme de visualisation de données sur le <strong>diabète</strong>. "
+        )
+        .pauseFor(500)
+        .typeString(
+          "Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé."
+        )
+        .pauseFor(100)
+        .start();
     },
-  }
-    /*
+    autoChangeSlide() {
+      const carousel = this.$refs.carousel; // Accédez au composant Carousel via une référence
+
+      // Vérifiez si le composant Carousel existe et s'il a des slides
+      if (carousel && carousel.slides && carousel.slides.length > 1) {
+        const currentIndex = carousel.currentIndex; // Obtenez l'index du slide actuel
+        const nextIndex = (currentIndex + 1) % carousel.slides.length; // Calculez l'index du prochain slide
+
+        carousel.goToSlide(nextIndex); // Changez de slide
+      }
+    },
+  },
+  /*
     mounted() {
       let text1 = document.querySelector(".text1");
 
@@ -148,10 +163,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#carousel{
+#carousel {
   padding-top: 128px;
 }
-.base-image{
+.base-image {
   width: 100%;
   //border-bottom-right-radius: 824px;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
@@ -175,8 +190,8 @@ h1 {
   text-rendering: optimizeLegibility;
 }
 
-a{
-  text-decoration:none;
+a {
+  text-decoration: none;
 }
 .a {
   --font-color: #fefefe;
@@ -238,13 +253,6 @@ a{
 }
 
 @media screen and (max-width: 1500px) {
-  // img {
-  //   width: 25%;
-  //   height: 300px;
-  //   margin-top: 50px;
-  //   margin-left: 25%;
-  //   margin-right: 25%;
-  // }
   p {
     margin-top: 50px;
     margin-left: 10%;
@@ -253,6 +261,4 @@ a{
     //text-align: justify;
   }
 }
-
 </style>
-
