@@ -297,7 +297,10 @@ const chartOptions = ref({
     <!-- PREMIERE PARTIE-->
     <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
     <p>
-      Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte vous montre le nombre de décès attribués au diabète dans chaque pays, vous permettant ainsi de comprendre l'ampleur du problème à l'échelle internationale. Les données sont régulièrement mises à jour pour vous fournir des informations actuelles.
+      Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte
+      vous montre le nombre de décès attribués au diabète dans chaque pays, vous permettant ainsi de comprendre
+      l'ampleur du problème à l'échelle internationale. Les données sont régulièrement mises à jour pour vous fournir
+      des informations actuelles.
     </p>
 
     <!-- PREMIERE PARTIE-->
