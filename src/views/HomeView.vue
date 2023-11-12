@@ -16,11 +16,11 @@
 
     <div class="carousel-container">
       <carousel
-        :per-page="1"
+        :per-page="3"
         :pagination-enabled="true"
         id="carousel"
         autoplay="true"
-        autoplayTimeout="4000"
+        autoplayTimeout="5000"
         loop="true"
         ref="carousel"
       >
