@@ -26,7 +26,13 @@ const routes = [
     path: '/carte',
     name: 'carte',
     component: () => import('../views/CarteView.vue')
+  },
+  {
+    path: '/diagramme',
+    name: 'diagramme',
+    component: () => import('../views/DiagrammeBarreView.vue')
   }
+
 ]
 
 const router = new VueRouter({
