@@ -16,7 +16,7 @@
 
     <div class="carousel-container">
       <carousel
-        :per-page="3"
+        :per-page="1"
         :pagination-enabled="true"
         id="carousel"
         autoplay="true"
@@ -231,6 +231,7 @@ a {
 .carousel-image {
   width: 100%;
   height: auto;
+  object-fit: cover;
   border-radius: 15px;
 }
 
