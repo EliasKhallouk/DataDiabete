@@ -33,6 +33,11 @@ const routes = [
     component: () => import('../views/DiagrammeBarreView.vue')
   },
   {
+    path: '/info-perso',
+    name: 'info-perso',
+    component: () => import('../views/InfoPersoView.vue')
+  },
+  {
     path: '/gestion-utilisateur',
     name: 'gestion-utilisateur',
     component: () => import('../views/GestionUtilisateurView.vue')
