@@ -68,7 +68,7 @@ const chartOptions = ref({
         },
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
         format: "{point.name}",
       },
       nullColor: '#EFEFEF',

@@ -30,4 +30,8 @@ export default {
     color: $color-black;
   }
 
+  .connexion{
+    margin-top: 100px;
+  }
+
 </style>

@@ -27,13 +27,13 @@
             <h2 class="footer-menu-name">SOURCE</h2>
             <ul id="menu-company" class="footer-menu-list">
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="#">OMS</a>
+                <a target="_blank" href="https://www.who.int/fr/news-room/fact-sheets/detail/diabetes">OMS</a>
               </li>
               <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                <a href="#">Our World in Data</a>
+                <a target="_blank" href="https://ourworldindata.org/grapher/death-rate-from-diabetes?time=latest">Our World in Data</a>
               </li>
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="#">Wisevoter</a>
+                <a target="_blank" href="https://wisevoter.com/country-rankings/cost-of-insulin-by-country/">Wisevoter</a>
               </li>
             </ul>
           </div>
@@ -43,16 +43,16 @@
             <h2 class="footer-menu-name">NOTRE EQUIPE</h2>
             <ul id="menu-quick-links" class="footer-menu-list">
               <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" rel="noopener noreferrer" href="#">Elias Khallouk</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/EliasKhallouk">Khallouk Elias</a>
               </li>
               <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" rel="noopener noreferrer" href="#">Mame Diarra</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/diarrathiamm">Mame Diarra</a>
               </li>
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="#">Ambre</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/amajoure-iut90">Majourel Ambre</a>
               </li>
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="#">Théo</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/TheoIUTBM">Vievill Théo</a>
               </li>
             </ul>
           </div>
@@ -61,7 +61,7 @@
           <div class="footer-call-to-action">
             <h2 class="footer-call-to-action-title">Vous voulez voir notre code?</h2>
             <p class="footer-call-to-action-description"></p>
-            <a class="footer-call-to-action-button button" href="#" target="_self">
+            <a class="footer-call-to-action-button button" href="https://github.com/EliasKhallouk/DataDiabete" target="_blank">
               GitHub
             </a>
           </div>

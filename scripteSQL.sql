@@ -1,19 +1,21 @@
+-- Suppression des tables
 DROP TABLE IF EXISTS DROITS_DE_MENU, ELEMENTS_DE_MENU, MENUS, DROITS_DE_GROUPES, DROITS, MOTS_DE_PASSE_UTILISATEURS, UTILISATEURS, GROUPES, TRANCHE_AGE, SEXE, PAYS, DESCRIPTION CASCADE;
 DROP TABLE IF EXISTS report_prix_ins, report_prix_ass, report_diabetique, report_deces CASCADE;
 
+-- Création des tables
 CREATE TABLE GROUPES (
   Id_Groupe SERIAL PRIMARY KEY,
   Libelle_Groupe VARCHAR(255)
 );
 
 CREATE TABLE UTILISATEURS (
-  Id_User SERIAL PRIMARY KEY
+  Id_User SERIAL PRIMARY KEY,
   Nom VARCHAR(255),
   Prenom VARCHAR(255),
   email VARCHAR(255),
   Password VARCHAR(255),
   Date_Creation TIMESTAMP,
-  Id_Groupe INTEGER REFERENCES GROUPES(Id_groupe)
+  Id_Groupe INTEGER REFERENCES GROUPES(Id_Groupe)
 );
 
 CREATE TABLE MOTS_DE_PASSE_UTILISATEURS (
@@ -61,11 +63,11 @@ CREATE TABLE DESCRIPTION(
 );
 
 CREATE TABLE PAYS(
-  Id_Payx SERIAL PRIMARY KEY,
+  Id_Pays SERIAL PRIMARY KEY,
   Libelle_Pays VARCHAR(255),
   Nbr_Habitants INTEGER,
   ISO_Pays_Num INTEGER,
-  ISO_Pays_Car VARCHAR(255),
+  ISO_Pays_Car VARCHAR(255)
 );
 
 CREATE TABLE SEXE(
@@ -106,7 +108,23 @@ CREATE TABLE report_prix_ass(
 );
 
 CREATE TABLE report_prix_ins(
-  Id_Pays REFERENCES PAYS(Id_Pays) PRIMARY KEY,
+  Id_Pays INTEGER REFERENCES PAYS(Id_Pays) PRIMARY KEY,
   Annee DATE PRIMARY KEY,
   Prix_Insuline DECIMAL(15, 2)
 );
+
+-- Insertion dans la table GROUPES
+INSERT INTO GROUPES (Libelle_Groupe) VALUES ('Groupe1'), ('Groupe2'), ('Groupe3');
+
+-- Insertion dans la table UTILISATEURS
+INSERT INTO UTILISATEURS (Nom, Prenom, email, Password, Date_Creation, Id_Groupe)
+VALUES ('Nom1', 'Prenom1', 'email1@example.com', 'motdepasse1', CURRENT_TIMESTAMP, 1),
+       ('Nom2', 'Prenom2', 'email2@example.com', 'motdepasse2', CURRENT_TIMESTAMP, 2),
+       ('Nom3', 'Prenom3', 'email3@example.com', 'motdepasse3', CURRENT_TIMESTAMP, 3);
+
+-- Insertion dans la table MOTS_DE_PASSE_UTILISATEURS
+INSERT INTO MOTS_DE_PASSE_UTILISATEURS (Id_User, Date_Created, Password)
+VALUES (1, CURRENT_TIMESTAMP, 'motdepasse1'),
+       (2, CURRENT_TIMESTAMP, 'motdepasse2'),
+       (3, CURRENT_TIMESTAMP, 'motdep');
+

@@ -31,6 +31,11 @@ const routes = [
     path: '/diagramme',
     name: 'diagramme',
     component: () => import('../views/DiagrammeBarreView.vue')
+  },
+  {
+    path: '/gestion-utilisateur',
+    name: 'gestion-utilisateur',
+    component: () => import('../views/GestionUtilisateurView.vue')
   }
 
 ]

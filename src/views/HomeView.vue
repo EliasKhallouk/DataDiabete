@@ -6,10 +6,9 @@
           <source src="../assets/Medical_Background.mp4" type="video/mp4" />
         </video>
       </div>
-      <div
-        style="position: relative; top: 360px; height: 400px; z-index: 1; font-size: 200%"
-      >
-        <p style="text-align: center; color: #f8edeb" id="text2" onload="ecritur"></p>
+      <div style="position: relative; top: 320px; height: 400px; z-index: 1; font-size: 200%">
+        <p style="text-align: center; color: #f8edeb;font-size: 64px;" >Le diabète en quelques stats</p>
+        <p style="text-align: center; color: #f8edeb; margin-bottom: 20px" id="text2" onload="ecritur"></p>
         <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
       </div>
     </div>
@@ -122,13 +121,14 @@ export default {
       });
 
       typewriter
-        .typeString(
-          "Bienvenue sur notre plateforme de visualisation de données sur le <strong>diabète</strong>. "
-        )
+        .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète.")
         .pauseFor(500)
+        .deleteChars(8)
+        .typeString("DIABÈTE !")
+        /*.pauseFor(500)
         .typeString(
           "Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé."
-        )
+        )*/
         .pauseFor(100)
         .start();
     },
@@ -174,6 +174,7 @@ export default {
 #carousel {
   padding-top: 128px;
 }
+
 .base-image {
   width: 100%;
   //border-bottom-right-radius: 824px;
