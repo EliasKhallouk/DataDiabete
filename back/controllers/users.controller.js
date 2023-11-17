@@ -1,4 +1,18 @@
-const usersService = require("../services/users.services")
+const userService = require("../services/users.service")
+
+exports.getUsers = async (req,res) =>{
+    userService.getUsers((error,data)=>{
+        if(error){
+            return res.status(500).send("Internal error!");
+        }
+        return res.status(200).json(data);
+    })
+}
+
+
+
+
+/*const usersService = require("../services/users.services")
 
 exports.saveUser = (req, res) => {
     const prenom = req.body.prenom;
@@ -14,3 +28,4 @@ exports.saveUser = (req, res) => {
         return res.status(200).send("Utilisateur enregistré avec succés !");
     })
 }
+*/

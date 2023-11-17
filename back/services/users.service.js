@@ -2,8 +2,9 @@ const fs = require("fs");
 const fs2 = require("fs/promises");
 const path = require("path");
 const{v4: uuidv4} = require('uuid');
-const filePath = path.join(__dirname, "..", "users.json")
+const filePath = path.join(__dirname, "..", "user.json")
 
+/*
 const createUser = (prenom, nom, email, password, callback) => {
 
     let users = [];
@@ -24,4 +25,25 @@ const createUser = (prenom, nom, email, password, callback) => {
     }catch(erreurEcriture){
         callback(erreurEcriture, null);
     }
+}*/
+
+const getUsers = (callback)=>{
+    let users = [];
+    try{
+        const data = fs.readFileSync(filePath,'utf8');
+        const dataStr = data.toString();
+        users = JSON.parse(dataStr);
+        callback(null,users);
+    }catch(error){
+        console.log(error);
+        callback("error",null);
+    }
+}
+
+
+
+
+module.exports={
+    //creatUser:creatUser,
+    getUsers:getUsers
 }

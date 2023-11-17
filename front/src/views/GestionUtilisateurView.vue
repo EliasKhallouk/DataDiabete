@@ -9,19 +9,19 @@
         </tr>
         </thead>
         <tbody>
-        <div v-if="dataUser.length<=0">pas d'utilisateur</div>
-        <tr v-for="(user, index) in dataUser" :key="index">
-          <td data-title="Id">{{user.Id}}</td>
-          <td data-title="Nom">{{user.Nom}}</td>
-          <td data-title="Prenom">{{user.Prenom}}</td>
-          <td data-title="Email">{{user.Email}}</td>
-          <td data-title="Role">{{user.Role}}</td>
-          <td data-title="opération">
-            <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
-            <a href="" onclick="return confirm('Are you sure?')">Supprimer</a>
-            <a href="" style="margin-left: 40px;">Editer</a>
-          </td>
-        </tr>
+          <div v-if="dataUser.length<=0">pas d'utilisateur</div>
+          <tr v-for="(user, index) in dataUser" :key="index">
+            <td data-title="Id">{{user.Id}}</td>
+            <td data-title="Nom">{{user.Nom}}</td>
+            <td data-title="Prenom">{{user.Prenom}}</td>
+            <td data-title="Email">{{user.Email}}</td>
+            <td data-title="Role">{{user.Role}}</td>
+            <td data-title="opération">
+              <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
+              <a href="" onclick="return confirm('Are you sure?')">Supprimer</a>
+              <a href="" style="margin-left: 40px;">Editer</a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
