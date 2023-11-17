@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import Connexion from '@/components/Connexion.vue'
+import Connexion from '../components/Connexion.vue'
 
 export default {
   name: 'ConnexionView',
