@@ -45,5 +45,27 @@ async function insertMultipleLogs(){
     finally{
         client.release();
     }
+
+    async function createAndDeleteGroup(){
+        const client = await pool.connect();
+        try{
+            //Start transaction
+            await client.query("BEGIN");
+            const insertGroupQuery = 'INSERT INTO GROUPES(groupe) VALUES($1) RETURNING id'; //saisie un groupe et renvoit l'id du groupe
+            const insertRes= await client.query(
+                insertGroupQuery, ["Prestataire"]
+            );
+            const newGroupId = insertRes.rows[0].id;
+            console.log(`Nouveau groupe avec id ${newGroupId}`)
+            await client.query('DELETE FROM GROUPES WHERE id=$1', [newGroupId]);
+            console.log(`Suppression groupe avec id ${newGroupId}`);
+    
+            //End transaction
+            await client.query("COMMIT");
+        }catch(err){
+            await client.query("ROLLBACK");
+        }
+        finally{client.release();}
+    }
 }
 
