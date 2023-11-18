@@ -23,87 +23,87 @@ DROP TABLE IF EXISTS report_deces CASCADE;
 
 -- Création des tables
 CREATE TABLE GROUPES (
-                         Id SERIAL PRIMARY KEY,
-                         Groupe VARCHAR(255)
+    Id SERIAL PRIMARY KEY,
+    Groupe VARCHAR(255)
 );
 
 CREATE TABLE UTILISATEURS (
-                              User_Id SERIAL PRIMARY KEY,
-                              First_Name VARCHAR(255),
-                              Last_Name VARCHAR(255),
-                              Date_Created TIMESTAMP,
-                              Password VARCHAR(255),
-                              Group_Id INTEGER REFERENCES GROUPES(Id)
+    User_Id SERIAL PRIMARY KEY,
+    First_Name VARCHAR(255),
+    Last_Name VARCHAR(255),
+    Date_Created TIMESTAMP,
+    Password VARCHAR(255),
+    Group_Id INTEGER REFERENCES GROUPES(Id)
 );
 
 CREATE TABLE MOTS_DE_PASSE_UTILISATEURS(
-                                           Id SERIAL PRIMARY KEY,
-                                           User_Id INTEGER REFERENCES UTILISATEURS(User_Id),
-                                           Date_Created TIMESTAMP,
-                                           Password VARCHAR(255)
+    Id SERIAL PRIMARY KEY,
+    User_Id INTEGER REFERENCES UTILISATEURS(User_Id),
+    Date_Created TIMESTAMP,
+    Password VARCHAR(255)
 );
 
 CREATE TABLE JOURNAUX_UTILISATEURS(
-                                      Id SERIAL PRIMARY KEY,
-                                      User_Id INTEGER REFERENCES UTILISATEURS(User_Id),
-                                      Date_Time TIMESTAMP,
-                                      Event VARCHAR(255)
+    Id SERIAL PRIMARY KEY,
+    User_Id INTEGER REFERENCES UTILISATEURS(User_Id),
+    Date_Time TIMESTAMP,
+    Event VARCHAR(255)
 );
 
 CREATE TABLE DROITS(
-                       Id SERIAL PRIMARY KEY,
-                       Right_Name VARCHAR(255)
+    Id SERIAL PRIMARY KEY,
+    Right_Name VARCHAR(255)
 );
 
 CREATE TABLE DROITS_DE_GROUPES(
-                                  Id SERIAL PRIMARY KEY,
-                                  Group_Id INTEGER REFERENCES GROUPES(Id),
-                                  Right_Id INTEGER REFERENCES DROITS(Id)
+    Id SERIAL PRIMARY KEY,
+    Group_Id INTEGER REFERENCES GROUPES(Id),
+    Right_Id INTEGER REFERENCES DROITS(Id)
 );
 
 CREATE TABLE MENUS(
-                      Id SERIAL PRIMARY KEY,
-                      Nom_Menu VARCHAR(255) NOT NULL,
-                      Ordre_Affichage INTEGER NOT NULL
+    Id SERIAL PRIMARY KEY,
+    Nom_Menu VARCHAR(255) NOT NULL,
+    Ordre_Affichage INTEGER NOT NULL
 );
 
 CREATE TABLE ELEMENTS_DE_MENU(
-                                 Id SERIAL PRIMARY KEY,
-                                 Nom_Element VARCHAR(255) NOT NULL,
-                                 Lien VARCHAR(255),
-                                 Menu_Id INTEGER REFERENCES MENUS(Id) ON DELETE CASCADE,
-                                 Ordre_Affichage INTEGER NOT NULL
+    Id SERIAL PRIMARY KEY,
+    Nom_Element VARCHAR(255) NOT NULL,
+    Lien VARCHAR(255),
+    Menu_Id INTEGER REFERENCES MENUS(Id) ON DELETE CASCADE,
+    Ordre_Affichage INTEGER NOT NULL
 );
 
 CREATE TABLE DROITS_DE_MENUS(
-                                Id SERIAL PRIMARY KEY,
-                                Group_Id INTEGER NOT NULL REFERENCES GROUPES(Id),
-                                Menu_Id INTEGER REFERENCES MENUS(Id) ON DELETE CASCADE,
-                                Element_Id INTEGER REFERENCES ELEMENTS_DE_MENU(Id)
+    Id SERIAL PRIMARY KEY,
+    Group_Id INTEGER NOT NULL REFERENCES GROUPES(Id),
+    Menu_Id INTEGER REFERENCES MENUS(Id) ON DELETE CASCADE,
+    Element_Id INTEGER REFERENCES ELEMENTS_DE_MENU(Id)
 );
 
 
 CREATE TABLE IF NOT EXISTS DESCRIPTION(
-                                          Id_Description SERIAL PRIMARY KEY,
-                                          Description TEXT
+    Id_Description SERIAL PRIMARY KEY,
+    Description TEXT
 );
 
 CREATE TABLE IF NOT EXISTS PAYS(
-                                   Id_Pays SERIAL PRIMARY KEY,
-                                   Libelle_Pays VARCHAR(255) NOT NULL,
+    Id_Pays SERIAL PRIMARY KEY,
+    Libelle_Pays VARCHAR(255) NOT NULL,
     ISO_Pays_Num INTEGER,
     ISO_Pays_Car VARCHAR(255)
-    );
+);
 
 CREATE TABLE IF NOT EXISTS SEXE(
-                                   Code_Sexe SERIAL PRIMARY KEY,
-                                   Libelle_Sexe VARCHAR(255) NOT NULL
-    );
+    Code_Sexe SERIAL PRIMARY KEY,
+    Libelle_Sexe VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE IF NOT EXISTS TRANCHE_AGE(
-                                          Id_Tranche SERIAL PRIMARY KEY,
-                                          Age_Mini INTEGER NOT NULL,
-                                          Age_Maxi INTEGER NOT NULL
+    Id_Tranche SERIAL PRIMARY KEY,
+    Age_Mini INTEGER NOT NULL,
+    Age_Maxi INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS report_deces(
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS report_deces(
     Annee DATE,
     Nbr_Morts INTEGER,
     PRIMARY KEY (Id_Pays, Annee)
-    );
+);
 
 
 CREATE TABLE IF NOT EXISTS report_diabetique(
@@ -121,21 +121,21 @@ CREATE TABLE IF NOT EXISTS report_diabetique(
     Annee DATE,
     Nbr_Diabetique INTEGER,
     PRIMARY KEY (Id_Pays, Code_Sexe, Id_Tranche, Annee)
-    );
+);
 
 CREATE TABLE IF NOT EXISTS report_prix_ass(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
     Annee DATE,
     Prix_Assurance DECIMAL(15, 2),
     PRIMARY KEY (Id_Pays, Annee)
-    );
+);
 
 CREATE TABLE IF NOT EXISTS report_prix_ins(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
     Annee DATE,
     Prix_Insuline DECIMAL(15, 2),
     PRIMARY KEY (Id_Pays, Annee)
-    );
+);
 
 
 

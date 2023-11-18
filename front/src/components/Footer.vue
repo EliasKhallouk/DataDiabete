@@ -46,7 +46,7 @@
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/EliasKhallouk">Khallouk Elias</a>
               </li>
               <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" rel="noopener noreferrer" href="https://github.com/diarrathiamm">Mame Diarra</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/diarrathiamm">Thiam Mame Diarra</a>
               </li>
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/amajoure-iut90">Majourel Ambre</a>
