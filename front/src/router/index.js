@@ -41,6 +41,11 @@ const routes = [
     path: '/gestion-utilisateur',
     name: 'gestion-utilisateur',
     component: () => import('../views/GestionUtilisateurView.vue')
+  },
+  {
+    path: '/validation-donnee',
+    name: 'validation-donnee',
+    component: () => import('../views/ValidationDonneeView.vue')
   }
 
 ]

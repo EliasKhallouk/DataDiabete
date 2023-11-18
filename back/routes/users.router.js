@@ -9,6 +9,10 @@ router.get('/home',(req,res)=>{
 
 
 router.get('/',userController.getUsers);//http://localhost:3000/users?async=0 ou async=1
+
+
+router()
+
 /*
 // mettre /top avant /uuid parceuque sinon il le considere comme id de user
 router.get("/top", userController.getUsersWithLongestPrenom) //http://localhost:3000/users/top

@@ -7,6 +7,7 @@
     <router-link to="/carte" style="margin-right: 50px; float: right">Carte</router-link>
     <router-link to="/info-perso" style="margin-right: 50px; float: right">Info personnelle</router-link>
     <router-link to="/gestion-utilisateur" style="margin-right: 50px; float: right">Gestion utilisateur</router-link>
+    <router-link to="/validation-donnee" style="margin-right: 50px; float: right">Validation donnee</router-link>
     <router-link to="/" style="margin-right: 50px; float: right">Accueil</router-link>
   </nav>
 </template>
