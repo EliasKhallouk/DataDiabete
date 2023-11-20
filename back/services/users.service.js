@@ -47,7 +47,8 @@ const getUsers = (callback)=>{
 async function getAllUsers() {
     try {
         const client = await pool.connect();
-        const res = await client.query('SELECT * FROM UTILISATEURS');
+        const res = await client.query('select user_id,first_name,last_name,groupe from utilisateurs\n' +
+            'join groupes on utilisateurs.group_id=groupes.id;');
         client.release();
         return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
     } catch (error) {

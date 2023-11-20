@@ -17,8 +17,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getAllUser({commit}){
-      let response = await usersService.getAllUser();
+    async getAllUsers({commit}){
+      let response = await usersService.getAllUsers();
       if(response.status === 200){
         commit('updateUsers',response.data)
       } else{

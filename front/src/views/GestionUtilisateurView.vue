@@ -1,12 +1,11 @@
 <template>
   <div style="margin-top: 150px;">
     <h1 style="font-size: 40px;">Gestion d'utilisateur</h1>
-    <p>u</p>
     <div class="centered-container">
       <table>
         <thead>
         <tr>
-          <th>Id</th><th>Nom</th><th>Prenom</th><th>Email</th><th>Role</th><th>Opération</th>
+          <th>Id</th><th>Nom</th><th>Prenom</th><!--<th>Email</th>--><th>Role</th><th>Opération</th>
         </tr>
         </thead>
         <tbody>
@@ -16,7 +15,7 @@
             <td data-title="Nom">{{user.first_name}}</td>
             <td data-title="Prenom">{{user.last_name}}</td>
 <!--            <td data-title="Email">{{user.Email}}</td>-->
-<!--            <td data-title="Role">{{user.Role}}</td>-->
+            <td data-title="Role">{{user.groupe}}</td>
             <td data-title="opération">
               <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
               <a href="" onclick="return confirm('Are you sure?')">Supprimer</a>
