@@ -1,6 +1,7 @@
 <template>
   <div style="margin-top: 150px;">
     <h1 style="font-size: 40px;">Gestion d'utilisateur</h1>
+    <p>u</p>
     <div class="centered-container">
       <table>
         <thead>
@@ -10,12 +11,12 @@
         </thead>
         <tbody>
           <div v-if="dataUser.length<=0">pas d'utilisateur</div>
-          <tr v-for="(user, index) in dataUser" :key="index">
-            <td data-title="Id">{{user.Id}}</td>
-            <td data-title="Nom">{{user.Nom}}</td>
-            <td data-title="Prenom">{{user.Prenom}}</td>
-            <td data-title="Email">{{user.Email}}</td>
-            <td data-title="Role">{{user.Role}}</td>
+          <tr v-for="(user, index) in users" :key="index">
+            <td data-title="Id">{{user.user_id}}</td>
+            <td data-title="Nom">{{user.first_name}}</td>
+            <td data-title="Prenom">{{user.last_name}}</td>
+<!--            <td data-title="Email">{{user.Email}}</td>-->
+<!--            <td data-title="Role">{{user.Role}}</td>-->
             <td data-title="opération">
               <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
               <a href="" onclick="return confirm('Are you sure?')">Supprimer</a>
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+import {mapState,mapActions} from "vuex";
 export default {
   data() {
     return {
@@ -39,6 +41,15 @@ export default {
         {Id:"4", Nom: "aliday", Prenom: "Joni", Email: "joni.aliday@gmail.com", Password: "qsdfgh456", Role:"admin"}
       ],
     };
+  }, computed: {
+    ...mapState(['users'])
+  }, methods :{
+    ...mapActions(['getAllUsers'])
+  }, mounted() {
+    this.getAllUsers().
+    then( () => {
+      console.log("SISI")
+    }).catch((error) => console.log(error))
   }
 }
 </script>
