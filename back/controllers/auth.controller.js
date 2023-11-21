@@ -3,6 +3,24 @@ const config = require("../config/auth.config");
 const User = dbAuth.users;
 const Role = dbAuth.roles;
 
+//signUp = (req, res) => {}
+//signIn = (req, res) => {}
+
+// Récupréer tous les utilisateurs de la base de données
+exports.findAll = async (req, res) => {
+
+    User.findAll({include:Role})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Erreur lors de la récupération des utilisateurs."
+            });
+        });
+};
+
 exports.update = async (req, res) => {
     const id = parseInt(req.params.id);
     

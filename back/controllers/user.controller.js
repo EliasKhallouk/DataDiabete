@@ -42,6 +42,8 @@ exports.findAll = async (req, res) => {
         });
 };
 
+//findOne = async (req, res) => {}
+
 // Informations utilisateur mises à jour à partir de l'ID
 exports.update = async (req, res) => {
     const id = parseInt(req.params.id);
