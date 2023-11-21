@@ -15,7 +15,7 @@
 
     <div class="carousel-container">
       <carousel
-        :per-page="1"
+        :per-page="3"
         :pagination-enabled="true"
         id="carousel"
         autoplay="true"
@@ -23,7 +23,7 @@
         loop="true"
         ref="carousel"
       >
-        <slide v-for="(image, index) in carouselImages" :key="index">
+        <slide v-for="(image, index) in carouselImages" :key="index" class="vue-carousel-slide">
           <img :src="image.src" :alt="image.alt" class="carousel-image" />
         </slide>
       </carousel>
@@ -97,10 +97,15 @@ export default {
         { src: require("../assets/diagramme.png"), alt: "Image 2" },
         { src: require("../assets/histogramme.png"), alt: "Image 3" },
       ],
+      autoChangeSlideInterval: null,
     };
   },
   mounted() {
     this.ecritur();
+    this.startAutoChangeSlide();
+  },
+  beforeDestroy() {
+    this.stopAutoChangeSlide();
   },
   methods: {
     scrollToCarousel() {
@@ -132,15 +137,20 @@ export default {
         .pauseFor(100)
         .start();
     },
+    startAutoChangeSlide() {
+      this.autoChangeSlideInterval = setInterval(this.autoChangeSlide, 5000);
+    },
+    stopAutoChangeSlide() {
+      clearInterval(this.autoChangeSlideInterval);
+    },
     autoChangeSlide() {
-      const carousel = this.$refs.carousel; // Accédez au composant Carousel via une référence
+      const carousel = this.$refs.carousel;
 
-      // Vérifiez si le composant Carousel existe et s'il a des slides
       if (carousel && carousel.slides && carousel.slides.length >= 1) {
-        const currentIndex = carousel.currentIndex; // Obtenez l'index du slide actuel
-        const nextIndex = (currentIndex + 1) % carousel.slides.length; // Calculez l'index du prochain slide
+        const currentIndex = carousel.currentIndex;
+        const nextIndex = (currentIndex + 1) % carousel.slides.length;
 
-        carousel.goToSlide(nextIndex); // Changez de slide
+        carousel.goToSlide(nextIndex);
       }
     },
   },
@@ -260,6 +270,26 @@ a {
 
 .vue-carousel-pagination-item.active {
   background-color: #333;
+}
+
+.vue-carousel-slide:nth-child(1) {
+  flex: 0 0 28%; /* Vous pouvez ajuster le pourcentage selon vos besoins */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.vue-carousel-slide:nth-child(2) {
+  flex: 0 0 40%; /* Vous pouvez ajuster le pourcentage selon vos besoins */
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.vue-carousel-slide:nth-child(3) {
+  flex: 0 0 28%; /* Vous pouvez ajuster le pourcentage selon vos besoins */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 1500px) {
