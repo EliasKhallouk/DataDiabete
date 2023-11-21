@@ -27,7 +27,22 @@ exports.create = async (req, res) => {
         });
 };
 
-// Update a User by the id in the request
+// Récupréer tous les utilisateurs de la base de données
+exports.findAll = async (req, res) => {
+
+    User.findAll({include:Role})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Erreur lors de la récupération des utilisateurs."
+            });
+        });
+};
+
+// Informations utilisateur mises à jour à partir de l'ID
 exports.update = async (req, res) => {
     const id = parseInt(req.params.id);
 
@@ -65,17 +80,7 @@ exports.update = async (req, res) => {
 
 
 
-/*const userService = require("../services/users.service")
-
-exports.getUsers = async (req,res) =>{
-    userService.getUsers((error,data)=>{
-        if(error){
-            return res.status(500).send("Internal error!");
-        }
-        return res.status(200).json(data);
-    })
-}
-
+/*
 exports.getAllUsers = async (req, res) => {
     try {
         const users = await userService.getAllUsers();
@@ -85,23 +90,4 @@ exports.getAllUsers = async (req, res) => {
         return res.status(500).send("Internal error!");
     }
 };
-
-
-
-/*const usersService = require("../services/users.services")
-
-exports.saveUser = (req, res) => {
-    const prenom = req.body.prenom;
-    const nom = req.body.nom;
-    const email = req.body.email;
-    const password = req.body.password;
-
-    console.log(prenom, " ", nom, " ", email, " ", password);
-    usersService.createUser(prenom, nom, email, password, (error, data) => {
-        if (error){
-            return res.status(500).send("Erreur interne.");
-        }
-        return res.status(200).send("Utilisateur enregistré avec succés !");
-    })
-}
 */
