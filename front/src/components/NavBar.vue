@@ -4,6 +4,7 @@
     <div class="menu-icon" @click="toggleMenu">Menu</div>
     <div class="nav-links" :class="{ 'show-menu': isMenuOpen }" @mouseleave="closeMenu">
       <router-link to="/connexion">Connexion</router-link>
+      <router-link to="/inscription">Inscription</router-link>
       <router-link to="/histogramme">Histogramme</router-link>
       <router-link to="/diagramme">Diagramme</router-link>
       <router-link to="/carte">Carte</router-link>

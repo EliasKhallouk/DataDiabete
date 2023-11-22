@@ -1,7 +1,7 @@
 <template>
   <div class="body-diagramme-bare">
     <p>
-      DECONEXION
+      DECONNEXION
     </p>
   </div>
 </template>
