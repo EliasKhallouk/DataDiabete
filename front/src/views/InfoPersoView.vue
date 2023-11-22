@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 150px;">
-    <h1 style="font-size: 40px;">Information personnelle</h1>
+    <h1 style="font-size: 40px;">Informations personnelles</h1>
     <div class="centered-container">
        <div class="gestion">
           <form>
@@ -9,7 +9,7 @@
               <input class="input" type="text" id="Nom" name="Nom" :value="infoPerso[0].Nom" />
             </div>
             <div class="ligne">
-              <label for="email">Prenom</label>
+              <label for="email">Prénom</label>
               <input class="input" type="text" id="Prenom" name="Prenom" :value="infoPerso[0].Prenom" />
             </div>
             <div class="ligne">
@@ -20,6 +20,10 @@
               <label for="email">Password</label>
               <input class="input" type="password" id="Password" name="Password" :value="infoPerso[0].Password" />
             </div>
+            <div class="ligne">
+                <label for="email">Rôle</label>
+                <input class="input" type="role" id="Role" name="Role" :value="infoPerso[0].Role" />
+              </div>
             <button class="button" type="submit">Changer mes coordonnées</button>
           </form>
        </div>
@@ -32,7 +36,7 @@ export default {
   data() {
     return {
       infoPerso: [
-        {Id:"0", Nom: "Dupont", Prenom: "Michel", Email: "michel.dupont@gmail.com", Password: "azerty123"}
+        {Id: "0", Nom: "Dupont", Prenom: "Michel", Email: "michel.dupont@gmail.com", Password: "azerty123", Role: "Admin"}
       ],
     };
   }
