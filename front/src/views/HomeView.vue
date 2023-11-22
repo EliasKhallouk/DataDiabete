@@ -13,21 +13,15 @@
       </div>
     </div>
 
-    <div class="carousel-container">
-      <carousel
-        :per-page="3"
-        :pagination-enabled="true"
-        id="carousel"
-        autoplay="true"
-        autoplayTimeout="5000"
-        loop="true"
-        ref="carousel"
-      >
-        <slide v-for="(image, index) in carouselImages" :key="index" class="vue-carousel-slide">
-          <img :src="image.src" :alt="image.alt" class="carousel-image" />
-        </slide>
-      </carousel>
+    <div class="gallery" id="carousel">
+      <div class="gallery-container">
+        <img class="gallery-item gallery-item-1" src="../assets/carte2.jpg" data-index="1">
+        <img class="gallery-item gallery-item-2" src="../assets/diagramme.png" data-index="2">
+        <img class="gallery-item gallery-item-3" src="../assets/histogramme.png" data-index="3">
+      </div>
+      <div class="gallery-controls" ref="galleryControlsContainer"></div>
     </div>
+
     <p>
       Le diabète est une condition médicale mondiale en constante croissance, affectant
       des millions de personnes de tous âges, de tous sexes et de tous horizons. Pour
@@ -82,30 +76,63 @@
 </template>
 
 <script>
-import { Carousel, Slide } from "vue-carousel";
 import Typewriter from "typewriter-effect/dist/core";
 
+class Carousel{
+  constructor(container, items, controls){
+    this.carouselContainer = container;
+    this.carouselControls = controls;
+    this.carouselArray = [...items];
+  }
+  updateGallery(){
+    this.carouselArray.forEach(el => {
+      el.classList.remove("gallery-item-1");
+      el.classList.remove("gallery-item-2");
+      el.classList.remove("gallery-item-3");
+    });
+    this.carouselArray.slice(0, 3).forEach((el, i) => {
+      el.classList.add(`gallery-item-${i + 1}`);
+    });
+  }
+  setCurrentState(direction){
+    if (direction.className == 'gallery-controls-previous'){
+      this.carouselArray.unshift(this.carouselArray.pop());
+    }else{
+      this.carouselArray.push(this.carouselArray.shift());
+    }
+    this.updateGallery();
+  }
+  setControls(galleryControlsContainer){
+    this.carouselControls.forEach(control => {
+      galleryControlsContainer.appendChild(document.createElement("button")).className = `gallery-controls-${control}`;
+      document.querySelector(`.gallery-controls-${control}`).innerText = control;
+    });
+  }
+  useControls(galleryControlsContainer){
+    const triggers = [...galleryControlsContainer.childNodes];
+    triggers.forEach(control => {
+      control.addEventListener("click", e => {
+        e.preventDefault();
+        this.setCurrentState(control);
+      });
+    });
+  }
+}
+
 export default {
-  components: {
-    Carousel,
-    Slide,
-  },
-  data() {
-    return {
-      carouselImages: [
-        { src: require("../assets/carte2.jpg"), alt: "Image 1" },
-        { src: require("../assets/diagramme.png"), alt: "Image 2" },
-        { src: require("../assets/histogramme.png"), alt: "Image 3" },
-      ],
-      autoChangeSlideInterval: null,
-    };
-  },
   mounted() {
     this.ecritur();
-    this.startAutoChangeSlide();
-  },
-  beforeDestroy() {
-    this.stopAutoChangeSlide();
+
+    const galleryContainer = document.querySelector(".gallery-container");
+    const galleryControlsContainer = this.$refs.galleryControlsContainer; // Use this.$refs to access the element
+    const galleryControls = ["previous", "next"];
+    const galleryItems = document.querySelectorAll(".gallery-item");
+
+    const exampleCarousel = new Carousel(galleryContainer, galleryItems, galleryControls);
+
+    exampleCarousel.setControls(galleryControlsContainer);
+    exampleCarousel.useControls(galleryControlsContainer);
+
   },
   methods: {
     scrollToCarousel() {
@@ -137,53 +164,16 @@ export default {
         .pauseFor(100)
         .start();
     },
-    startAutoChangeSlide() {
-      this.autoChangeSlideInterval = setInterval(this.autoChangeSlide, 5000);
-    },
-    stopAutoChangeSlide() {
-      clearInterval(this.autoChangeSlideInterval);
-    },
-    autoChangeSlide() {
-      const carousel = this.$refs.carousel;
-
-      if (carousel && carousel.slides && carousel.slides.length >= 1) {
-        const currentIndex = carousel.currentIndex;
-        const nextIndex = (currentIndex + 1) % carousel.slides.length;
-
-        carousel.goToSlide(nextIndex);
-      }
-    },
   },
-  /*
-    mounted() {
-      let text1 = document.querySelector(".text1");
-
-    // utilisation de la librairie typeWhriter pour animer le texte de class 'text1'
-    var animText = new Typewriter(text1, {
-      deleteSpeed: 30, // initialise la vitesse entre chaque lettre de 25ms
-    });
-
-    animText
-        .changeDelay(30)
-        .typeString(
-            "Dans une démarche ludique et éducative, notre projet a pour but de vous sensibiliser aux enjeux futurs en matière d'émissions de gaz à effet de serre.\n"
-        ) // texte tapé
-        .typeString("A cet effet, nous vous proposons une page interactive modélisant des solutions concrètes autour de la sylviculture.");
-
-    // ajoute un évènement sur le scroll de telle sorte que lorsque le haut de la page est égale à la position en y de l'élément text alors l'animation peut commencer
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= text1.getBoundingClientRect().y) {
-        animText.start();
-      }
-    });
-  },*/
 };
+
+
+
+
+  
 </script>
 
 <style scoped lang="scss">
-#carousel {
-  padding-top: 128px;
-}
 
 .base-image {
   width: 100%;
@@ -233,64 +223,146 @@ a {
   transform: translate(3px, 3px);
 }
 
-.carousel-container {
+.gallery{
+  padding-top: 128px;
   width: 100%;
-  max-width: 1200px;
+}
+
+.gallery-container{
+  align-items: center;
+  display: flex;
+  height: 400px;
   margin: 0 auto;
+  max-width: 1000px;
+  position: relative;
 }
 
-.carousel-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
-/* Additional styles for pagination */
-.vue-carousel-pagination {
+.gallery-item{
+  height: 200px;
+  opacity: 0;
   position: absolute;
-  bottom: 20px;
+  transition: all 0.3s ease-in-out;
+  width: 330px;
+  z-index: 0;
+  border-radius: 15px;
+  background-size: contain;
+}
+
+.gallery-item-1, .gallery-item-3{
+  height: 250px;
+  opacity: 0.8;
+  width: 380px;
+  z-index: 1;
+}
+.gallery-item-1{
+  left: 30%;
+  transform: translateX(-50%);
+}
+
+.gallery-item-2{
+  box-shadow: -2px 5px 33px 6px rgba(0,0,0,0.35);
+  height: 300px;
+  opacity: 1;
   left: 50%;
   transform: translateX(-50%);
+  width: 430px;
+  z-index: 2;
+}
+
+.gallery-item-3{
+  left: 70%;
+  transform: translateX(-50%);
+}
+
+.gallery-controls{
   display: flex;
+  justify-content: center;
+  margin: 25px 0;
+  height: 100px;
+}
+
+.gallery-controls button{
+  background-color: transparent;
+  border:0;
+  cursor: pointer;
+  font-size: 30px;
+  margin: 0 50px;
+  padding: 0 12px;
+  text-transform: capitalize;
+}
+
+.gallery-controls button:focus{
+  outline: none;
+}
+
+.gallery-controls-previous{
+  position: relative;
+}
+
+.gallery-controls-previous::before{
+  border: solid #000;
+  border-width: 0 5px 5px 0;
+  content: "";
+  display: inline-block;
+  height: 5px;
+  left: -30px;
+  padding: 10px;
+  position: absolute;
+  top: 25%;
+  transform: rotate(135deg) translateY(-50%);
+  transition: left 0.15s ease-in-out;
+  width: 5px;
+}
+
+.gallery-controls-previous:hover::before{
+  left: -40px;
+}
+
+.gallery-controls-next{
+  position: relative;
+}
+
+.gallery-controls-next::before{
+  border: solid #000;
+  border-width: 0 5px 5px 0;
+  content: "";
+  display: inline-block;
+  height: 5px;
+  padding: 10px;
+  position: absolute;
+  right: -30px;
+  top: 45;
+  transform: rotate(-45deg) translateY(-50%);
+  transition: right 0.15s ease-in-out;
+  width: 5px;
+}
+
+.gallery-controls-next:hover::before{
+  right: -40px;
+}
+
+.gallery-nav{
+  bottom: -15px;
+  display: flex;
+  justify-content: center;
   list-style: none;
   padding: 0;
-  margin: 0;
+  position: absolute;
+  width: 100%;
 }
 
-.vue-carousel-pagination-item {
-  width: 10px;
-  height: 10px;
+.gallery-nav li{
+  background-color: #8b2c2c;
   border-radius: 50%;
-  background-color: #888;
-  margin-right: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  height: 10px;
+  margin: 0 16px;
+  width: 10px;
 }
 
-.vue-carousel-pagination-item.active {
-  background-color: #333;
+.gallery-nav li.gallery-item-selected{
+  background-color: #555;
 }
 
-.vue-carousel-slide:nth-child(1) {
-  flex: 0 0 28%; /* Vous pouvez ajuster le pourcentage selon vos besoins */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.vue-carousel-slide:nth-child(2) {
-  flex: 0 0 40%; /* Vous pouvez ajuster le pourcentage selon vos besoins */
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.vue-carousel-slide:nth-child(3) {
-  flex: 0 0 28%; /* Vous pouvez ajuster le pourcentage selon vos besoins */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 @media screen and (max-width: 1500px) {
   p {
