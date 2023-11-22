@@ -91,10 +91,28 @@ exports.update = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
     try {
-            const users = await userService.getAllUsers();
+        const users = await userService.getAllUsers();
         return res.status(200).json(users);
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal error!");
+    }
+};
+
+exports.deleteUsers = async (req, res) => {
+    console.log("1");
+    try {
+        console.log("2");
+        const uuid = req.params.uuid;
+        if(!uuid){
+            return res.status(400).send("UUIS Required !");
+        }
+        console.log("2b")
+        const users = await userService.deleteUsers(uuid);
+        console.log("2c")
+        return res.status(200).json(users);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal error! deleteUsers");
     }
 };
