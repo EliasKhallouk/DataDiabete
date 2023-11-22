@@ -19,7 +19,8 @@
         <img class="gallery-item gallery-item-2" src="../assets/diagramme.png" data-index="2">
         <img class="gallery-item gallery-item-3" src="../assets/histogramme.png" data-index="3">
       </div>
-      <div class="gallery-controls" ref="galleryControlsContainer"></div>
+      <div class="gallery-controls" >
+      </div>
     </div>
 
     <p>
@@ -84,6 +85,15 @@ class Carousel{
     this.carouselControls = controls;
     this.carouselArray = [...items];
   }
+  scrollToPrevious() {
+    this.carouselArray.unshift(this.carouselArray.pop());
+    this.updateGallery();
+  }
+
+  scrollToNext() {
+    this.carouselArray.push(this.carouselArray.shift());
+    this.updateGallery();
+  }
   updateGallery(){
     this.carouselArray.forEach(el => {
       el.classList.remove("gallery-item-1");
@@ -94,14 +104,24 @@ class Carousel{
       el.classList.add(`gallery-item-${i + 1}`);
     });
   }
-  setCurrentState(direction){
-    if (direction.className == 'gallery-controls-previous'){
-      this.carouselArray.unshift(this.carouselArray.pop());
-    }else{
-      this.carouselArray.push(this.carouselArray.shift());
-    }
-    this.updateGallery();
+  // setCurrentState(direction){
+  //   if (direction.className == 'gallery-controls-previous'){
+  //     this.carouselArray.unshift(this.carouselArray.pop());
+  //   }else{
+  //     this.carouselArray.push(this.carouselArray.shift());
+  //   }
+  //   this.updateGallery();
+  // }
+  setCurrentState(direction) {
+  const controlClass = direction.className;
+  if (controlClass.includes('gallery-controls-previous')) {
+    this.carouselArray.unshift(this.carouselArray.pop());
+  } else if (controlClass.includes('gallery-controls-next')) {
+    this.carouselArray.push(this.carouselArray.shift());
   }
+  this.updateGallery();
+}
+
   setControls(galleryControlsContainer){
     this.carouselControls.forEach(control => {
       galleryControlsContainer.appendChild(document.createElement("button")).className = `gallery-controls-${control}`;
@@ -117,6 +137,22 @@ class Carousel{
       });
     });
   }
+  handleImageClick(index) {
+    if (index === 1) {
+      this.carouselArray.unshift(this.carouselArray.pop());
+    } else if (index === 3) {
+      this.carouselArray.push(this.carouselArray.shift());
+    }
+    this.updateGallery();
+  }
+
+  useImageClicks() {
+    this.carouselArray.forEach((el, i) => {
+      el.addEventListener("click", () => {
+        this.handleImageClick(i + 1);
+      });
+    });
+  }
 }
 
 export default {
@@ -124,7 +160,7 @@ export default {
     this.ecritur();
 
     const galleryContainer = document.querySelector(".gallery-container");
-    const galleryControlsContainer = this.$refs.galleryControlsContainer; // Use this.$refs to access the element
+    const galleryControlsContainer = document.querySelector(".gallery-controls")
     const galleryControls = ["previous", "next"];
     const galleryItems = document.querySelectorAll(".gallery-item");
 
@@ -133,7 +169,14 @@ export default {
     exampleCarousel.setControls(galleryControlsContainer);
     exampleCarousel.useControls(galleryControlsContainer);
 
+    exampleCarousel.useImageClicks();
+
   },
+  data() {
+  return {
+    carousel: null,
+  };
+},
   methods: {
     scrollToCarousel() {
       const carouselElement = document.getElementById("carousel");
@@ -281,26 +324,35 @@ a {
   height: 100px;
 }
 
-.gallery-controls button{
+.gallery-controls ::v-deep button {
   background-color: transparent;
-  border:0;
-  cursor: pointer;
-  font-size: 30px;
-  margin: 0 50px;
-  padding: 0 12px;
-  text-transform: capitalize;
+    border: 2px solid #8b2c2c; // Border color
+    border-radius: 5px;
+    color: #8b2c2c; // Text color
+    cursor: pointer;
+    font-size: 20px; // Adjust font size as needed
+    margin: 0 20px; // Adjust spacing as needed
+    padding: 6px 8px; // Adjust padding as needed
+    text-transform: capitalize;
+    width: 28%;
+
+  &:hover {
+    background-color: #8b2c2c; // Background color on hover
+    color: #ffffff; // Text color on hover
+  }
 }
 
-.gallery-controls button:focus{
+.gallery-controls button:focus {
   outline: none;
 }
+
 
 .gallery-controls-previous{
   position: relative;
 }
 
 .gallery-controls-previous::before{
-  border: solid #000;
+  border: solid #8b2c2c;
   border-width: 0 5px 5px 0;
   content: "";
   display: inline-block;
@@ -315,6 +367,7 @@ a {
 }
 
 .gallery-controls-previous:hover::before{
+  border: solid #fff; 
   left: -40px;
 }
 
@@ -323,7 +376,7 @@ a {
 }
 
 .gallery-controls-next::before{
-  border: solid #000;
+  border: solid #8b2c2c;
   border-width: 0 5px 5px 0;
   content: "";
   display: inline-block;
@@ -338,6 +391,7 @@ a {
 }
 
 .gallery-controls-next:hover::before{
+  border: solid #fff; 
   right: -40px;
 }
 
