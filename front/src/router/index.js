@@ -52,11 +52,11 @@ const routes = [
     name: 'validation-donnee',
     component: () => import('../views/ValidationDonneeView.vue')
   },
-  {
+  /*{
     path: '/deconnexion',
     name: 'deconnexion',
     component: () => import('../views/DeconnexionView.vue')
-  }
+  }*/
 
 ]
 

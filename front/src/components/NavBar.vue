@@ -11,7 +11,7 @@
       <router-link to="/info-perso">Informations personnelles</router-link>
       <router-link to="/gestion-utilisateur">Gestion utilisateurs</router-link>
       <router-link to="/validation-donnee">Validation données</router-link>
-      <button class="button" type="submit">Déconnexion</button>
+      <a href="" onclick="return confirm('Are you sure?')">Déconnexion</a>
       <router-link to="/">Accueil</router-link>
     </div>
   </nav>

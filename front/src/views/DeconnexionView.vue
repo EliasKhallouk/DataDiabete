@@ -1,8 +1,7 @@
+<!--
 <template>
   <div class="body-diagramme-bare">
-    <p>
-      DECONNEXION
-    </p>
+    <button class="button" type="submit">Déconnexion</button>
   </div>
 </template>
 
@@ -15,3 +14,4 @@
   padding-left: 8%;
 }
 </style>
+-->
