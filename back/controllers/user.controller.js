@@ -1,9 +1,13 @@
-const {dbAuth} = require("../models");
+/*const {dbAuth} = require("../models");
 //const { authJwt } = require("../middleware");
 const User = dbAuth.users;
 const Role = dbAuth.roles;
+*/
+
+const userService = require("../services/users.service")
 
 
+/*
 // Créer un nouvel utilisateur
 exports.create = async (req, res) => {
     // Créer l'utilisateur
@@ -41,10 +45,12 @@ exports.findAll = async (req, res) => {
             });
         });
 };
+ /*
 
 //findOne = async (req, res) => {}
 
 // Informations utilisateur mises à jour à partir de l'ID
+/*
 exports.update = async (req, res) => {
     const id = parseInt(req.params.id);
 
@@ -79,17 +85,16 @@ exports.update = async (req, res) => {
 };
 
 
+*/
 
 
 
-/*
 exports.getAllUsers = async (req, res) => {
     try {
-        const users = await userService.getAllUsers();
+            const users = await userService.getAllUsers();
         return res.status(200).json(users);
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal error!");
     }
 };
-*/
