@@ -3,7 +3,32 @@ const config = require("../config/auth.config");
 const User = dbAuth.users;
 const Role = dbAuth.roles;
 
-//signUp = (req, res) => {}
+signUp = (req, res) => {
+    User.create({
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        email: req.body.email,
+        password: req.body.password,
+    })
+        .then(user=> {
+            if(req.body.roleId && req.body.roleId in [1, 2, 3]){
+                user.setRole(req.body.roleId)
+                .then(()=> {
+                    res.status(200).send({
+                        success : 1,
+                        data : user
+                    });
+                });
+            } else {
+                user.setRole(1).then(()=> {
+                    res.status(200).send({
+                        success : 1,
+                        data : user
+                    })
+                })
+            }
+        })
+}
 //signIn = (req, res) => {}
 
 // Récupréer tous les utilisateurs de la base de données
