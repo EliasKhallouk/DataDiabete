@@ -11,7 +11,7 @@
       <router-link to="/info-perso">Informations personnelles</router-link>
       <router-link to="/gestion-utilisateur">Gestion utilisateurs</router-link>
       <router-link to="/validation-donnee">Validation données</router-link>
-      <router-link to="/deconnexion">Déconnexion</router-link>
+      <button class="button" type="submit">Déconnexion</button>
       <router-link to="/">Accueil</router-link>
     </div>
   </nav>
@@ -37,6 +37,14 @@ export default {
 </script>
 
 <style scoped>
+
+
+button:hover {
+  color: red;
+  background-color: white;
+  border: 2px solid red;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
