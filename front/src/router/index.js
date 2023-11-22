@@ -23,6 +23,11 @@ const routes = [
     component: () => import('../views/ConnexionView.vue')
   },
   {
+    path: '/inscription',
+    name: 'inscription',
+    component: () => import('../views/InscriptionView.vue')
+  },
+  {
     path: '/carte',
     name: 'carte',
     component: () => import('../views/CarteView.vue')

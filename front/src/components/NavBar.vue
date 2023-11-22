@@ -4,13 +4,14 @@
     <div class="menu-icon" @click="toggleMenu">Menu</div>
     <div class="nav-links" :class="{ 'show-menu': isMenuOpen }" @mouseleave="closeMenu">
       <router-link to="/connexion">Connexion</router-link>
+      <router-link to="/inscription">Inscription</router-link>
       <router-link to="/histogramme">Histogramme</router-link>
       <router-link to="/diagramme">Diagramme</router-link>
       <router-link to="/carte">Carte</router-link>
       <router-link to="/info-perso">Informations personnelles</router-link>
       <router-link to="/gestion-utilisateur">Gestion utilisateurs</router-link>
       <router-link to="/validation-donnee">Validation données</router-link>
-      <router-link to="/deconnexion">Déconnexion</router-link>
+      <button class="button" type="submit">Déconnexion</button>
       <router-link to="/">Accueil</router-link>
     </div>
   </nav>
@@ -36,6 +37,14 @@ export default {
 </script>
 
 <style scoped>
+
+
+button:hover {
+  color: red;
+  background-color: white;
+  border: 2px solid red;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
