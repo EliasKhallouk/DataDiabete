@@ -7,7 +7,7 @@ router.get('/home',(req,res)=>{
 });
 
 router.get('/',userController.getAllUsers);//http://localhost:3000/users?async=0 ou async=1
-
+router.delete('/',userController.deleteUsers);//http://localhost:3000/users?uuid=aab46b73-40d2-495a-a5ea-83688c044d2a
 /*
 // mettre /top avant /uuid parceuque sinon il le considere comme id de user
 router.get("/top", userController.getUsersWithLongestPrenom) //http://localhost:3000/users/top
