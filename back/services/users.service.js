@@ -61,13 +61,12 @@ async function getAllUsers() {
 
 async function deleteUsers(uuid) {
     try {
-
-        console.log("3")
-        const client = await pool.connect();
-            const res = await client.query('DELETE FROM utilisateurs WHERE id = $1;');
+        const client = await pool.connect()
+        const res = await client.query(
+            'DELETE FROM utilisateurs WHERE user_id=$1',
             [uuid]
+        );
         client.release();
-        console.log("4")
         return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
     } catch (error) {
         console.error(error);

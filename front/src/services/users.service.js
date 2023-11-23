@@ -1,5 +1,6 @@
 import axios from 'axios';
 const usersAPI = "http://localhost:3000/users"
+const usersDeleteAPI = "http://localhost:3000/users?uuid"
 
 async function getUsers ()  {
     try {
@@ -25,7 +26,20 @@ async function getAllUsers ()  {
     }
 }
 
+async function deleteUsers (id){
+    try {
+        console.log("ouba ouba")
+        const response = await axios.delete(`${usersDeleteAPI}=${id}`);
+        console.log("okkkkk ouba")
+        return response;
+    }catch (error){
+        console.log(error);
+        throw error;
+    }
+}
+
 export default {
     getUsers,
     getAllUsers,
+    deleteUsers,
 }

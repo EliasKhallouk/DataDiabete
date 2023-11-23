@@ -24,6 +24,16 @@ export default new Vuex.Store({
       } else{
         console.log("Marche po");
       }
+    },
+    async deleteUsers({commit},id){
+      console.log("1");
+      let response = await usersService.deleteUsers(id);
+      if(response.status === 200){
+        const result = this.state.users.filter(user => user.user_id !== id)
+        commit('updateUsers',result)
+      } else{
+        console.log("Marche pas");
+      }
     }
   },
   modules: {
