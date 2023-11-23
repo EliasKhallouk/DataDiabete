@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tbody>
-          <div v-if="dataUser.length<=0">pas d'utilisateur</div>
+          <div v-if="users.length <=0">pas d'utilisateur</div>
           <tr v-for="(user, index) in users" :key="index">
             <td data-title="Id">{{user.user_id}}</td>
             <td data-title="Nom">{{user.first_name}}</td>
@@ -18,7 +18,7 @@
             <td data-title="Role">{{user.groupe}}</td>
             <td data-title="opération">
               <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
-              <a href="" onclick="return confirm('Are you sure?')">Supprimer</a>
+              <a @click="deleteUsers(user.user_id)">Supprimer</a>
               <a href="" style="margin-left: 40px;">Editer</a>
             </td>
           </tr>
@@ -31,19 +31,10 @@
 <script>
 import {mapState,mapActions} from "vuex";
 export default {
-  data() {
-    return {
-      dataUser: [
-        {Id:"0", Nom: "Dupont", Prenom: "Michel", Email: "michel.dupont@gmail.com", Password: "azerty123", Role:"pro"},
-        {Id:"1", Nom: "aliday", Prenom: "Joni", Email: "joni.aliday@gmail.com", Password: "qsdfgh456", Role:"admin"},
-        {Id:"2", Nom: "aliday", Prenom: "Joni", Email: "joni.aliday@gmail.com", Password: "qsdfgh456", Role:"admin"},
-        {Id:"4", Nom: "aliday", Prenom: "Joni", Email: "joni.aliday@gmail.com", Password: "qsdfgh456", Role:"admin"}
-      ],
-    };
-  }, computed: {
+  computed: {
     ...mapState(['users'])
   }, methods :{
-    ...mapActions(['getAllUsers'])
+    ...mapActions(['getAllUsers','deleteUsers'])
   }, mounted() {
     this.getAllUsers().
     then( () => {
