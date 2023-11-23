@@ -11,7 +11,7 @@
       <router-link to="/info-perso">Informations personnelles</router-link>
       <router-link to="/gestion-utilisateur">Gestion utilisateurs</router-link>
       <router-link to="/validation-donnee">Validation données</router-link>
-      <a href="" onclick="return confirm('Are you sure?')">Déconnexion</a>
+      <a href="" class="logout-link" onclick="return confirm('Are you sure?')">Déconnexion</a>
       <router-link to="/">Accueil</router-link>
     </div>
   </nav>
@@ -64,12 +64,29 @@ nav {
 
 nav a {
   margin-right: 20px;
+  padding: 6px 12px;
 }
 
 .menu-icon {
   cursor: pointer;
   display: none; /* Initially hide the menu icon */
   color: white;
+}
+
+.logout-link {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.logout-link:hover {
+  background-color: white;
+  color: rgb(163, 4, 4);
 }
 
 
