@@ -1,5 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/user.controller");
+const userMiddleware = require("../middleware/user.middleware");
 var router = express.Router();
 
 router.get('/home',(req,res)=>{
@@ -7,7 +8,11 @@ router.get('/home',(req,res)=>{
 });
 
 router.get('/',userController.getAllUsers);//http://localhost:3000/users?async=0 ou async=1
-router.delete('/',userController.deleteUsers);//http://localhost:3000/users?uuid=aab46b73-40d2-495a-a5ea-83688c044d2a
+router.delete('/:uuid',userController.deleteUsers);//http://localhost:3000/users?uuid=aab46b73-40d2-495a-a5ea-83688c044d2a
+
+// http://localhost:3000/users/?prenom=elias&nom=khallouk&email=eliaskhallouk@gmail.com&password=azerty
+router.post('/',userMiddleware.insertUsers,userController.insertUsers); // il va passer par insertUsers si next est appler alors insertUsers sera appeler
+
 /*
 // mettre /top avant /uuid parceuque sinon il le considere comme id de user
 router.get("/top", userController.getUsersWithLongestPrenom) //http://localhost:3000/users/top

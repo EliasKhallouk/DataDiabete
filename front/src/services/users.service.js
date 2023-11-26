@@ -1,18 +1,6 @@
 import axios from 'axios';
 const usersAPI = "http://localhost:3000/users"
-const usersDeleteAPI = "http://localhost:3000/users?uuid"
-
-async function getUsers ()  {
-    try {
-        console.log("aasisi")
-        const response = await axios.get(usersAPI);
-        console.log("sisi")
-        return response;
-    }catch (error){
-        console.log(error);
-        throw error;
-    }
-}
+//const usersDeleteAPI = "http://localhost:3000/users?uuid"
 
 async function getAllUsers ()  {
     try {
@@ -29,8 +17,19 @@ async function getAllUsers ()  {
 async function deleteUsers (id){
     try {
         console.log("ouba ouba")
-        const response = await axios.delete(`${usersDeleteAPI}=${id}`);
+        const response = await axios.delete(`${usersAPI}/${id}`);
         console.log("okkkkk ouba")
+        return response;
+    }catch (error){
+        console.log(error);
+        throw error;
+    }
+}
+async function insertUsers(nom,prenom,email,password){
+    try {
+        console.log("ahahaha")
+        const response = await axios.delete(`${usersAPI}/${nom}/${prenom}/${email}/${password}`);
+        console.log("okkkkk ahahaha")
         return response;
     }catch (error){
         console.log(error);
@@ -39,7 +38,7 @@ async function deleteUsers (id){
 }
 
 export default {
-    getUsers,
     getAllUsers,
     deleteUsers,
+    insertUsers,
 }

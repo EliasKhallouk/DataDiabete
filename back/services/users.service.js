@@ -74,10 +74,26 @@ async function deleteUsers(uuid) {
     }
 }
 
+async function insertUsers(nom,prenom,email,password) {
+    try {
+        const client = await pool.connect()
+        const res = await client.query(
+            'INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ($1, $2, NOW(), $3, 2)',
+            [`${prenom}`,`${nom}`,`${password}`]
+        );
+        client.release();
+        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+    } catch (error) {
+        console.error(error);
+        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+    }
+}
+
 
 module.exports={
     //creatUser:creatUser,
     //getUsers:getUsers,
     getAllUsers:getAllUsers,
     deleteUsers:deleteUsers,
+    insertUsers:insertUsers,
 }
