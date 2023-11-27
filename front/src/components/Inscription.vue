@@ -4,13 +4,13 @@
       <h1>{{ msg }}</h1>
       <form>
         <label for="nom">Nom</label>
-        <input class="input" type="text" id="nom" name="nom" placeholder="Nom" />
+        <input class="input" type="text" id="nom" name="nom" v-model="nom" placeholder="Nom" />
         <br />
         <label for="prenom">Prenom</label>
-        <input class="input" type="text" id="prenom" name="email" placeholder="Prenom" />
+        <input class="input" type="text" id="prenom" name="prenom" v-model="prenom" placeholder="Prenom" />
         <br />
         <label for="email">Email</label>
-        <input class="input" type="email" id="email" name="email" placeholder="Email" />
+        <input class="input" type="email" id="email" name="email" v-model="email" placeholder="Email" />
         <br />
         <label for="password">Mot de passe</label>
         <input
@@ -19,9 +19,10 @@
           id="password"
           name="password"
           placeholder="Mot de passe"
+          v-model="password"
         />
         <br />
-        <a @click="insertUsers(nom,prenom,email,password)" class="button" >S'inscrire</a>
+        <button @click="this.insert" class="button" >S'inscrire</button>
       </form>
     </div>
   </div>
@@ -34,10 +35,20 @@ export default {
   props: {
     msg: String,
   },
+  data: () => ({
+    nom:'',
+    prenom:'',
+    email:'',
+    password:''
+  }),
   computed: {
     ...mapState(['users'])
-  }, methods :{
-    ...mapActions(['insertUsers'])
+  },
+  methods :{
+    ...mapActions(['insertUsers']),
+    insert(){
+      this.insertUsers({nom:this.nom,prenom:this.prenom,email:this.email,password:this.password})
+    }
   }
 };
 </script>

@@ -34,7 +34,8 @@ export default new Vuex.Store({
         console.log("Erreur Delete User Store");
       }
     },
-    async insertUsers({commit},nom,prenom,email,password){
+    async insertUsers({commit},{nom,prenom,email,password}){
+      console.log(nom,prenom,email,password);
       let response = await usersService.insertUsers(nom,prenom,email,password);
       if(response.status === 200){
         commit('updateUsers',response.data)

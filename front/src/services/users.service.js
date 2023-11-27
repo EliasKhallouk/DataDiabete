@@ -28,7 +28,8 @@ async function deleteUsers (id){
 async function insertUsers(nom,prenom,email,password){
     try {
         console.log("ahahaha")
-        const response = await axios.delete(`${usersAPI}/${nom}/${prenom}/${email}/${password}`);
+        console.log('SERVICE',nom,prenom,email,password);
+        const response = await axios.post(`${usersAPI}/?prenom=${prenom}&nom=${nom}&email=${email}&password=${password}`);
         console.log("okkkkk ahahaha")
         return response;
     }catch (error){
