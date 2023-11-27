@@ -1,9 +1,8 @@
-const {dbAuth} = require("../models");
 const config = require("../config/auth.config");
-const User = dbAuth.users;
-const Role = dbAuth.roles;
+const userService = require("/services/users.service");
+//const User =
 
-signUp = (req, res) => {
+exports.signUp = (req, res) => {
     User.create({
         nom: req.body.nom,
         prenom: req.body.prenom,
@@ -29,7 +28,34 @@ signUp = (req, res) => {
             }
         })
 }
-//signIn = (req, res) => {}
+
+exports.signIn = (req, res) => {
+    try{
+        const user = userService.findOneByMail(req.body.mail);
+        if (!user) {
+            return res.status(404).send({
+                success: 0,
+                data: null
+            });
+        }
+
+        const passwordIsValid = req.body.password === user.password;
+
+        if (!passwordIsValid) {
+            return res.status(401).send({
+                message: "Invalid Password!"
+            });
+        }
+        const groupe = userService.getUserGroupe(user.User_Id)
+
+        res.status(200).send({
+           user,
+           groupe
+        });
+    }catch(err) {
+        res.status(500).send("Erreur lors de la récupération de l'utilisateurs.")
+    }
+};
 
 // Récupréer tous les utilisateurs de la base de données
 exports.findAll = async (req, res) => {
@@ -54,7 +80,6 @@ exports.update = async (req, res) => {
         prenom : req.body.prenom,
         email: req.body.email,
         password: req.body.password
-        //,role: req.body.role
     };
 
     User.update(newValues, {

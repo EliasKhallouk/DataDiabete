@@ -1,6 +1,6 @@
 const config = require("../config/auth.config.js");
 const {dbAuth} = require("../models/index.js");
-const User = dbAuth.users;
+//const User =
 
 
 isPro = (req, res, next) => {

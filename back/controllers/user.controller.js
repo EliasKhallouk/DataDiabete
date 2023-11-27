@@ -1,9 +1,3 @@
-/*const {dbAuth} = require("../models");
-//const { authJwt } = require("../middleware");
-const User = dbAuth.users;
-const Role = dbAuth.roles;
-*/
-
 const userService = require("../services/users.service")
 
 

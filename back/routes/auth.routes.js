@@ -9,5 +9,7 @@ module.exports = function(app) {
         next();
     });
 
+    app.post("/auth/signup", controller.signUp)
+
     app.put("/auth/:id", controller.update)
 }

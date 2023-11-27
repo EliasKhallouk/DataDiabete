@@ -31,6 +31,7 @@ CREATE TABLE UTILISATEURS (
     User_Id SERIAL PRIMARY KEY,
     First_Name VARCHAR(255),
     Last_Name VARCHAR(255),
+    Mail VARCHAR(255),
     Date_Created TIMESTAMP,
     Password VARCHAR(255),
     Group_Id INTEGER REFERENCES GROUPES(Id)
@@ -164,12 +165,12 @@ INSERT INTO GROUPES (Groupe) VALUES ('Administrateurs');
 INSERT INTO GROUPES (Groupe) VALUES ('Éditeurs');
 INSERT INTO GROUPES (Groupe) VALUES ('Visiteurs');
 INSERT INTO GROUPES (Groupe) VALUES ('Externe');
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Joseph', 'Azar', NOW(), 'joseph123', 1);
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Milvyne', 'Perrolet', NOW(), 'milvyne123', 2);
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Stephane', 'Domas', CURRENT_TIMESTAMP, 'vuejs123', NULL);
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Karine', 'Deschinkel', CURRENT_TIMESTAMP, 'karine123', (SELECT Id FROM GROUPES WHERE Groupe = 'Visiteurs'));
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Joseph', 'Azar', "azarjoseph@gmail.com", NOW(), 'joseph123', 1);
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Milvyne', 'Perrolet', "milvyneperrolet@gmail.com", NOW(), 'milvyne123', 2);
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Stephane', 'Domas', "stephanedomas@gmail.com", CURRENT_TIMESTAMP, 'vuejs123', NULL);
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Karine', 'Deschinkel', "karinedeshinkel@gmail.com", CURRENT_TIMESTAMP, 'karine123', (SELECT Id FROM GROUPES WHERE Groupe = 'Visiteurs'));
 
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password) VALUES ('Utilisateur', 'Anonyme', NOW(), 'anonyme123');
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password) VALUES ('Utilisateur', 'Anonyme', "anonyme@gmail.com" NOW(), 'anonyme123');
 
 
 INSERT INTO MOTS_DE_PASSE_UTILISATEURS (User_Id, Date_Created, Password) VALUES (1, NOW(), 'josephSecurePass');
