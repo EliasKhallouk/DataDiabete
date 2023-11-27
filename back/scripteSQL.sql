@@ -153,9 +153,9 @@ CREATE TABLE IF NOT EXISTS report_population(
 );
 
 
-COPY PAYS FROM 'PAYS.csv' WITH CSV DELIMITER ',' SKIP 1;
-COPY report_deces FROM 'report_deces.csv' WITH CSV DELIMITER ',' SKIP 1;
-COPY report_population FROM 'report_population.csv' WITH CSV DELIMITER ',' SKIP 1;
+COPY PAYS FROM 'Python/PAYS.csv' WITH CSV DELIMITER ',' SKIP 1;
+COPY report_deces FROM 'Python/report_deces.csv' WITH CSV DELIMITER ',' SKIP 1;
+COPY report_population FROM 'Python/report_population.csv' WITH CSV DELIMITER ',' SKIP 1;
 
 
 
