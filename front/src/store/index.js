@@ -4,16 +4,21 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import usersService from "@/services/users.service";
+import cartesService from "@/services/carte.service";
 
 export default new Vuex.Store({
   state: {
     users : [],
+    cartes : [],
   },
   getters: {
   },
   mutations: {
     updateUsers(state, user){
       state.users = user;
+    },
+    updateCartes(state, carte){
+      state.cartes = carte;
     }
   },
   actions: {
@@ -42,7 +47,16 @@ export default new Vuex.Store({
       } else{
         console.log("Erreur Insert User Store");
       }
-    }
+    },
+    async getCarte({commit},annee){
+      console.log("--------",annee);
+      let response = await cartesService.getCarte(annee);
+      if(response.status === 200){
+        commit('updateCartes',response.data)
+      } else{
+        console.log("Erreur Get Carte Store");
+      }
+    },
   },
   modules: {
   }

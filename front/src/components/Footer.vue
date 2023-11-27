@@ -21,6 +21,15 @@
               <source src="../assets/logoDDvague.mp4" type="video/mp4" >
             </video>
           </div>
+
+          <div class="footer-menu">
+            <h2 class="footer-menu-name">AUTRE</h2>
+            <ul id="menu-company" class="footer-menu-list">
+              <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                <router-link to="/APropos" rel="noopener noreferrer" >A propos</router-link>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="footer-content-column">
           <div class="footer-menu">
@@ -65,9 +74,6 @@
               GitHub
             </a>
           </div>
-        </div>
-        <div>
-          <router-link to="/APropos">A propos</router-link>
         </div>
       </div>
     </footer>
