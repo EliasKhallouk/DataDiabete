@@ -3,16 +3,25 @@
     <img alt="Vue logo" class="logo" src="../assets/logoDDfixe.png"/>
     <div class="menu-icon" @click="toggleMenu">Menu</div>
     <div class="nav-links" :class="{ 'show-menu': isMenuOpen }" @mouseleave="closeMenu">
-      <router-link to="/connexion">Connexion</router-link>
-      <router-link to="/inscription">Inscription</router-link>
-      <router-link to="/histogramme">Histogramme</router-link>
-      <router-link to="/diagramme">Diagramme</router-link>
-      <router-link to="/carte">Carte</router-link>
-      <router-link to="/info-perso">Informations personnelles</router-link>
-      <router-link to="/gestion-utilisateur">Gestion utilisateurs</router-link>
-      <router-link to="/validation-donnee">Validation données</router-link>
-      <a href="" class="logout-link" onclick="return confirm('Are you sure?')">Déconnexion</a>
-      <router-link to="/">Accueil</router-link>
+      
+    <router-link to="/">Accueil</router-link>
+    <router-link to="/histogramme">Histogramme</router-link>
+    <router-link to="/diagramme">Diagramme</router-link>
+    <router-link to="/carte">Carte</router-link>
+    <div class="dropdown">
+      <div class="dropbtn">User</div>
+      <div class="dropdown-content">
+        <router-link to="/connexion">Connexion</router-link>
+        <router-link to="/inscription">Inscription</router-link>
+        <router-link to="/info-perso">Informations personnelles</router-link>
+        <router-link to="/gestion-utilisateur">Gestion utilisateurs</router-link>
+        <router-link to="/validation-donnee">Validation données</router-link>
+        <a href="" class="logout-link" onclick="return confirm('Are you sure?')">Déconnexion</a>
+      </div>
+    </div>
+      
+      
+      
     </div>
   </nav>
 </template>
@@ -37,7 +46,6 @@ export default {
 </script>
 
 <style scoped>
-
 
 button:hover {
   color: red;
@@ -64,7 +72,7 @@ nav {
 
 nav a {
   margin-right: 20px;
-  padding: 6px 12px;
+  padding: 12px;
 }
 
 .menu-icon {
@@ -73,20 +81,82 @@ nav a {
   color: white;
 }
 
-.logout-link {
-  margin-right: 20px;
-  color: white;
-  text-decoration: none;
-  padding: 6px 12px;
-  border: 2px solid rgb(255, 255, 255);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border 0.3s;
+.dropdown-content a{
+  margin: 0;
+
 }
 
-.logout-link:hover {
-  background-color: white;
-  color: rgb(163, 4, 4);
+.dropdown-content a:hover{
+  color: #af4c4c;
+}
+
+.dropdown-content .logout-link {
+  margin: 0;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8%;
+  cursor: pointer;
+  transition: 0.3s, color 0.3s, border 0.3s;
+}
+
+.dropdown-content .logout-link:hover {
+  border-radius: 2%;
+  background-color: #f25c54;
+  color: rgb(255, 255, 255);
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+  border-radius: 8%;
+  background-color: #ca2b30;
+  color: white;
+  margin-right: 20px;
+  padding: 12px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: fit-content;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  align-items: center;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 16px 12px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ffffff;
+  color: #f25c54;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #ca2b30;
 }
 
 

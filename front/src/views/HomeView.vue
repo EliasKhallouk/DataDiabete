@@ -7,40 +7,43 @@
         </video>
       </div>
       <div style="position: relative; top: 320px; height: 400px; z-index: 1; font-size: 200%">
-        <p style="text-align: center; color: #f8edeb;font-size: 64px;" >Le diabète, un problème humain représenté en chiffres</p>
+        <p style="text-align: center; color: #f8edeb;font-size: 64px;" >Le diabète en quelques stats</p>
         <p style="text-align: center; color: #f8edeb; margin-bottom: 20px" id="text2" onload="ecritur"></p>
         <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
       </div>
     </div>
 
-    <p>
-    Data Diabete est un site internet qui offre des données clés sur le diabète, 
-    regroupées en graphique afin de mieux les visualiser :
-      <ul>
-        <li>Une carte</li>
-        <li>Un diagramme</li>
-        <li>Un histogramme</li>
-        <li>Un questionnaire</li>
-      </ul>
-    </p>
-
     <div class="gallery" id="carousel">
       <div class="gallery-container">
-        <img class="gallery-item gallery-item-1" src="../assets/carte2.jpg" data-index="1">
-        <img class="gallery-item gallery-item-2" src="../assets/diagramme.png" data-index="2">
-        <img class="gallery-item gallery-item-3" src="../assets/histogramme.png" data-index="3">
+        <router-link to="/carte">
+          <img class="gallery-item gallery-item-1" src="../assets/carte2.jpg" data-index="1">
+        </router-link>
+        <router-link to="/diagramme">
+          <img class="gallery-item gallery-item-2" src="../assets/diagramme.png" data-index="2">
+        </router-link>
+        <router-link to="/histogramme">
+          <img class="gallery-item gallery-item-3" src="../assets/histogramme.png" data-index="3">
+        </router-link>
       </div>
       <div class="gallery-controls" >
       </div>
     </div>
 
-    <!--<p>
-    Dans le monde, <b>10.5%</b> de la population est atteinte du diabète et ce pourcentage ne cesse d’augmenter. 
-    En effet, les spécialistes prévoient <b>12.2%</b> de diabétique d’ici <b>2045</b>. Cette maladie, si elle n’est pas traitée, 
-    peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité. 
-    </p>-->
-    <!-- <p style="font-size: xx-large">Ce que nous faisons :</p>-->
-    <!--<p>
+    <p>
+      Le diabète est une condition médicale mondiale en constante croissance, affectant
+      des millions de personnes de tous âges, de tous sexes et de tous horizons. Pour
+      mieux comprendre et combattre cette maladie, nous sommes fiers de vous présenter un
+      site dédié à la collecte et à la visualisation de données ouvertes sur le diabète.
+    </p>
+    <p style="font-size: xx-large">Ce que nous faisons :</p>
+    <p>
+      1. Carte Mondiale de la Mortalité due au Diabète Explorez notre carte interactive
+      qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte vous
+      montre le nombre de décès attribués au diabète dans chaque pays, vous permettant
+      ainsi de comprendre l'ampleur du problème à l'échelle internationale. Les données
+      sont régulièrement mises à jour pour vous fournir des informations actuelles.
+    </p>
+    <p>
       2. Graphiques Comparatifs sur le Diabète Nous avons créé des graphiques interactifs
       qui vous permettent de comparer diverses informations liées au diabète. Ces
       graphiques comprennent des données sur l'âge des personnes touchées par le diabète,
@@ -75,7 +78,7 @@
       Nous vous remercions de votre visite et espérons que vous trouverez ces informations
       utiles et informatives. N'hésitez pas à nous contacter si vous avez des questions ou
       des commentaires.
-    </p>-->
+    </p>
   </div>
 </template>
 
@@ -159,58 +162,51 @@ class Carousel{
 }
 
 export default {
-  mounted() {
-    this.ecritur();
-
-    const galleryContainer = document.querySelector(".gallery-container");
-    const galleryControlsContainer = document.querySelector(".gallery-controls")
-    const galleryControls = ["previous", "next"];
-    const galleryItems = document.querySelectorAll(".gallery-item");
-
-    const exampleCarousel = new Carousel(galleryContainer, galleryItems, galleryControls);
-
-    exampleCarousel.setControls(galleryControlsContainer);
-    exampleCarousel.useControls(galleryControlsContainer);
-
-    exampleCarousel.useImageClicks();
-
-  },
-  data() {
-  return {
-    carousel: null,
-  };
-},
-  methods: {
-    scrollToCarousel() {
-      const carouselElement = document.getElementById("carousel");
-      if (carouselElement) {
-        carouselElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+    mounted() {
+        this.ecritur();
+        const galleryContainer = document.querySelector(".gallery-container");
+        const galleryControlsContainer = document.querySelector(".gallery-controls");
+        const galleryControls = ["previous", "next"];
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        const exampleCarousel = new Carousel(galleryContainer, galleryItems, galleryControls);
+        exampleCarousel.setControls(galleryControlsContainer);
+        exampleCarousel.useControls(galleryControlsContainer);
+        exampleCarousel.useImageClicks();
     },
-    ecritur() {
-      var app = document.getElementById("text2");
-
-      var typewriter = new Typewriter(app, {
-        //loop: true,
-        delay: 50,
-      });
-
-      typewriter
-        .typeString("Dans le monde, 10.5% de la population est atteinte du diabète et ce pourcentage ne cesse d’augmenter. En effet, les spécialistes prévoient 12.2% de diabétique d’ici 2045. Cette maladie, si elle n’est pas traitée, peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité.")
-        /*.pauseFor(500)
-        .deleteChars(8)
-        .typeString("DIABÈTE !")
-        .pauseFor(500)
-        .typeString(
-          "Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé."
-        )*/
-        .pauseFor(100)
-        .start();
+    data() {
+        return {
+            carousel: null,
+        };
     },
-  },
+    methods: {
+        scrollToCarousel() {
+            const carouselElement = document.getElementById("carousel");
+            if (carouselElement) {
+                carouselElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            }
+        },
+        ecritur() {
+            var app = document.getElementById("text2");
+            var typewriter = new Typewriter(app, {
+                //loop: true,
+                delay: 50,
+            });
+            typewriter
+                .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète.")
+                .pauseFor(500)
+                .deleteChars(8)
+                .typeString("DIABÈTE !")
+                /*.pauseFor(500)
+                .typeString(
+                  "Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé."
+                )*/
+                .pauseFor(100)
+                .start();
+        },
+    },
 };
 
 
@@ -270,21 +266,22 @@ a {
 }
 
 .gallery{
-  padding-top: 128px;
   width: 100%;
 }
 
 .gallery-container{
   align-items: center;
   display: flex;
-  height: 400px;
-  margin: 0 auto;
-  max-width: 1000px;
+  height: 600px;
+  margin: 0 auto; 
+  max-width: 100%;
   position: relative;
+  z-index: 2;
+  overflow: hidden;
 }
 
 .gallery-item{
-  height: 200px;
+  height: 300px;
   opacity: 0;
   position: absolute;
   transition: all 0.3s ease-in-out;
@@ -292,32 +289,33 @@ a {
   z-index: 0;
   border-radius: 15px;
   background-size: contain;
+  top: 50%; /* Ajustement de la position verticale à 50% pour centrer */
+  transform: translate(-50%, -50%);
 }
 
 .gallery-item-1, .gallery-item-3{
-  height: 250px;
+  height:70%;
   opacity: 0.8;
-  width: 380px;
+  width: 30%;
   z-index: 1;
 }
 .gallery-item-1{
-  left: 30%;
-  transform: translateX(-50%);
+  left: 20%;
 }
 
 .gallery-item-2{
   box-shadow: -2px 5px 33px 6px rgba(0,0,0,0.35);
-  height: 300px;
+  height: 80%;
   opacity: 1;
   left: 50%;
-  transform: translateX(-50%);
-  width: 430px;
+  transform: translateX(-50%, -50%);
+  width:40%;
   z-index: 2;
+  top: 50%; /* Ajustement de la position verticale à 50% pour centrer */
 }
 
 .gallery-item-3{
-  left: 70%;
-  transform: translateX(-50%);
+  left: 80%;
 }
 
 .gallery-controls{
@@ -344,6 +342,14 @@ a {
     color: #ffffff; // Text color on hover
   }
 }
+
+.gallery-item router-link {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ou 'contain' selon vos besoins */
+  border-radius: 15px; /* ajustez selon vos besoins */
+}
+
 
 .gallery-controls button:focus {
   outline: none;
