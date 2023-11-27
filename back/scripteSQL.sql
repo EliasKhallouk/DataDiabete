@@ -109,18 +109,11 @@ CREATE TABLE IF NOT EXISTS TRANCHE_AGE(
 
 CREATE TABLE IF NOT EXISTS report_deces(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
-    Annee DATE,
-    Nbr_Morts INTEGER,
-    PRIMARY KEY (Id_Pays, Annee)
+    Annee INTEGER,
+    Nbr_Morts NUMERIC,
+    PRIMARY KEY (Id_Pays,Annee)
 );
 
-CREATE TABLE IF NOT EXISTS report_deces(
-    Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
-    Annee DATE,
-    Nbr_Morts INTEGER,
-    Nbr_Ajout INTEGER,
-    PRIMARY KEY(Id_Pays, Annee)
-);
 
 CREATE TABLE IF NOT EXISTS report_diabetique(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
@@ -154,10 +147,9 @@ CREATE TABLE IF NOT EXISTS report_population(
 );
 
 
-COPY PAYS FROM 'Python/PAYS.csv' WITH CSV DELIMITER ',' SKIP 1;
-COPY report_deces FROM 'Python/report_deces.csv' WITH CSV DELIMITER ',' SKIP 1;
-COPY report_population FROM 'Python/report_population.csv' WITH CSV DELIMITER ',' SKIP 1;
 
+-- COPY report_deces FROM 'Python/report_deces.csv' WITH CSV HEADER;
+-- COPY report_population FROM 'Python/report_population.csv' WITH CSV HEADER;
 
 
 
@@ -165,12 +157,12 @@ INSERT INTO GROUPES (Groupe) VALUES ('Administrateurs');
 INSERT INTO GROUPES (Groupe) VALUES ('Éditeurs');
 INSERT INTO GROUPES (Groupe) VALUES ('Visiteurs');
 INSERT INTO GROUPES (Groupe) VALUES ('Externe');
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Joseph', 'Azar', "azarjoseph@gmail.com", NOW(), 'joseph123', 1);
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Milvyne', 'Perrolet', "milvyneperrolet@gmail.com", NOW(), 'milvyne123', 2);
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Stephane', 'Domas', "stephanedomas@gmail.com", CURRENT_TIMESTAMP, 'vuejs123', NULL);
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ('Karine', 'Deschinkel', "karinedeshinkel@gmail.com", CURRENT_TIMESTAMP, 'karine123', (SELECT Id FROM GROUPES WHERE Groupe = 'Visiteurs'));
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password, Group_Id) VALUES ('Joseph', 'Azar', 'azarjoseph@gmail.com', NOW(), 'joseph123', 1);
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password, Group_Id) VALUES ('Milvyne', 'Perrolet', 'milvyneperrolet@gmail.com', NOW(), 'milvyne123', 2);
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password, Group_Id) VALUES ('Stephane', 'Domas', 'stephanedomas@gmail.com', CURRENT_TIMESTAMP, 'vuejs123', NULL);
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password, Group_Id) VALUES ('Karine', 'Deschinkel', 'karinedeshinkel@gmail.com', CURRENT_TIMESTAMP, 'karine123', (SELECT Id FROM GROUPES WHERE Groupe = 'Visiteurs'));
 
-INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password) VALUES ('Utilisateur', 'Anonyme', "anonyme@gmail.com" NOW(), 'anonyme123');
+INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password) VALUES ('Utilisateur', 'Anonyme', 'anonyme@gmail.com', NOW(), 'anonyme123');
 
 
 INSERT INTO MOTS_DE_PASSE_UTILISATEURS (User_Id, Date_Created, Password) VALUES (1, NOW(), 'josephSecurePass');
@@ -230,8 +222,10 @@ INSERT INTO DESCRIPTION (Description) VALUES ('Description 1');
 INSERT INTO DESCRIPTION (Description) VALUES ('Description 2');
 
 -- Insertions pour la table PAYS
-INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('France', 250, 'FR');
-INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('Canada', 124, 'CA');
+-- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('France', 250, 'FR');
+-- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('Canada', 124, 'CA');
+COPY PAYS(Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/PAYS.csv' DELIMITER ',' CSV HEADER;
+
 
 -- Insertions pour la table SEXE
 INSERT INTO SEXE (Libelle_Sexe) VALUES ('Homme');
@@ -243,8 +237,9 @@ INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (18, 64);
 INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (65, 99);
 
 -- Insertions pour la table report_deces
-INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (1, '2022-01-01', 100);
-INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (2, '2022-01-01', 50);
+--INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (1, 2022, 100);
+--INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (2, 2021, 50);
+COPY report_deces(Id_Pays, Annee, Nbr_Morts)  FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/report_deces.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_diabetique
 INSERT INTO report_diabetique (Id_Pays, Code_Sexe, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 1, 1, '2022-01-01', 200);

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div style="position: relative; height: 1164px">
+    <div style="position: relative;height: 1000px;">
       <div style="position: absolute; z-index: 0; width: 100%">
         <video autoplay muted playsinline loop id="VideoAccueil" class="base-image">
           <source src="../assets/Medical_Background.mp4" type="video/mp4" />
@@ -267,6 +267,7 @@ a {
 
 .gallery{
   width: 100%;
+  padding-top: 120px;
 }
 
 .gallery-container{

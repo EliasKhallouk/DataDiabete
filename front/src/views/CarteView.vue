@@ -295,6 +295,10 @@ const chartOptions = ref({
 <template>
   <div class="body-carte">
     <!-- PREMIERE PARTIE-->
+    <form>
+      <input id="annee" name="annee" v-model="annee"/>
+      <button @click="getter" class="button" >CHOISIR L'ANNÉE</button>
+    </form>
     <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
     <p>
       Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte
@@ -302,6 +306,7 @@ const chartOptions = ref({
       l'ampleur du problème à l'échelle internationale. Les données sont régulièrement mises à jour pour vous fournir
       des informations actuelles.
     </p>
+
 
     <!-- PREMIERE PARTIE-->
     <!--<div class="deuxieme" >
@@ -323,18 +328,52 @@ const chartOptions = ref({
       deeeee
     </div>
     azazzaza-->
-
+    <table>
+      <thead>
+      <tr>
+        <th>iso_pays_car</th><th>nbr_morts</th><th>annee</th>
+      </tr>
+      </thead>
+      <tbody>
+      <div v-if="cartes.length <=0">pas d'utilisateur</div>
+      <tr v-for="(ligne, index) in cartes" :key="index">
+        <td data-title="Id">{{ligne.iso_pays_car}}</td>
+        <td data-title="Id">{{ligne.nbr_morts}}</td>
+        <td data-title="Id">{{ligne.annee}}</td>
+      </tr>
+      </tbody>
+    </table>
 
 
   </div>
+
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
+
 export default {
   name: "connexion-form",
   props: {
     msg: String,
   },
+  data: () => ({
+    annee:2012,
+  }),
+  computed: {
+    ...mapState(['cartes'])
+  }, methods : {
+    ...mapActions(['getCarte']),
+    getter(){
+      this.getCarte(this.annee)
+    }
+  },
+  mounted() {
+    this.getCarte(this.annee).
+    then( () => {
+      console.log("POPO")
+    }).catch((error) => console.log(error))
+  }
 };
 
 </script>
