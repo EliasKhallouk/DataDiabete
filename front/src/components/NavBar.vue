@@ -1,7 +1,6 @@
 <template>
   <nav>
-    <img alt="Vue logo" class="logo" src="../assets/logoDDfixe.png"/>
-    <div class="menu-icon" @click="toggleMenu">Menu</div>
+    <img alt="Vue logo" class="logo" @click="toggleMenu" src="../assets/logoDDfixe.png"/>
     <div class="nav-links" :class="{ 'show-menu': isMenuOpen }" @mouseleave="closeMenu">
       
     <router-link to="/">Accueil</router-link>
@@ -62,6 +61,7 @@ nav {
 
 .logo{
   margin-top: 1px;
+  cursor: pointer;
 }
 
 .nav-links {
@@ -75,11 +75,7 @@ nav a {
   padding: 12px;
 }
 
-.menu-icon {
-  cursor: pointer;
-  display: none; /* Initially hide the menu icon */
-  color: white;
-}
+
 
 .dropdown-content a{
   margin: 0;
@@ -163,10 +159,20 @@ nav a {
 @media (max-width: 1100px) {
   .logo{
     margin-top: auto;
-    margin-left: 0%;
+    margin: 0%;
+    display: block; /* Show the menu icon on smaller screens */
+    width: 100px;
+    height: 80px;
   }
-  nav{
+  
+  nav {
+    margin: 0;
     flex-direction: column;
+  }
+
+  nav a{
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 
   .router-link {
@@ -174,22 +180,65 @@ nav a {
     margin-bottom: 10px;
   }
 
-  .menu-icon {
-    display: block; /* Show the menu icon on smaller screens */
-  }
   .nav-links {
     display: none; /* Initially hide the menu */
     flex-direction: column;
     position: absolute;
-    top: 140px; /* Adjust as needed based on your layout */
     background-color: #383838;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
     text-align: center;
+    top: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .show-menu {
     display: flex; /* Show the menu when isMenuOpen is true */
   }
+
+  .dropbtn{
+    border-radius: 2%;
+  }
+  .dropbtn:hover{
+    background-color: #ffffff;
+    color: #f25c54;
+  }
+  .dropbtn:hover .dropdown-content{
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  .dropdown-content{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .dropdown-content a{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+  }
+  .dropdown-content a:hover{
+    background-color: #ffffff;
+    color: #f25c54;
+  }
+  .dropdown-content .logout-link{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+    background-color: #ca2b30;
+    margin-bottom: 0;
+    border-radius: 0;
+    color: #ffffff;
+    padding: 8px;
+  }
+  .dropdown-content .logout-link:hover{
+    background-color: #f25c54;
+    color: #ffffff;
+    margin-bottom: 0;
+    padding: 8px;
+  }
+
 }
 </style>
