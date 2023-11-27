@@ -113,6 +113,13 @@ CREATE TABLE IF NOT EXISTS report_deces(
     PRIMARY KEY (Id_Pays, Annee)
 );
 
+CREATE TABLE IF NOT EXISTS report_deces(
+    Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
+    Annee DATE,
+    Nbr_Morts INTEGER,
+    Nbr_Ajout INTEGER,
+    PRIMARY KEY(Id_Pays, Annee)
+);
 
 CREATE TABLE IF NOT EXISTS report_diabetique(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
@@ -136,6 +143,20 @@ CREATE TABLE IF NOT EXISTS report_prix_ins(
     Prix_Insuline DECIMAL(15, 2),
     PRIMARY KEY (Id_Pays, Annee)
 );
+
+CREATE TABLE IF NOT EXISTS report_population(
+    Id_Pays INTEGER REFERENCES  PAYS(Id_Pays),
+    Annee DATE,
+    Nbr_Habitants INTEGER,
+    Nbr_Ajout INTEGER,
+    PRIMARY KEY(Id_Pays, Annee)
+);
+
+
+COPY PAYS FROM 'PAYS.csv' WITH CSV DELIMITER ',' SKIP 1;
+COPY report_deces FROM 'report_deces.csv' WITH CSV DELIMITER ',' SKIP 1;
+COPY report_population FROM 'report_population.csv' WITH CSV DELIMITER ',' SKIP 1;
+
 
 
 
