@@ -1,0 +1,14 @@
+state
+country
+code
+iso
+pays
+code
+year
+annee
+annees
+name
+death
+deaths
+mort
+morts
