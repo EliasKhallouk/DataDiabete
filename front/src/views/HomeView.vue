@@ -7,11 +7,22 @@
         </video>
       </div>
       <div style="position: relative; top: 320px; height: 400px; z-index: 1; font-size: 200%">
-        <p style="text-align: center; color: #f8edeb;font-size: 64px;" >Le diabète en quelques stats</p>
+        <p style="text-align: center; color: #f8edeb;font-size: 64px;" >Le diabète, un problème humain représenté en chiffres</p>
         <p style="text-align: center; color: #f8edeb; margin-bottom: 20px" id="text2" onload="ecritur"></p>
         <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
       </div>
     </div>
+
+    <p>
+    Data Diabete est un site internet qui offre des données clés sur le diabète, 
+    regroupées en graphique afin de mieux les visualiser :
+      <ul>
+        <li>Une carte</li>
+        <li>Un diagramme</li>
+        <li>Un histogramme</li>
+        <li>Un questionnaire</li>
+      </ul>
+    </p>
 
     <div class="gallery" id="carousel">
       <div class="gallery-container">
@@ -23,21 +34,13 @@
       </div>
     </div>
 
-    <p>
-      Le diabète est une condition médicale mondiale en constante croissance, affectant
-      des millions de personnes de tous âges, de tous sexes et de tous horizons. Pour
-      mieux comprendre et combattre cette maladie, nous sommes fiers de vous présenter un
-      site dédié à la collecte et à la visualisation de données ouvertes sur le diabète.
-    </p>
-    <p style="font-size: xx-large">Ce que nous faisons :</p>
-    <p>
-      1. Carte Mondiale de la Mortalité due au Diabète Explorez notre carte interactive
-      qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte vous
-      montre le nombre de décès attribués au diabète dans chaque pays, vous permettant
-      ainsi de comprendre l'ampleur du problème à l'échelle internationale. Les données
-      sont régulièrement mises à jour pour vous fournir des informations actuelles.
-    </p>
-    <p>
+    <!--<p>
+    Dans le monde, <b>10.5%</b> de la population est atteinte du diabète et ce pourcentage ne cesse d’augmenter. 
+    En effet, les spécialistes prévoient <b>12.2%</b> de diabétique d’ici <b>2045</b>. Cette maladie, si elle n’est pas traitée, 
+    peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité. 
+    </p>-->
+    <!-- <p style="font-size: xx-large">Ce que nous faisons :</p>-->
+    <!--<p>
       2. Graphiques Comparatifs sur le Diabète Nous avons créé des graphiques interactifs
       qui vous permettent de comparer diverses informations liées au diabète. Ces
       graphiques comprennent des données sur l'âge des personnes touchées par le diabète,
@@ -72,7 +75,7 @@
       Nous vous remercions de votre visite et espérons que vous trouverez ces informations
       utiles et informatives. N'hésitez pas à nous contacter si vous avez des questions ou
       des commentaires.
-    </p>
+    </p>-->
   </div>
 </template>
 
@@ -196,11 +199,11 @@ export default {
       });
 
       typewriter
-        .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète.")
-        .pauseFor(500)
+        .typeString("Dans le monde, 10.5% de la population est atteinte du diabète et ce pourcentage ne cesse d’augmenter. En effet, les spécialistes prévoient 12.2% de diabétique d’ici 2045. Cette maladie, si elle n’est pas traitée, peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité.")
+        /*.pauseFor(500)
         .deleteChars(8)
         .typeString("DIABÈTE !")
-        /*.pauseFor(500)
+        .pauseFor(500)
         .typeString(
           "Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé."
         )*/

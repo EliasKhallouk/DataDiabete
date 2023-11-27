@@ -66,6 +66,9 @@
             </a>
           </div>
         </div>
+        <div>
+          <router-link to="/APropos">A propos</router-link>
+        </div>
       </div>
     </footer>
   </div>

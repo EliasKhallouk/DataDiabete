@@ -52,6 +52,11 @@ const routes = [
     name: 'validation-donnee',
     component: () => import('../views/ValidationDonneeView.vue')
   },
+  {
+    path: '/APropos',
+    name: 'APropos',
+    component: () => import('../views/AProposView.vue')
+  },
   /*{
     path: '/deconnexion',
     name: 'deconnexion',
