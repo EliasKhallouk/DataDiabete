@@ -5,11 +5,11 @@
       <table>
         <thead>
         <tr>
-          <th>Id</th><th>Nom</th><th>Prenom</th><th>Email</th><th>Role</th><th>Fichier</th><th>Opération</th>
+          <th>Id</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Rôle</th><th>Fichier</th><th>Opérations</th>
         </tr>
         </thead>
         <tbody>
-          <div v-if="dataUser.length<=0">pas d'utilisateur</div>
+          <div v-if="dataUser.length<=0">Pas d'utilisateur</div>
           <tr v-for="(user, index) in dataUser" :key="index">
             <td data-title="Id">{{user.Id}}</td>
             <td data-title="Nom">{{user.Nom}}</td>
@@ -19,14 +19,14 @@
             <td data-title="Fichier"><a href="">Télécharger</a></td>
             <td data-title="opération">
               <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
-              <a href="" onclick="return confirm('Are you sure?')">Refuser</a>
-              <a href="" onclick="return confirm('Are you sure?')" style="margin-left: 40px;">Ajouter</a>
+              <a href="" onclick="return confirm('Voulez-vous vraiment refuser ?')">Refuser</a>
+              <a href="" onclick="return confirm('Voulez-vous vraiment ajouter ?')" style="margin-left: 40px;">Ajouter</a>
             </td>
           </tr>
         </tbody>
       </table>
       <button onclick="download()">
-        Download
+        Télécharger
       </button>
     </div>
   </div>

@@ -1,15 +1,15 @@
 <template>
   <div style="margin-top: 150px;">
-    <h1 style="font-size: 40px;">Gestion d'utilisateur</h1>
+    <h1 style="font-size: 40px;">Gestion d'utilisateurs</h1>
     <div class="centered-container">
       <table>
         <thead>
         <tr>
-          <th>Id</th><th>Nom</th><th>Prenom</th><th>Email</th><th>Role</th><th>Opération</th>
+          <th>Id</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Rôle</th><th>Opérations</th>
         </tr>
         </thead>
         <tbody>
-          <div v-if="users.length <=0">pas d'utilisateur</div>
+          <div v-if="users.length <=0">Pas d'utilisateur</div>
           <tr v-for="(user, index) in users" :key="index">
             <td data-title="Id">{{user.user_id}}</td>
             <td data-title="Nom">{{user.first_name}}</td>
@@ -19,7 +19,7 @@
             <td data-title="opération">
               <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
               <a @click="deleteUsers(user.user_id)">Supprimer</a>
-              <a href="" style="margin-left: 40px;">Editer</a>
+              <a href="" style="margin-left: 40px;">Éditer</a>
             </td>
           </tr>
         </tbody>
