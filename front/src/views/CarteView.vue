@@ -32,7 +32,8 @@ const chartOptions = ref({
     }
   },
   subtitle: {
-    text: 'Données mises à jour le '+dateLocale+'\n Astuce : double cliquer sur un pays pour zoomer',
+    text: 'Données mises à jour le '+dateLocale+
+    '<br> Astuce : double-cliquez sur un pays pour zoomer',
     margin: 50,
     style: {
       color: '#BABABA',
