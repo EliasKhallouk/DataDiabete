@@ -7,7 +7,7 @@
         </video>
       </div>
       <div style="position: relative; top: 320px; height: 400px; z-index: 1; font-size: 200%">
-        <p style="text-align: center; color: #f8edeb;font-size: 64px;" >Le diabète en quelques stats</p>
+        <p style="text-align: center; color: #f8edeb;font-size: 64px;" >Le diabète, un problème humain représenté en chiffres</p>
         <p style="text-align: center; color: #f8edeb; margin-bottom: 20px" id="text2" onload="ecritur"></p>
         <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
       </div>
@@ -30,54 +30,39 @@
     </div>
 
     <p>
-      Le diabète est une condition médicale mondiale en constante croissance, affectant
-      des millions de personnes de tous âges, de tous sexes et de tous horizons. Pour
-      mieux comprendre et combattre cette maladie, nous sommes fiers de vous présenter un
-      site dédié à la collecte et à la visualisation de données ouvertes sur le diabète.
+      Dans le monde, <b>10.5%</b> de la population est atteinte du diabète et ce pourcentage ne cesse d’augmenter. 
+      En effet, les spécialistes prévoient <b>12.2%</b> de diabétique d’ici <b>2045</b>. Cette maladie, si elle n’est pas 
+      traitée, peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité.
     </p>
+
+    <span style="padding-left:30px;"></span>
+
     <p style="font-size: xx-large">Ce que nous faisons :</p>
+
+    <h2>1. Carte Mondiale de la Mortalité due au Diabète</h2>
     <p>
-      1. Carte Mondiale de la Mortalité due au Diabète Explorez notre carte interactive
-      qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte vous
+      Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte vous
       montre le nombre de décès attribués au diabète dans chaque pays, vous permettant
       ainsi de comprendre l'ampleur du problème à l'échelle internationale. Les données
       sont régulièrement mises à jour pour vous fournir des informations actuelles.
     </p>
+    <h2>2. Graphiques Comparatifs sur le Diabète</h2>
     <p>
-      2. Graphiques Comparatifs sur le Diabète Nous avons créé des graphiques interactifs
+      Nous avons créé des graphiques interactifs
       qui vous permettent de comparer diverses informations liées au diabète. Ces
       graphiques comprennent des données sur l'âge des personnes touchées par le diabète,
       leur pays de résidence, leur sexe, et bien plus encore. Ces visualisations vous
       aident à identifier les tendances et les disparités dans la prévalence du diabète à
       travers le monde.
     </p>
+    <h2>3. Graphique d'Histogramme du Prix de l'Insuline par Pays</h2>
     <p>
-      3. Graphique d'Histogramme du Prix de l'Insuline par Pays L'accès à l'insuline est
+      L'accès à l'insuline est
       crucial pour de nombreuses personnes atteintes de diabète. Notre graphique en
       histogramme vous permet de comparer les prix de l'insuline dans différents pays.
       Cette information peut être vitale pour les personnes atteintes de diabète qui
       doivent gérer les coûts de leur traitement. Nous nous efforçons de maintenir ces
       données à jour pour vous aider à prendre des décisions éclairées.
-    </p>
-
-    <p style="font-size: xx-large">Pourquoi nous le faisons :</p>
-    <p>
-      Notre objectif est de sensibiliser le public au problème mondial du diabète en
-      fournissant des informations précises et actuelles. Nous croyons que l'accès à ces
-      données est essentiel pour lutter contre le diabète, encourager la recherche et
-      améliorer la vie des personnes touchées par cette maladie.
-    </p>
-    <p>
-      Nous espérons que notre site vous aidera à mieux comprendre le diabète, à identifier
-      les tendances mondiales et à prendre des décisions éclairées pour vous-même ou vos
-      proches. Rejoignez-nous dans notre mission pour faire reculer le diabète et
-      améliorer la qualité de vie de millions de personnes dans le monde.
-    </p>
-    <p>
-      Explorez nos graphiques et découvrez le monde du diabète sous un nouvel éclairage.
-      Nous vous remercions de votre visite et espérons que vous trouverez ces informations
-      utiles et informatives. N'hésitez pas à nous contacter si vous avez des questions ou
-      des commentaires.
     </p>
   </div>
 </template>
@@ -225,11 +210,15 @@ export default {
   margin-top: -4%;
 }
 p {
-  margin-top: 50px;
+  margin-top: 45px;
   margin-left: 15%;
   margin-right: 15%;
   font-size: 20px;
   text-align: justify;
+}
+b{
+  font-size : 30px;
+  font-weight: bold;
 }
 h1 {
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic",
@@ -239,6 +228,16 @@ h1 {
   text-align: center;
   text-transform: uppercase;
   text-rendering: optimizeLegibility;
+}
+h2{
+  margin-top: 80px;
+  margin-left: 15%;
+  margin-right: 15%;
+  font-size: 22px;
+  text-align: justify;
+  font-family : "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic",
+  sans-serif;
+  text-rendering : optimizeLegibility;
 }
 
 a {

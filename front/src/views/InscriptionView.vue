@@ -1,6 +1,5 @@
 <template>
   <div class="inscription">
-    <h1>Inscription</h1>
     <Inscription msg="S'inscrire"/>
   </div>
 </template>

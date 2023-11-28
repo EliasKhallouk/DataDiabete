@@ -26,7 +26,7 @@
             <h2 class="footer-menu-name">AUTRE</h2>
             <ul id="menu-company" class="footer-menu-list">
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
-                <router-link to="/APropos" rel="noopener noreferrer" >A propos</router-link>
+                <router-link to="/APropos" rel="noopener noreferrer" >À propos</router-link>
               </li>
             </ul>
           </div>
@@ -49,7 +49,7 @@
         </div>
         <div class="footer-content-column">
           <div class="footer-menu">
-            <h2 class="footer-menu-name">NOTRE EQUIPE</h2>
+            <h2 class="footer-menu-name">NOTRE ÉQUIPE</h2>
             <ul id="menu-quick-links" class="footer-menu-list">
               <li class="menu-item menu-item-type-custom menu-item-object-custom">
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/EliasKhallouk">Khallouk Elias</a>
@@ -68,7 +68,7 @@
         </div>
         <div class="footer-content-column">
           <div class="footer-call-to-action">
-            <h2 class="footer-call-to-action-title">Vous voulez voir notre code?</h2>
+            <h2 class="footer-call-to-action-title">Voulez-vous voir notre code ?</h2>
             <p class="footer-call-to-action-description"></p>
             <a class="footer-call-to-action-button button" href="https://github.com/EliasKhallouk/DataDiabete" target="_blank">
               GitHub
