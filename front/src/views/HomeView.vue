@@ -29,24 +29,29 @@
       </div>
     </div>
 
-    <p>
-      Dans le monde, <b>10.5%</b> de la population est atteinte du diabète et ce pourcentage ne cesse d’augmenter. 
-      En effet, les spécialistes prévoient <b>12.2%</b> de diabétique d’ici <b>2045</b>. Cette maladie, si elle n’est pas 
+    <!--<p>
+      Dans le monde, <b>10.5%</b> de la population est atteinte du diabète et ce pourcentage ne cesse d’augmenter.
+      En effet, les spécialistes prévoient <b>12.2%</b> de diabétique d’ici <b>2045</b>. Cette maladie, si elle n’est pas
+      traitée, peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité.
+    </p>-->
+    <p class="tete">
+      <b style="font-size: 104px;font-style: italic;color: #ca2b30;">10.5%</b> De la population modiale est atteinte du diabète et ce pourcentage ne cesse d’augmenter.
+
+      En effet, les spécialistes prévoient <b>12.2%</b> de diabétique d’ici <b>2045</b>. Cette maladie, si elle n’est pas
       traitée, peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité.
     </p>
+    <p style="font-size: 44px;
+    margin-top: 150px;
+    margin-bottom: -34px;">Ce que nous proposons :</p>
 
-    <span style="padding-left:30px;"></span>
-
-    <p style="font-size: xx-large">Ce que nous faisons :</p>
-
-    <h2>1. Carte Mondiale de la Mortalité due au Diabète</h2>
+    <h2>1. Carte mondiale de la mortalité due au diabète</h2>
     <p>
       Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte vous
       montre le nombre de décès attribués au diabète dans chaque pays, vous permettant
       ainsi de comprendre l'ampleur du problème à l'échelle internationale. Les données
       sont régulièrement mises à jour pour vous fournir des informations actuelles.
     </p>
-    <h2>2. Graphiques Comparatifs sur le Diabète</h2>
+    <h2>2. Graphiques comparatifs sur le diabète</h2>
     <p>
       Nous avons créé des graphiques interactifs
       qui vous permettent de comparer diverses informations liées au diabète. Ces
@@ -55,7 +60,7 @@
       aident à identifier les tendances et les disparités dans la prévalence du diabète à
       travers le monde.
     </p>
-    <h2>3. Graphique d'Histogramme du Prix de l'Insuline par Pays</h2>
+    <h2>3. Graphique d'histogramme du prix de l'insuline par pays</h2>
     <p>
       L'accès à l'insuline est
       crucial pour de nombreuses personnes atteintes de diabète. Notre graphique en
@@ -96,7 +101,7 @@ class Carousel{
     });
   }
   // setCurrentState(direction){
-  //   if (direction.className == 'gallery-controls-previous'){
+  //   if (direction.className == 'gallery-controls-précédent'){
   //     this.carouselArray.unshift(this.carouselArray.pop());
   //   }else{
   //     this.carouselArray.push(this.carouselArray.shift());
@@ -105,9 +110,9 @@ class Carousel{
   // }
   setCurrentState(direction) {
   const controlClass = direction.className;
-  if (controlClass.includes('gallery-controls-previous')) {
+  if (controlClass.includes('gallery-controls-précédent')) {
     this.carouselArray.unshift(this.carouselArray.pop());
-  } else if (controlClass.includes('gallery-controls-next')) {
+  } else if (controlClass.includes('gallery-controls-suivant')) {
     this.carouselArray.push(this.carouselArray.shift());
   }
   this.updateGallery();
@@ -151,7 +156,7 @@ export default {
         this.ecritur();
         const galleryContainer = document.querySelector(".gallery-container");
         const galleryControlsContainer = document.querySelector(".gallery-controls");
-        const galleryControls = ["previous", "next"];
+        const galleryControls = ["précédent", "suivant"];
         const galleryItems = document.querySelectorAll(".gallery-item");
         const exampleCarousel = new Carousel(galleryContainer, galleryItems, galleryControls);
         exampleCarousel.setControls(galleryControlsContainer);
@@ -180,10 +185,10 @@ export default {
                 delay: 50,
             });
             typewriter
-                .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète.")
+                .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète, regroupé en 3 types de graphique")
                 .pauseFor(500)
-                .deleteChars(8)
-                .typeString("DIABÈTE !")
+                //.deleteChars(8)
+                //.typeString("DIABÈTE !")
                 /*.pauseFor(500)
                 .typeString(
                   "Explorez les chiffres, les tendances et les informations cruciales pour mieux comprendre cette condition et prendre des décisions éclairées pour votre santé."
@@ -202,6 +207,13 @@ export default {
 
 <style scoped lang="scss">
 
+.tete{
+  border-radius: 102px;
+  background: linear-gradient(225deg, #f0f0f0, #cacaca);
+  box-shadow: -37px 37px 47px #8b8b8b, 37px -37px 47px #ffffff;
+  line-height: 44px;
+  padding: 76px;
+}
 .base-image {
   width: 100%;
   //border-bottom-right-radius: 824px;
@@ -233,7 +245,7 @@ h2{
   margin-top: 80px;
   margin-left: 15%;
   margin-right: 15%;
-  font-size: 22px;
+  margin-bottom: -20px;
   text-align: justify;
   font-family : "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic",
   sans-serif;
@@ -357,11 +369,11 @@ a {
 }
 
 
-.gallery-controls-previous{
+.gallery-controls-précédent{
   position: relative;
 }
 
-.gallery-controls-previous::before{
+.gallery-controls-précédent::before{
   border: solid #8b2c2c;
   border-width: 0 5px 5px 0;
   content: "";
@@ -376,16 +388,16 @@ a {
   width: 5px;
 }
 
-.gallery-controls-previous:hover::before{
+.gallery-controls-précédent:hover::before{
   border: solid #fff; 
   left: -40px;
 }
 
-.gallery-controls-next{
+.gallery-controls-suivant{
   position: relative;
 }
 
-.gallery-controls-next::before{
+.gallery-controls-suivant::before{
   border: solid #8b2c2c;
   border-width: 0 5px 5px 0;
   content: "";
@@ -400,7 +412,7 @@ a {
   width: 5px;
 }
 
-.gallery-controls-next:hover::before{
+.gallery-controls-suivant:hover::before{
   border: solid #fff; 
   right: -40px;
 }

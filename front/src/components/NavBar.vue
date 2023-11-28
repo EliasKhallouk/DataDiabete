@@ -8,13 +8,14 @@
     <router-link to="/diagramme">Diagramme</router-link>
     <router-link to="/carte">Carte</router-link>
     <div class="dropdown">
-      <div class="dropbtn">User</div>
+      <div class="dropbtn">Utilisateur</div>
       <div class="dropdown-content">
         <router-link to="/connexion">Connexion</router-link>
         <router-link to="/inscription">Inscription</router-link>
         <router-link to="/info-perso">Informations personnelles</router-link>
         <router-link to="/gestion-utilisateur">Gestion utilisateurs</router-link>
-        <router-link to="/validation-donnee">Validation données</router-link>
+        <router-link to="/validation-donnee">Validation de données</router-link>
+        <router-link to="/ajoute-donnee">Ajout de données</router-link>
         <a href="" class="logout-link" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?')">Déconnexion</a>
       </div>
     </div>

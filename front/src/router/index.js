@@ -57,6 +57,11 @@ const routes = [
     name: 'APropos',
     component: () => import('../views/AProposView.vue')
   },
+  {
+    path: '/ajoute-donnee',
+    name: 'ajoute-donnee',
+    component: () => import('../views/AjoutDonneeView.vue')
+  },
   /*{
     path: '/deconnexion',
     name: 'deconnexion',

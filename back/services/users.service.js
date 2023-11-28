@@ -49,8 +49,8 @@ const createUser = (prenom, nom, email, password, callback) => {
 async function getAllUsers() {
     try {
         const client = await pool.connect();
-        const res = await client.query('select user_id,first_name,last_name,groupe from utilisateurs\n' +
-            'join groupes on utilisateurs.group_id=groupes.id;');
+        const res = await client.query('select user_id,first_name,last_name,mail,groupe from utilisateurs\n' +
+                'join groupes on utilisateurs.group_id=groupes.id;');
         client.release();
         return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
     } catch (error) {
@@ -78,8 +78,8 @@ async function insertUsers(nom,prenom,email,password) {
     try {
         const client = await pool.connect()
         const res = await client.query(
-            'INSERT INTO UTILISATEURS (First_Name, Last_Name, Date_Created, Password, Group_Id) VALUES ($1, $2, NOW(), $3, 2)',
-            [`${prenom}`,`${nom}`,`${password}`]
+            'INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password, Group_Id) VALUES ($1, $2, $3, NOW(), $4, 2)',
+            [`${prenom}`,`${nom}`,`${email}`,`${password}`]
         );
         client.release();
         return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données

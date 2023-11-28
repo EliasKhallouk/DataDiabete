@@ -1,5 +1,5 @@
-const config = require("../config/auth.config.js");
-const {dbAuth} = require("../models/index.js");
+//const config = require("../config/auth.config.js");
+//const {dbAuth} = require("../models/index.js");
 //const User =
 
 
@@ -39,7 +39,7 @@ isAdmin = (req, res, next) => {
 
 const authMiddleware = {
     isAdmin: isAdmin,
-    isModerator: isModerator
+    isPro: isPro
 };
 
 module.exports = authMiddleware;

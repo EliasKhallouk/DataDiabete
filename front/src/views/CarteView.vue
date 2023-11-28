@@ -300,7 +300,7 @@ const chartOptions = ref({
       <input id="annee" name="annee" v-model="annee"/>
       <button @click="getter" class="button" >CHOISIR L'ANNÉE</button>
     </form>
-    <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
+
     <p>
       Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte
       vous montre le nombre de décès attribués au diabète dans chaque pays, vous permettant ainsi de comprendre
@@ -345,9 +345,8 @@ const chartOptions = ref({
       </tbody>
     </table>
 
-
+    <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
   </div>
-
 </template>
 
 <script>
@@ -359,7 +358,7 @@ export default {
     msg: String,
   },
   data: () => ({
-    annee:2012,
+    annee:'',
   }),
   computed: {
     ...mapState(['cartes'])
@@ -368,13 +367,13 @@ export default {
     getter(){
       this.getCarte(this.annee)
     }
-  },
+  }/*,
   mounted() {
     this.getCarte(this.annee).
     then( () => {
       console.log("POPO")
     }).catch((error) => console.log(error))
-  }
+  }*/
 };
 
 </script>

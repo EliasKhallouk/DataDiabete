@@ -5,7 +5,7 @@
       <table>
         <thead>
         <tr>
-          <th>Id</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Rôle</th><th>Opérations</th>
+          <th>Id</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Role</th><th>Opération</th>
         </tr>
         </thead>
         <tbody>
@@ -14,7 +14,7 @@
             <td data-title="Id">{{user.user_id}}</td>
             <td data-title="Nom">{{user.first_name}}</td>
             <td data-title="Prenom">{{user.last_name}}</td>
-            <td data-title="Email">{{user.email}}</td>
+            <td data-title="Email">{{user.mail}}</td>
             <td data-title="Role">{{user.groupe}}</td>
             <td data-title="opération">
               <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
