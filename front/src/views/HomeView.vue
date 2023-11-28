@@ -16,14 +16,25 @@
     <div class="gallery" id="carousel">
       <div class="gallery-container">
         <router-link to="/carte">
-          <img class="gallery-item gallery-item-1" src="../assets/carte2.jpg" data-index="1">
-        </router-link>
-        <router-link to="/diagramme">
-          <img class="gallery-item gallery-item-2" src="../assets/diagramme.png" data-index="2">
-        </router-link>
-        <router-link to="/histogramme">
-          <img class="gallery-item gallery-item-3" src="../assets/histogramme.png" data-index="3">
-        </router-link>
+        <div class="gallery-item gallery-item-1">
+          <img src="../assets/carte2.jpg" alt="Image 1" />
+          <span class="image-title">Carte</span>
+        </div>
+      </router-link>
+      <router-link to="/diagramme">
+        <div class="gallery-item gallery-item-2">
+          <img src="../assets/diagramme.png" alt="Image 2" />
+          <span class="image-title">Diagramme</span>
+        </div>
+      </router-link>
+      <router-link to="/histogramme">
+        <div class="gallery-item gallery-item-3">
+          <img src="../assets/histogramme.png" alt="Image 3" />
+          <span class="image-title">Histogramme</span>
+        </div>
+      </router-link>
+
+
       </div>
       <div class="gallery-controls" >
       </div>
@@ -297,7 +308,8 @@ a {
   height: 300px;
   opacity: 0;
   position: absolute;
-  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  transition: filter 0.3s ease-in-out;
   width: 330px;
   z-index: 0;
   border-radius: 15px;
@@ -361,6 +373,8 @@ a {
   height: 100%;
   object-fit: cover; /* ou 'contain' selon vos besoins */
   border-radius: 15px; /* ajustez selon vos besoins */
+  position: relative;
+  overflow: hidden;
 }
 
 
@@ -437,6 +451,32 @@ a {
 
 .gallery-nav li.gallery-item-selected{
   background-color: #555;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-item:hover img {
+  filter: blur(4px); /* Ajustez la valeur du flou au survol */
+}
+
+.image-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 2;
+  color: #fff; /* Couleur du texte du titre */
+  font-size: 40px; /* Ajustez la taille du texte du titre */
+  text-shadow: #3a3939 5px 5px 5px; /* Ombre portée du texte du titre */
+}
+
+.gallery-item:hover .image-title {
+  opacity: 1;
 }
 
 
