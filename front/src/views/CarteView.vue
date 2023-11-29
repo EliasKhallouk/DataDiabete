@@ -397,4 +397,47 @@ $color-black: #212529;
   text-align: justify;
 
 }
+
+.button{
+  background-color: #ca2b30;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.button:hover{
+  background-color: #f25c54;
+}
+
+input{
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 50px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #ca2b30;
+  color: white;
+}
+
+
+
 </style>
