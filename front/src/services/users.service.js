@@ -25,6 +25,16 @@ async function deleteUsers (id){
         throw error;
     }
 }
+
+async function deleteUsersAddData (id){
+    try {
+        const response = await axios.delete(`${usersAPI}/Telechargement/${id}`);
+        return response;
+    }catch (error){
+        console.log(error);
+        throw error;
+    }
+}
 async function insertUsers(nom,prenom,email,password){
     try {
         console.log("ahahaha")
@@ -38,8 +48,22 @@ async function insertUsers(nom,prenom,email,password){
     }
 }
 
+async function getUserInsertData(){
+    try {
+        //console.log("ahahaha")
+        const response = await axios.get(`${usersAPI}/Telechargement`);
+        //console.log("okkkkk ahahaha")
+        return response;
+    }catch (error){
+        console.log(error);
+        throw error;
+    }
+}
+
 export default {
     getAllUsers,
     deleteUsers,
     insertUsers,
+    getUserInsertData,
+    deleteUsersAddData,
 }

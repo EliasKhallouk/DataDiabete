@@ -6,12 +6,20 @@
     <div class="centered-container">
        <div class="gestion">
           <form>
-            <!-- Utilisation avec des fichiers -->
-
-
-
-            <form action="/file-upload" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data"></form>
-
+              <vue-dropzone
+                  ref="myDropzone"
+                  id="dropzone"
+                  :options="dropzoneOptions"
+                  @vdropzone-success="onDropzoneSuccess"
+                  @vdropzone-error="onDropzoneError"
+              >
+                <div class="fallback">
+                  <input name="file" type="file" multiple />
+                </div>
+                <div class="dz-message" style="text-align: center;">
+                  Déposer des fichiers ici pour télécharger
+                </div>
+              </vue-dropzone>
 
             <button class="button" type="submit">AJOUTER LES DONNÉES</button>
           </form>
@@ -22,27 +30,34 @@
 </template>
 
 <script>
-/*//const dropzone = new Dropzone("div#myId", { url: "/file/post" });
-import Dropzone from "dropzone";
-// Optionally, import the dropzone file to get default styling.
-import "dropzone/dist/dropzone.css";
-import "./style.css";
-
-const myDropzone = new Dropzone("#my-form");
-
-const output = document.querySelector("#output");
+import 'vue2-dropzone/dist/vue2Dropzone.min.css';
+import vueDropzone from 'vue2-dropzone';
 
 export default {
-  data: () => ({
-    myDropzone:'',
-  }),
-  methods:{
-    myDropzone.on("addedfile", (file) => {
-      // Add an info line about the added file for each file.
-      output.innerHTML += `<div>File added: ${file.name}</div>`;
-    }),
-  }
-}*/
+  components: {
+    vueDropzone,
+  },
+  data() {
+    return {
+      dropzoneOptions: {
+        url: 'http://localhost:3000/users/AjoutData/', // Remplacez par votre URL de gestion des téléchargements
+        acceptedFiles: '.csv', // Types de fichiers acceptés
+        addRemoveLinks: true, // Afficher les liens pour supprimer les fichiers
+        label: 'Déposer des fichiers ici pour télécharger', // Message personnalisé
+      },
+    };
+  },
+  methods: {
+    onDropzoneSuccess(file, response) {
+      // Gérer les fichiers téléchargés avec succès
+      console.log('Fichier téléchargé avec succès:', file, response);
+    },
+    onDropzoneError(file, error, xhr) {
+      // Gérer les erreurs de téléchargement
+      console.error('Erreur de téléchargement:', file, error, xhr);
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -55,8 +70,8 @@ $color-red-pastel: #f8edeb;
 $color-black: #212529;
 
 .dropzone {
-  border: 4px solid blueviolet;
-  color: blueviolet;
+  border: 4px solid #ca2b30;
+  color: black;
   margin: 2rem 0;
 }
 .ligne{
@@ -126,7 +141,6 @@ button:hover {
 }
 
 form {
-  display: flex;
   flex-direction: column;
   align-items: flex-end;
 

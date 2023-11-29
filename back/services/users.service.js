@@ -74,6 +74,21 @@ async function deleteUsers(uuid) {
     }
 }
 
+async function deleteUsersAddData(uuid) {
+    try {
+        const client = await pool.connect()
+        const res = await client.query(
+            'DELETE FROM utilisateurswantadd WHERE id_user_want_add=$1',
+            [uuid]
+        );
+        client.release();
+        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+    } catch (error) {
+        console.error(error);
+        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+    }
+}
+
 async function insertUsers(nom,prenom,email,password) {
     try {
         const client = await pool.connect()
@@ -89,6 +104,32 @@ async function insertUsers(nom,prenom,email,password) {
     }
 }
 
+async function getUserInsertData() {
+    try {
+        const client = await pool.connect();
+        const res = await client.query('select user_id,first_name,last_name,mail,id_user_want_add from utilisateurs INNER JOIN utilisateurswantadd ON utilisateurs.user_id=utilisateurswantadd.id_user_add;');
+        client.release();
+        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+    } catch (error) {
+        console.error(error);
+        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+    }
+}
+
+async function insertDataUsers(idUserConnecter) {
+    try {
+        const client = await pool.connect()
+        const res = await client.query(
+            'INSERT INTO UTILISATEURSWANTADD (id_user_add) VALUES ($1)',
+            [`${idUserConnecter}`]
+        );
+        client.release();
+        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+    } catch (error) {
+        console.error(error);
+        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+    }
+}
 
 module.exports={
     //creatUser:creatUser,
@@ -96,4 +137,7 @@ module.exports={
     getAllUsers:getAllUsers,
     deleteUsers:deleteUsers,
     insertUsers:insertUsers,
+    getUserInsertData:getUserInsertData,
+    insertDataUsers:insertDataUsers,
+    deleteUsersAddData:deleteUsersAddData,
 }

@@ -39,6 +39,15 @@ export default new Vuex.Store({
         console.log("Erreur Delete User Store");
       }
     },
+    async deleteUsersAddData({commit},id){
+      let response = await usersService.deleteUsersAddData(id);
+      if(response.status === 200){
+        const result = this.state.users.filter(user => user.user_id !== id)
+        commit('updateUsers',result)
+      } else{
+        console.log("Erreur Delete User Store");
+      }
+    },
     async insertUsers({commit},{nom,prenom,email,password}){
       console.log(nom,prenom,email,password);
       let response = await usersService.insertUsers(nom,prenom,email,password);
@@ -55,6 +64,14 @@ export default new Vuex.Store({
         commit('updateCartes',response.data)
       } else{
         console.log("Erreur Get Carte Store");
+      }
+    },
+    async getUserInsertData({commit}){
+      let response = await usersService.getUserInsertData();
+      if(response.status === 200){
+        commit('updateUsers',response.data)
+      } else{
+        console.log("Erreur Get User Insert Data Store");
       }
     },
   },
