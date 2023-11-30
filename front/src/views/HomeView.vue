@@ -309,7 +309,7 @@ a {
   opacity: 0;
   position: absolute;
   overflow: hidden;
-  transition: filter 0.3s ease-in-out;
+  transition:  0.3s ease-in-out;
   width: 330px;
   z-index: 0;
   border-radius: 15px;
