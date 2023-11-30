@@ -368,13 +368,13 @@ export default {
     getter(){
       this.getCarte(this.annee)
     }
-  }/*,
+  },
   mounted() {
     this.getCarte(this.annee).
     then( () => {
       console.log("POPO")
     }).catch((error) => console.log(error))
-  }*/
+  }
 };
 
 </script>
