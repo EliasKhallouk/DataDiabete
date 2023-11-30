@@ -19,6 +19,8 @@ DROP TABLE IF EXISTS report_prix_ass CASCADE;
 DROP TABLE IF EXISTS report_diabetique CASCADE;
 DROP TABLE IF EXISTS report_deces CASCADE;
 
+DROP TABLE IF EXISTS UTILISATEURSWANTADD CASCADE;
+
 
 
 -- Création des tables
@@ -144,6 +146,11 @@ CREATE TABLE IF NOT EXISTS report_population(
     Nbr_Habitants INTEGER,
     Nbr_Ajout INTEGER,
     PRIMARY KEY(Id_Pays, Annee)
+);
+
+CREATE TABLE IF NOT EXISTS UTILISATEURSWANTADD(
+    id_user_want_add SERIAL PRIMARY KEY,
+    id_user_add INTEGER
 );
 
 

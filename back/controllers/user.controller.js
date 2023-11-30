@@ -107,6 +107,20 @@ exports.deleteUsers = async (req, res) => {
     }
 };
 
+exports.deleteUsersAddData = async (req, res) => {
+    try {
+        const uuid = req.params.uuid;
+        if(!uuid){
+            return res.status(400).send("UUID Required !");
+        }
+        const users = await userService.deleteUsersAddData(uuid);
+        return res.status(200).json(users);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal error controller back! deleteUsersAddData");
+    }
+};
+
 exports.insertUsers = async (req, res) => {
     try {
         const nom = req.query.nom;
@@ -119,5 +133,26 @@ exports.insertUsers = async (req, res) => {
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal error controller back! insertUsers");
+    }
+};
+
+exports.getUserInsertData = async (req, res) => {
+    try {
+        const users = await userService.getUserInsertData();
+        return res.status(200).json(users);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal error controller back! getUserInsertData");
+    }
+};
+
+exports.insertDataUsers = async (req, res) => {
+    try {
+        const idUserConnecter =1;
+        const users = await userService.insertDataUsers(idUserConnecter);
+        return res.status(200).json(users);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal error controller back! insertDataUsers");
     }
 };

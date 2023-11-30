@@ -5,63 +5,45 @@
       <table>
         <thead>
         <tr>
-          <th>Id</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Rôle</th><th>Fichier</th><th>Opérations</th>
+          <th>Id</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Fichier</th><th>Opérations</th>
         </tr>
         </thead>
         <tbody>
-          <div v-if="dataUser.length<=0">Pas d'utilisateur</div>
-          <tr v-for="(user, index) in dataUser" :key="index">
-            <td data-title="Id">{{user.Id}}</td>
-            <td data-title="Nom">{{user.Nom}}</td>
-            <td data-title="Prenom">{{user.Prenom}}</td>
-            <td data-title="Email">{{user.Email}}</td>
-            <td data-title="Role">{{user.Role}}</td>
-            <td data-title="Fichier"><a href="">Télécharger</a></td>
+          <div v-if="users.length <=0">Pas d'utilisateur</div>
+          <tr v-for="(user, index) in users" :key="index">
+            <td data-title="Id">{{user.user_id}}</td>
+            <td data-title="Nom">{{user.first_name}}</td>
+            <td data-title="Prenom">{{user.last_name}}</td>
+            <td data-title="Email">{{user.mail}}</td>
+            <td data-title="Fichier"><a href="/home/userdepinfo/A2/SAE/DataDiabete/back/uploads/1-1701272832630.csv" download="fichierrrrr.csv">Télécharger</a></td>
             <td data-title="opération">
               <!--<a href="/admin/gestionUtilisateur/delete?id_user={{ user.Id }}" onclick="return confirm('Are you sure?')" >supprimer</a>-->
-              <a href="" onclick="return confirm('Voulez-vous vraiment refuser ?')">Refuser</a>
+              <!--onclick="return confirm('Voulez-vous vraiment refuser ?')"-->
+              <a @click="deleteUsersAddData(user.id_user_want_add)" >Refuser</a>
               <a href="" onclick="return confirm('Voulez-vous vraiment ajouter ?')" style="margin-left: 40px;">Ajouter</a>
             </td>
           </tr>
         </tbody>
       </table>
-      <button onclick="download()">
-        Télécharger
-      </button>
     </div>
   </div>
 </template>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"/>-->
 <script>
 
+import {mapActions, mapState} from "vuex";
+
 export default {
-  data() {
-    return {
-      dataUser: [
-        {Id:"1", Nom: "Dupont", Prenom: "Michel", Email: "michel.dupont@gmail.com", Password: "azerty123", Role:"pro"},
-        {Id:"4", Nom: "aliday", Prenom: "Joni", Email: "joni.aliday@gmail.com", Password: "qsdfgh456", Role:"pro"}
-      ],
-    };
-  },
-  /*methods : {
-    download() {
-      axios({
-        url: 'https://source.unsplash.com/random/500x500',
-        method: 'GET',
-        responseType: 'blob'
-      })
-          .then((response) => {
-            const url = window.URL
-                .createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'image.jpg');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          })
-    }
-  }*/
+  computed: {
+    ...mapState(['users'])
+  }, methods :{
+    ...mapActions(['getUserInsertData','deleteUsersAddData'])
+  }, mounted() {
+    this.getUserInsertData().
+    then( () => {
+      console.log("OK")
+    }).catch((error) => console.log(error))
+  }
 }
 </script>
 
