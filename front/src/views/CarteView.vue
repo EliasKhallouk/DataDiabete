@@ -33,7 +33,7 @@ const chartOptions = ref({
   },
   subtitle: {
     text: 'Données mises à jour le '+dateLocale+
-    '<br> Astuce : double-cliquez sur un pays pour zoomer',
+        '<br> Astuce : double-cliquez sur un pays pour zoomer',
     margin: 50,
     style: {
       color: '#BABABA',
@@ -296,9 +296,10 @@ const chartOptions = ref({
 <template>
   <div class="body-carte">
     <!-- PREMIERE PARTIE-->
+    <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
     <form>
       <input id="annee" name="annee" v-model="annee"/>
-      <button @click="getter" class="button" >CHOISIR L'ANNÉE</button>
+      <button @click.prevent="getter" class="button" >CHOISIR L'ANNÉE</button>
     </form>
 
     <p>
@@ -345,7 +346,7 @@ const chartOptions = ref({
       </tbody>
     </table>
 
-    <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
+
   </div>
 </template>
 
@@ -437,7 +438,6 @@ th {
   background-color: #ca2b30;
   color: white;
 }
-
 
 
 </style>

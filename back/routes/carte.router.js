@@ -7,7 +7,7 @@ router.get('/home',(req,res)=>{
     res.send("HOME");
 });
 
-router.get('/',carteController.getCarte);//http://localhost:3000/users?async=0 ou async=1
+router.get('/',carteController.getCarte);//http://localhost:3000/carte?annee=2000
 /*
 // mettre /top avant /uuid parceuque sinon il le considere comme id de user
 router.get("/top", userController.getUsersWithLongestPrenom) //http://localhost:3000/users/top
