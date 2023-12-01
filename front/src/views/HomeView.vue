@@ -46,7 +46,7 @@
       traitée, peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité.
     </p>-->
     <p class="tete">
-      <b style="font-size: 104px;font-style: italic;color: #ca2b30;">10.5%</b> De la population modiale est atteinte du diabète et ce pourcentage ne cesse d’augmenter.
+      <b style="font-size: 50px;font-style: italic;">10.5%</b> de la population mondiale est atteinte du diabète et ce pourcentage ne cesse d’augmenter.
 
       En effet, les spécialistes prévoient <b>12.2%</b> de diabétique d’ici <b>2045</b>. Cette maladie, si elle n’est pas
       traitée, peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité.

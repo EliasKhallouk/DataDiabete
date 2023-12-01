@@ -4,7 +4,7 @@
             <div class="centered-container">
                 <p>
                     Notre objectif est de sensibiliser le public sur la maladie du diabète en fournissant des informations précises et actuelles. 
-                    Nous croyons que l'accès à ces données est essentiel pour lutter contre le diabète, encourager la recherche et améliorer la vie des personnes touchées par cette maladie.
+                    Nous croyons que l'accès à ces données est essentiel pour <b>lutter</b> contre le diabète, <b>encourager</b> la recherche et <b>améliorer</b> la vie des personnes touchées par cette maladie.
                     <br/><br/>
                     N'hésitez pas à nous contacter si vous avez des questions ou des commentaires.
                 </p>
@@ -19,5 +19,9 @@ p {
   margin-right: 25%;
   font-size: 20px;
   text-align: justify;
+}
+b{
+    font-size : 30px;
+    font-weight : bold;
 }
 </style>
