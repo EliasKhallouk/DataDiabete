@@ -29,7 +29,7 @@
       </router-link>
       <router-link to="/histogramme">
         <div class="gallery-item gallery-item-3">
-          <img src="../assets/histogramme.png" alt="Image 3" />
+          <img src="../assets/histogramme.jpg" alt="Image 3" />
           <span class="image-title">Histogramme</span>
         </div>
       </router-link>
