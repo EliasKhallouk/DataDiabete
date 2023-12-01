@@ -9,7 +9,7 @@ const pool = require("../database/db");
 async function getCarte(annee) {
     try {
         const client = await pool.connect();
-        const res = await client.query('SELECT iso_pays_car,nbr_morts,annee\n' +
+        const res = await client.query('SELECT lower(substr(iso_pays_car,0,3)) AS iso_pays_car,nbr_morts,annee\n' +
             'from PAYS\n' +
             'inner JOIN report_deces ON PAYS.id_pays = report_deces.id_pays\n' +
             'WHERE annee=$1\n' +

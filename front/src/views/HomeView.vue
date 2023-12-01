@@ -26,14 +26,14 @@
         <div class="gallery-item gallery-item-2">
           <img src="../assets/diagramme.png" alt="Image 2" />
           <span class="image-title">Diagramme</span>
-          <span class="image-text">age/pays/sexe</span>
+          <span class="image-text">nombre de diabetique/age/pays/sexe</span>
         </div>
       </router-link>
       <router-link to="/histogramme">
         <div class="gallery-item gallery-item-3">
           <img src="../assets/histogramme.jpg" alt="Image 3" />
           <span class="image-title">Histogramme</span>
-          <span class="image-text">prix de l'insuline/assurance</span>
+          <span class="image-text">prix de l'insuline et de l'assurance/pays</span>
         </div>
       </router-link>
 
