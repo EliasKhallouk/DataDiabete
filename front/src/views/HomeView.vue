@@ -509,6 +509,12 @@ a {
     font-size: 20px;
     //text-align: justify;
   }
+  .image-text{
+    font-size: 18px;
+  }
+  .image-title{
+    font-size: 30px;
+  }
 }
 
 @media  (max-width: 1300px) {
@@ -592,6 +598,10 @@ a {
   .gallery-item-3{
     left: 80%;
   }
+
+  .image-text{
+    font-size: 16px;
+  }
   
 }
 
@@ -619,6 +629,15 @@ a {
   
   .gallery-item-3{
     left: 80%;
+  }
+
+  .image-text{
+    font-size: 13px;
+    margin-top: 32px;
+  }
+
+  .image-title{
+    font-size: 20px;
   }
   
 }
@@ -648,6 +667,22 @@ a {
   .gallery-item-3{
     left: 80%;
   }
-  
+
+  .image-text{
+    font-size: 12px;
+    margin-top: 28px;
+  }
+
+  .image-title{
+    font-size: 16px;
+  }
+
+
+  .gallery-controls ::v-deep button {
+    font-size: 12px;
+    margin: 0 10px;
+    padding: 6px 8px;
+    width: 28%;
+  }
 }
 </style>
