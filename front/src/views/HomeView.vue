@@ -19,18 +19,21 @@
         <div class="gallery-item gallery-item-1">
           <img src="../assets/carte2.jpg" alt="Image 1" />
           <span class="image-title">Carte</span>
+          <span class="image-text">nombre de décés/pays/année</span>
         </div>
       </router-link>
       <router-link to="/diagramme">
         <div class="gallery-item gallery-item-2">
           <img src="../assets/diagramme.png" alt="Image 2" />
           <span class="image-title">Diagramme</span>
+          <span class="image-text">age/pays/sexe</span>
         </div>
       </router-link>
       <router-link to="/histogramme">
         <div class="gallery-item gallery-item-3">
           <img src="../assets/histogramme.jpg" alt="Image 3" />
           <span class="image-title">Histogramme</span>
+          <span class="image-text">prix de l'insuline/assurance</span>
         </div>
       </router-link>
 
@@ -475,7 +478,25 @@ a {
   text-shadow: #3a3939 5px 5px 5px; /* Ombre portée du texte du titre */
 }
 
+.image-text {
+  margin-top: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 3;
+  color: #fff; /* Couleur du texte du titre */
+  font-size: 20px; /* Ajustez la taille du texte du titre */
+  text-shadow: #3a3939 5px 5px 5px ; /* Ombre portée du texte du titre */
+}
+
 .gallery-item:hover .image-title {
+  opacity: 1;
+}
+
+.gallery-item:hover .image-text {
   opacity: 1;
 }
 
