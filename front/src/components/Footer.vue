@@ -13,7 +13,7 @@
         ></path>
       </svg>
       <div class="footer-content">
-        <div class="footer-content-column">
+        <div class="footer-content-column reorder-first-on-mobile">
           <div class="footer-menu">
 
             <!--img alt="Vue logo"  class="logo" src="../assets/image.png" style="padding-top: 27px;"/>-->
@@ -33,7 +33,7 @@
         </div>
         <div class="footer-content-column">
           <div class="footer-menu">
-            <h2 class="footer-menu-name">SOURCE</h2>
+            <h2 class="footer-menu-name">SOURCES</h2>
             <ul id="menu-company" class="footer-menu-list">
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
                 <a target="_blank" href="https://www.who.int/fr/news-room/fact-sheets/detail/diabetes">OMS</a>
@@ -88,5 +88,37 @@ export default {
 </script>
 
 <style scoped>
+
+.footer-content-column {
+  position: relative;
+  transition: margin-top 0.3s ease; /* Ajoute une transition pour le mouvement du texte */
+}
+
+@media (max-width: 768px) {
+  .footer-content-column {
+    margin-top: 50px; /* Ajuste la marge pour faire descendre le texte sur les écrans plus petits */
+  }
+}
+
+
+.logo {
+  position: relative; /* Modifier la position en relative pour aligner avec le flux du document */
+  top: 0; /* Réinitialiser la position verticale */
+  left: 0; /* Réinitialiser la position horizontale */
+  transform: none; /* Annuler toute transformation */
+  margin-bottom: 20px; /* Ajouter une marge en bas pour séparer la vidéo du texte */
+}
+
+@media (max-width: 768px) {
+  .logo {
+    position: absolute; /* Revenir à la position absolue pour les écrans plus petits */
+    top: -60px; /* Maintenir la position ajustée pour les appareils mobiles */
+    left: 10px; /* Ajuster la position pour les écrans plus petits */
+  }
+}
+
+
+
+
 
 </style>
