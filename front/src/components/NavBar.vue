@@ -1,6 +1,11 @@
 <template>
   <nav>
     <img alt="Vue logo" class="logo" @click="toggleMenu" src="../assets/logoDDfixe.png"/>
+    <div class="menu-toggle" @click="toggleMenu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
     <div class="nav-links" :class="{ 'show-menu': isMenuOpen }" @mouseleave="closeMenu">
       
     <router-link to="/">Accueil</router-link>
@@ -46,6 +51,39 @@ export default {
 </script>
 
 <style scoped>
+
+/* Ajout de styles pour le menu sandwich */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+}
+
+/* Media query pour afficher le menu sandwich */
+@media (max-width: 1100px) {
+  .logo {
+    margin-top: auto;
+    margin: 0%;
+    display: block;
+    width: 100px;
+    height: 80px;
+  }
+  
+  .menu-toggle {
+    display: block;
+    margin-right: 20px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+}
 
 button:hover {
   color: red;
