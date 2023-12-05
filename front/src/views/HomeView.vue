@@ -1,14 +1,20 @@
 <template>
   <div class="home">
-    <div style="position: relative;height: 1000px;">
+    <div style="position: relative;">
       <div style="position: absolute; z-index: 0; width: 100%">
         <video autoplay muted playsinline loop id="VideoAccueil" class="base-image">
           <source src="../assets/Medical_Background.mp4" type="video/mp4" />
         </video>
       </div>
-      <div style="position: relative; top: 320px; height: 400px; z-index: 1; font-size: 200%">
+      <!-- <div style="position: relative; top: 320px; height: 400px; z-index: 1; font-size: 200%">
         <p style="text-align: center; color: #f8edeb;font-size: 64px;" >Le diabète, un problème humain représenté en chiffres</p>
         <p style="text-align: center; color: #f8edeb; margin-bottom: 20px" id="text2" onload="ecritur"></p>
+        <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
+      </div> -->
+
+      <div style="position:absolute; top: 15vw; z-index: 1;">
+        <h1 style="text-align: center; color: white;">Le diabète, un problème humain représenté en chiffres</h1>
+        <p class="par1" style="text-align: center; color: #f8edeb; margin-bottom: 20px" id="text2" onload="ecritur"></p>
         <a class="a" @click.prevent="scrollToCarousel"> En savoir plus </a>
       </div>
     </div>
@@ -54,34 +60,30 @@
       En effet, les spécialistes prévoient <b>12.2%</b> de diabétique d’ici <b>2045</b>. Cette maladie, si elle n’est pas
       traitée, peut s’avérer mortelle peu importe l’âge, le sexe ou la nationalité.
     </p>
-    <p style="font-size: 44px;
-    margin-top: 150px;
-    margin-bottom: -34px;">Ce que nous proposons :</p>
+    <p style="font-size: 44px; margin-top: 150px; margin-bottom: -34px;">Ce que nous proposons :</p>
 
     <h2>1. Carte mondiale de la mortalité due au diabète</h2>
     <p>
-      Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte vous
-      montre le nombre de décès attribués au diabète dans chaque pays, vous permettant
-      ainsi de comprendre l'ampleur du problème à l'échelle internationale. Les données
-      sont régulièrement mises à jour pour vous fournir des informations actuelles.
+      Explorez notre carte interactive qui illustre visuellement l'impact du diabète à 
+      l'échelle mondiale. Cette carte vous montre le nombre de décès attribués au diabète 
+      dans chaque pays, vous permettant ainsi de comprendre l'ampleur du problème à l'échelle 
+      internationale. Les données sont régulièrement mises à jour pour vous fournir des informations 
+      actuelles.
     </p>
     <h2>2. Graphiques comparatifs sur le diabète</h2>
     <p>
-      Nous avons créé des graphiques interactifs
-      qui vous permettent de comparer diverses informations liées au diabète. Ces
-      graphiques comprennent des données sur l'âge des personnes touchées par le diabète,
-      leur pays de résidence, leur sexe, et bien plus encore. Ces visualisations vous
-      aident à identifier les tendances et les disparités dans la prévalence du diabète à
-      travers le monde.
+      Nous avons créé des graphiques interactifs qui vous permettent de comparer diverses 
+      informations liées au diabète. Ces graphiques comprennent des données sur l'âge des 
+      personnes touchées par le diabète, leur pays de résidence, leur sexe, et bien plus 
+      encore. Ces visualisations vous aident à identifier les tendances et les disparités 
+      dans la prévalence du diabète à travers le monde.
     </p>
     <h2>3. Graphique d'histogramme du prix de l'insuline par pays</h2>
     <p>
-      L'accès à l'insuline est
-      crucial pour de nombreuses personnes atteintes de diabète. Notre graphique en
-      histogramme vous permet de comparer les prix de l'insuline dans différents pays.
-      Cette information peut être vitale pour les personnes atteintes de diabète qui
-      doivent gérer les coûts de leur traitement. Nous nous efforçons de maintenir ces
-      données à jour pour vous aider à prendre des décisions éclairées.
+      L'accès à l'insuline est crucial pour de nombreuses personnes atteintes de diabète. Notre graphique en
+      histogramme vous permet de comparer les prix de l'insuline dans différents pays. Cette information peut 
+      être vitale pour les personnes atteintes de diabète qui doivent gérer les coûts de leur traitement. Nous 
+      nous efforçons de maintenir ces données à jour pour vous aider à prendre des décisions éclairées.
     </p>
   </div>
 </template>
@@ -199,7 +201,7 @@ export default {
                 delay: 50,
             });
             typewriter
-                .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète, regroupé en 3 types de graphique")
+                .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète, regroupées en 3 types de graphique.")
                 .pauseFor(500)
                 //.deleteChars(8)
                 //.typeString("DIABÈTE !")
@@ -209,6 +211,7 @@ export default {
                 )*/
                 .pauseFor(100)
                 .start();
+            app.style.fontSize = "1.5vw";
         },
     },
 };
@@ -229,33 +232,48 @@ export default {
   padding: 76px;
 }
 .base-image {
-  width: 100%;
+  height: calc(75vw - 100px);
+  position: relative;
   //border-bottom-right-radius: 824px;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
   box-shadow: 45px 45px 90px #808080, -45px -45px 90px #ffffff;
   margin-top: -4%;
 }
-p {
+.par1 {
+  font-size : 3vw;
   margin-top: 45px;
   margin-left: 15%;
   margin-right: 15%;
-  font-size: 20px;
   text-align: justify;
 }
+
+p{
+  font-size : 1.5vw;
+  margin-top: 45px;
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: justify;
+}
+@media screen and (max-width: 1000px) {
+  p {
+    font-size: 18px; /* Taille de police en pixels pour les écrans plus petits */
+  }
+}
+
 b{
   font-size : 30px;
   font-weight: bold;
 }
+
 h1 {
-  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic",
-    sans-serif;
-  font-size: 92px;
-  padding: 80px 50px;
-  text-align: center;
-  text-transform: uppercase;
-  text-rendering: optimizeLegibility;
+  font-size : 4vw;
+  margin-left : 15%;
+  margin-right : 15%;
+  font-family : "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
 }
+
 h2{
+  font-size : 2.5vw;
   margin-top: 80px;
   margin-left: 15%;
   margin-right: 15%;
@@ -265,16 +283,23 @@ h2{
   sans-serif;
   text-rendering : optimizeLegibility;
 }
+@media screen and (max-width: 1000px) {
+  h2 {
+    font-size: 24px; /* Taille de police en pixels pour les écrans plus petits */
+  }
+}
+
 
 a {
   text-decoration: none;
+  font-size : 2vw;
 }
 .a {
   --font-color: #fefefe;
   --bg-color: #111;
   --main-color: #fefefe;
-  width: 120px;
-  height: 70px;
+  width: 5vw;
+  height: 5vw;
   border-radius: 5px;
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
@@ -292,7 +317,7 @@ a {
 
 .gallery{
   width: 100%;
-  padding-top: 120px;
+  padding-top: 50vw;
 }
 
 .gallery-container{
@@ -303,6 +328,7 @@ a {
   margin: 0 auto; 
   max-width: 100%;
   position: relative;
+  margin-top:250px;
   z-index: 2;
   overflow: hidden;
 }
@@ -319,6 +345,12 @@ a {
   background-size: contain;
   top: 50%; /* Ajustement de la position verticale à 50% pour centrer */
   transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 767px) {
+.gallery-container{
+  margin-top: -100px;
+}
 }
 
 .gallery-item-1, .gallery-item-3{
@@ -676,7 +708,6 @@ a {
   .image-title{
     font-size: 16px;
   }
-
 
   .gallery-controls ::v-deep button {
     font-size: 12px;
