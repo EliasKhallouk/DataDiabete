@@ -67,5 +67,44 @@ async function insertMultipleLogs(){
         }
         finally{client.release();}
     }
+async function setUrl(id_url,chemin,id_user){
+    const client = await pool.connect()
+    const res = await client.query(
+        'INSERT INTO MODIFURL (id_url,chemin,id_user) VALUES ($1,$2,$3)',
+        [id_url,chemin,id_user]
+    );
+    client.release();
+    return res.rows[0];
 }
 
+async function getUrl(id_url){
+    const client = await pool.connect()
+    const res = await client.query(
+        'SELECT * FROM MODIFURL WHERE id_url=$1',
+        [id_url]
+    );
+    client.release();
+    return res.rows[0];
+}
+
+async function setText(id_text,text_accueil,id_user){
+    const client = await pool.connect()
+    const res = await client.query(
+        'INSERT INTO MODIFTEXT (id_text,text_accueil,id_user) VALUES ($1,$2,$3)',
+        [id_text,text_accueil,id_user]
+    );
+    client.release();
+    return res.rows[0];
+}
+
+async function getText(id_text){
+    const client = await pool.connect()
+    const res = await client.query(
+        'SELECT * FROM MODIFTEXT WHERE id_text=$1',
+        [id_text]
+    );
+    client.release();
+    return res.rows[0];
+}
+
+}
