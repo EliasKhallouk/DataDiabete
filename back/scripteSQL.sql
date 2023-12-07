@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS report_prix_ass CASCADE;
 DROP TABLE IF EXISTS report_diabetique CASCADE;
 DROP TABLE IF EXISTS report_deces CASCADE;
 
-DROP TABLE IF EXISTS UTILISATEURSWANTADD CASCADE;t
+DROP TABLE IF EXISTS UTILISATEURSWANTADD CASCADE;
 
 DROP TABLE IF EXISTS MODIFURL CASCADE;
 DROP TABLE IF EXISTS MODIFTEXT CASCADE;
@@ -176,8 +176,6 @@ CREATE TABLE IF NOT EXISTS MODIFTEXT (
 
 INSERT INTO GROUPES (Groupe) VALUES ('Administrateurs');
 INSERT INTO GROUPES (Groupe) VALUES ('Éditeurs');
-INSERT INTO GROUPES (Groupe) VALUES ('Visiteurs');
-INSERT INTO GROUPES (Groupe) VALUES ('Externe');
 INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password, Group_Id) VALUES ('Joseph', 'Azar', 'azarjoseph@gmail.com', NOW(), 'joseph123', 1);
 INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password, Group_Id) VALUES ('Milvyne', 'Perrolet', 'milvyneperrolet@gmail.com', NOW(), 'milvyne123', 2);
 INSERT INTO UTILISATEURS (First_Name, Last_Name, Mail, Date_Created, Password, Group_Id) VALUES ('Stephane', 'Domas', 'stephanedomas@gmail.com', CURRENT_TIMESTAMP, 'vuejs123', NULL);

@@ -1,6 +1,5 @@
 import axios from 'axios';
 const usersAPI = "http://localhost:3000/users"
-//const usersDeleteAPI = "http://localhost:3000/users?uuid"
 
 async function getAllUsers ()  {
     try {
@@ -52,7 +51,27 @@ async function getUserInsertData(){
     try {
         //console.log("ahahaha")
         const response = await axios.get(`${usersAPI}/Telechargement`);
-        //console.log("okkkkk ahahaha")
+        console.log("okkkkk getUserInsertData")
+        return response;
+    }catch (error){
+        console.log(error);
+        throw error;
+    }
+}
+
+async function verifUsers(conf){
+    try {
+        console.log("verifUsers3" + conf);
+        const email = conf.email;
+        const password = conf.password;
+        const response = await axios.get(`${usersAPI}/verif/?email=${email}&password=${password}`);
+        if (response.data.length === 0) {
+            console.log("EMAIL OU MPD FAUX")
+        } else{
+            console.log("okkkkk verifUsers3")
+            console.log("POM"+response.data.token)
+        }
+        localStorage.setItem('token', response.data);
         return response;
     }catch (error){
         console.log(error);
@@ -66,4 +85,5 @@ export default {
     insertUsers,
     getUserInsertData,
     deleteUsersAddData,
+    verifUsers,
 }

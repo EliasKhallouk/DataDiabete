@@ -120,10 +120,11 @@ const chartOptions = ref({
       deeeee
     </div>
     azazzaza-->
+
     <table>
       <thead>
       <tr>
-        <th>iso_pays_car</th><th>nbr_morts</th><th>annee</th>
+        <th>iso_pays_car</th><th>nbr_morts</th>
       </tr>
       </thead>
       <tbody>
@@ -131,7 +132,6 @@ const chartOptions = ref({
       <tr v-for="(ligne, index) in cartes" :key="index">
         <td data-title="Id">{{ligne.iso_pays_car}}</td>
         <td data-title="Id">{{ligne.nbr_morts}}</td>
-        <td data-title="Id">{{ligne.annee}}</td>
       </tr>
       </tbody>
     </table>
@@ -165,7 +165,7 @@ export default {
     msg: String,
   },
   data: () => ({
-    annee:'',
+    annee:2021,
     chartOptions: ref({
       chart: {
         map: worldMap,
@@ -173,11 +173,11 @@ export default {
       colorAxis: {
         min: 0,
         tickPixelInterval: 60,
-        minColor: '#ea698b',
-        maxColor: '#47126b',
+        minColor: '#F8EDEB',
+        maxColor: '#F25C54',
       },
       title: {
-        text: 'Carte Mondiale de la Mortalité due au Diabète',
+        text: 'Carte Mondiale de la Mortalité due au Diabète en 2021',
         margin: 50,
         style: {
           color: '#000000',
@@ -243,12 +243,13 @@ export default {
       then( () => {
         //console.log("RES : "+res);
         this.chartOptions.series[0].data= [];
+        this.chartOptions.title.text ='';
         this.cartes.forEach((item) => {
           //console.log(item.iso_pays_car, item.nbr_morts);
           const tabTemp = [item.iso_pays_car, item.nbr_morts]
           this.chartOptions.series[0].data.push(tabTemp);
-
         })
+        this.chartOptions.title.text='Carte Mondiale de la Mortalité due au Diabète en '+this.annee;
         //console.log(this.chartOptions.series[0].data);
       }).catch((error) => console.log(error))
     }
@@ -320,7 +321,7 @@ table {
 }
 
 th, td {
-  text-align: left;
+  //text-align: left;
   padding: 8px;
 }
 

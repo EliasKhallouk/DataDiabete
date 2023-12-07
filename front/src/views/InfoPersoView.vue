@@ -5,24 +5,37 @@
        <div class="gestion">
           <form>
             <div class="ligne">
+              <label for="email">id</label>
+              <input class="input" type="text" id="Nom" name="Nom" :value="getFirstNameFromLocalStorage.user_id" />
+            </div>
+            <div class="ligne">
               <label for="email">Nom</label>
-              <input class="input" type="text" id="Nom" name="Nom" :value="infoPerso[0].Nom" />
+              <input class="input" type="text" id="Nom" name="Nom" :value="getFirstNameFromLocalStorage.firstname" />
             </div>
             <div class="ligne">
               <label for="email">Prénom</label>
-              <input class="input" type="text" id="Prenom" name="Prenom" :value="infoPerso[0].Prenom" />
+              <input class="input" type="text" id="Prenom" name="Prenom" :value="getFirstNameFromLocalStorage.lastname" />
             </div>
             <div class="ligne">
               <label for="email">Email</label>
-              <input class="input" type="email" id="email" name="email" :value="infoPerso[0].Email" />
+              <input class="input" type="email" id="email" name="email" :value="getFirstNameFromLocalStorage.mail" />
             </div>
             <div class="ligne">
-              <label for="email">Password</label>
-              <input class="input" type="password" id="Password" name="Password" :value="infoPerso[0].Password" />
+              <label for="password">Password</label>
+              <input
+                  class="input"
+                  id="Password"
+                  name="Password"
+                  :value="getFirstNameFromLocalStorage.password"
+                  :type="showPassword ? 'text' : 'password'"
+              /><!--:type="showPassword ? 'text' : 'password'"-->
+              <button class="button" @click.prevent="togglePasswordVisibility">
+                {{ showPassword ? 'Cacher' : 'Voir' }}
+              </button>
             </div>
             <div class="ligne">
                 <label for="email">Rôle</label>
-                <input class="input" type="role" id="Role" name="Role" :value="infoPerso[0].Role" />
+                <input class="input" type="text" id="Role" name="Role" :value="getFirstNameFromLocalStorage.groupe" />
               </div>
             <button class="button" type="submit">Changer mes coordonnées</button>
           </form>
@@ -35,12 +48,26 @@
 export default {
   data() {
     return {
-      infoPerso: [
-        {Id: "0", Nom: "Dupont", Prenom: "Michel", Email: "michel.dupont@gmail.com", Password: "azerty123", Role: "Admin"}
-      ],
+      showPassword: false,
     };
-  }
-}
+  },
+  computed: {
+    getFirstNameFromLocalStorage() {
+      const storedToken = localStorage.getItem('token');
+      // Vérifiez si le token existe dans le localStorage
+      if (storedToken) {
+        return JSON.parse(storedToken);
+      }
+      return 'Aucun Token trouvé';
+    },
+  },
+  methods: {
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    },
+  },
+};
+
 </script>
 
 <style scoped lang="scss">

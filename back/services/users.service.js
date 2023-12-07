@@ -5,6 +5,7 @@ const{v4: uuidv4} = require('uuid');
 const filePath = path.join(__dirname, "..", "user.json")
 const format = require("pg-format");
 const pool = require("../database/db");
+const jwt = require('jsonwebtoken');
 
 /*
 const createUser = (prenom, nom, email, password, callback) => {
@@ -131,6 +132,27 @@ async function insertDataUsers(idUserConnecter) {
     }
 }
 
+async function verifUsers(email,password) {
+    try {
+        const client = await pool.connect()
+        const res = await client.query(
+            'SELECT user_id, first_name, last_name, mail, groupe, password\n' +
+            'from utilisateurs\n' +
+            'JOIN groupes g on g.id = utilisateurs.group_id\n' +
+            'WHERE mail = $1 AND password = $2;',
+            [`${email}`,`${password}`]
+        );
+        client.release();
+        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+    } catch (error) {
+        console.error(error);
+        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+    }
+}
+
+function generateToken(user) {
+    return jwt.sign(user, 'EliasTheBest', { expiresIn: '24h' });
+}
 module.exports={
     //creatUser:creatUser,
     //getUsers:getUsers,
@@ -140,4 +162,6 @@ module.exports={
     getUserInsertData:getUserInsertData,
     insertDataUsers:insertDataUsers,
     deleteUsersAddData:deleteUsersAddData,
+    verifUsers:verifUsers,
+    generateToken:generateToken,
 }

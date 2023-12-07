@@ -2,9 +2,9 @@
   <div class="centered-container">
     <div class="connexion">
       <h1>{{ msg }}</h1>
-      <form>
+      <form action="/homeAdmin">
         <label for="email">Email</label>
-        <input class="input" type="email" id="email" name="email" placeholder="Email" />
+        <input class="input" type="email" id="email" name="email" v-model="email"  placeholder="Email" />
         <br />
         <label for="password">Mot de passe</label>
         <input
@@ -13,20 +13,35 @@
           id="password"
           name="password"
           placeholder="Mot de passe"
+          v-model="password"
         />
         <br />
-        <button class="button" type="submit">Se connecter</button>
+        <button @click="verifUsers({email,password})" class="button" >Se connecter</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
 export default {
   name: "connexion-form",
   props: {
     msg: String,
   },
+  data: () => ({
+    email:'',
+    password:''
+  }),
+  computed: {
+    ...mapState(['users'])
+  },
+  methods :{
+    ...mapActions(['verifUsers']),
+    /*verifUsers1() {
+      this.verifUsers2({email:this.email,password:this.password});
+    }*/
+  }
 };
 </script>
 

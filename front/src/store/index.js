@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     users : [],
     cartes : [],
+    token: localStorage.getItem('token') || '',
   },
   getters: {
   },
@@ -19,7 +20,10 @@ export default new Vuex.Store({
     },
     updateCartes(state, carte){
       state.cartes = carte;
-    }
+    },
+    setToken(state, token) {
+      state.token = token;
+    },
   },
   actions: {
     async getAllUsers({commit}){
@@ -42,7 +46,7 @@ export default new Vuex.Store({
     async deleteUsersAddData({commit},id){
       let response = await usersService.deleteUsersAddData(id);
       if(response.status === 200){
-        const result = this.state.users.filter(user => user.user_id !== id)
+        const result = this.state.users.filter(user => user.id_user_want_add !== id)
         commit('updateUsers',result)
       } else{
         console.log("Erreur Delete User Store");
@@ -74,6 +78,26 @@ export default new Vuex.Store({
         console.log("Erreur Get User Insert Data Store");
       }
     },
+    // ...
+    async verifUsers({ commit }, conf) {
+      console.log(conf);
+      let response = await usersService.verifUsers(conf);
+      if (response.status === 200) {
+        console.log("okkkkktoken " + response.data);
+
+        // Ajoutez la propriété firstname à l'objet token
+        const tokenWithFirstName = { ...response.data, firstname: response.data.firstname };
+
+        commit('setToken', tokenWithFirstName);
+
+        // Enregistrez la chaîne JSON valide dans le localStorage
+        localStorage.setItem('token', JSON.stringify(tokenWithFirstName));
+      } else {
+        console.log("Erreur verifUsers User Store");
+      }
+    },
+// ...
+
   },
   modules: {
   }

@@ -38,19 +38,29 @@ export default {
     vueDropzone,
   },
   data() {
+    let userId=JSON.parse(localStorage.getItem('token')).user_id;
+    console.log("local storage: "+userId);
     return {
       dropzoneOptions: {
-        url: 'http://localhost:3000/users/AjoutData/', // Remplacez par votre URL de gestion des téléchargements
+        url: `http://localhost:3000/users/AjoutData/?user_id=${(userId)}`, // Remplacez par votre URL de gestion des téléchargements
         acceptedFiles: '.csv', // Types de fichiers acceptés
         addRemoveLinks: true, // Afficher les liens pour supprimer les fichiers
         label: 'Déposer des fichiers ici pour télécharger', // Message personnalisé
+        headers: {
+          Authorization: `Bearer ${this.userId}`, // Include user_id in the headers
+        },
       },
     };
   },
   methods: {
-    onDropzoneSuccess(file, response) {
+      onDropzoneSuccess(file, response) {
       // Gérer les fichiers téléchargés avec succès
       console.log('Fichier téléchargé avec succès:', file, response);
+    /*this.$notify({
+        title: 'Succès',
+        text: 'Le fichier a été téléchargé avec succès.',
+        type: 'success', // Vous pouvez également utiliser 'warn' ou 'error'
+      });*/
     },
     onDropzoneError(file, error, xhr) {
       // Gérer les erreurs de téléchargement

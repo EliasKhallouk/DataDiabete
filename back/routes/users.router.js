@@ -16,6 +16,7 @@ router.post('/AjoutData',userMiddleware.verifData,userController.insertDataUsers
 
 // http://localhost:3000/users/?prenom=elias&nom=khallouk&email=eliaskhallouk@gmail.com&password=azerty
 router.post('/',userMiddleware.insertUsers,userController.insertUsers); // il va passer par insertUsers si next est appler alors insertUsers sera appeler
+router.get('/verif/',userController.verifUsers); // il va passer par insertUsers si next est appler alors insertUsers sera appeler
 
 /*
 // mettre /top avant /uuid parceuque sinon il le considere comme id de user

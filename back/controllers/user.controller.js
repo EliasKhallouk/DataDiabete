@@ -1,87 +1,5 @@
 const userService = require("../services/users.service")
-
-
-/*
-// Créer un nouvel utilisateur
-exports.create = async (req, res) => {
-    // Créer l'utilisateur
-    const user = {
-        login: req.body.login,
-        email: req.body.email,
-        password: req.body.password,
-        roleId: req.body.roleId
-    };
-
-    // Enregistrer l'utilisateur dans la base de données
-    User.create(user)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Erreur lors de la création de l'utilisateur."
-            });
-        });
-};
-
-// Récupréer tous les utilisateurs de la base de données
-exports.findAll = async (req, res) => {
-
-    User.findAll({include:Role})
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Erreur lors de la récupération des utilisateurs."
-            });
-        });
-};
- /*
-
-//findOne = async (req, res) => {}
-
-// Informations utilisateur mises à jour à partir de l'ID
-/*
-exports.update = async (req, res) => {
-    const id = parseInt(req.params.id);
-
-    const newValues = {
-        nom: req.body.nom,
-        prenom : req.body.prenom,
-        email: req.body.email,
-        password: req.body.password
-        //,role: req.body.role
-    };
-
-    User.update(newValues, {
-        where: { userId: id }
-    })
-        .then(results => {
-            if (results[0] > 0) {
-
-                res.status(200).send({
-                    message: "Informations utilisateur mises à jour.", data: results[1]
-                });
-            } else {
-                res.status(404).send({
-                    message: `Mise à jour impossible avec id=${id}.`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Erreur mise à jour avec id=" + id
-            });
-        });
-};
-
-
-*/
-
-
+const {use} = require("express/lib/router");
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -148,11 +66,32 @@ exports.getUserInsertData = async (req, res) => {
 
 exports.insertDataUsers = async (req, res) => {
     try {
-        const idUserConnecter =1;
+        const idUserConnecter = req.query.user_id
+        console.log('ID utilisateur CONTROLLER :'+idUserConnecter);
         const users = await userService.insertDataUsers(idUserConnecter);
         return res.status(200).json(users);
     } catch (error) {
         console.error(error);
         return res.status(500).send("Internal error controller back! insertDataUsers");
+    }
+};
+
+exports.verifUsers = async (req, res) => {
+    try {
+        const email = req.query.email;
+        const password = req.query.password;
+        console.log(email+" "+password);
+        const users = await userService.verifUsers(email,password);
+        const usersValues = users[0];
+        if (users.length > 0) {
+            const token = userService.generateToken(usersValues);
+            const result = {token, "user_id": usersValues.user_id, "firstname" : usersValues.first_name, "lastname" : usersValues.last_name, "mail" : usersValues.mail,"password": usersValues.password, "groupe":usersValues.groupe};
+            console.log("RESSSSULT CONTROLER : "+result.lastname);
+            return res.status(200).json(result);
+        }
+        return res.status(400).send("EMAIL OU MPD FAUX");
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal error controller back! verifUsers");
     }
 };
