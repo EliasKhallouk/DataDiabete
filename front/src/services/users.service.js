@@ -79,6 +79,24 @@ async function verifUsers(conf){
     }
 }
 
+
+function isAuthenticated() {
+    // Vérifier si l'utilisateur est connecté en consultant le backend
+    // Vous pouvez effectuer une requête API ou vérifier la présence d'un token, par exemple
+    const token = localStorage.getItem('token');
+    //console.log(localStorage.getItem('token'))
+    return token !== null;
+}
+
+function isAdmin() {
+    // Vérifier si l'utilisateur est admin en consultant le backend
+    // Vous pouvez effectuer une requête API ou vérifier la présence d'un token, par exemple
+    const token = localStorage.getItem('token');
+    const { groupe } = JSON.parse(token);
+    return groupe === 'Administrateurs';
+}
+
+
 export default {
     getAllUsers,
     deleteUsers,
@@ -86,4 +104,6 @@ export default {
     getUserInsertData,
     deleteUsersAddData,
     verifUsers,
+    isAuthenticated,
+    isAdmin,
 }
