@@ -6,7 +6,7 @@
           <form>
             <div class="ligne">
               <label for="email">id</label>
-              <input class="input" type="text" id="Nom" name="Nom" :value="getFirstNameFromLocalStorage.user_id" />
+              <input class="input" type="text" id="id" name="id" :value="getFirstNameFromLocalStorage.user_id" />
             </div>
             <div class="ligne">
               <label for="email">Nom</label>

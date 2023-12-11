@@ -1,19 +1,15 @@
 <template>
-  <div style="margin-top: 150px;">
-    <h1 style="font-size: 40px;">Gestion d'utilisateurs</h1>
-    <div class="centered-container">
-
-
-        <p>{{ getFirstNameFromLocalStorage.token }}</p>
-        <p>{{ getFirstNameFromLocalStorage.firstname }}</p>
-        <p>{{ getFirstNameFromLocalStorage.lastname }}</p>
-        <p>{{ getFirstNameFromLocalStorage.mail }}</p>
-        <p>{{ getFirstNameFromLocalStorage.group_id }}</p>
-
-
+  <div style="position: relative;">
+    <div style=" z-index: 0; width: 100%; margin-top: 15%;">
+      <h1>Bienvenue  {{getFirstNameFromLocalStorage.firstname}} {{getFirstNameFromLocalStorage.lastname}}</h1>
+      <video width="640" height="360" controls >
+        <source src="../assets/background-homeConnected.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture de vidéos.
+      </video>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -22,7 +18,7 @@ export default {
       const storedToken = localStorage.getItem('token');
       // Vérifiez si le token existe dans le localStorage
       if (storedToken) {
-          return JSON.parse(storedToken);
+        return JSON.parse(storedToken);
       }
       return 'Aucun Token trouvé';
     },
@@ -56,7 +52,14 @@ $color-black: #212529;
   }
 }
 
-
+.base-image {
+  height: calc(75vw - 100px);
+  position: relative;
+  //border-bottom-right-radius: 824px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 45px 45px 90px #808080, -45px -45px 90px #ffffff;
+  margin-top: -4%;
+}
 
 ///// TABLE
 table{

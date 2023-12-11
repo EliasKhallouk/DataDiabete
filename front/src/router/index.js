@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: () => import('../views/HomeView.vue'),
     meta: { requiresAuth: false, requiresAdmin: false}
@@ -69,6 +69,12 @@ const routes = [
     path: '/ajoute-donnee',
     name: 'ajoute-donnee',
     component: () => import('../views/AjoutDonneeView.vue'),
+    meta: { requiresAuth: true, requiresAdmin: false}
+  },
+  {
+    path: '*',
+    name: 'error',
+    component: () => import('../views/HomeView.vue'),
     meta: { requiresAuth: true, requiresAdmin: false}
   },
 ]

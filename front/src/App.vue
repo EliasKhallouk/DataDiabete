@@ -23,10 +23,20 @@ body {
   margin: 0;
   overflow-x: clip;
 }
+/*$color-text: #212529;
+$color-text-titre: white;*/
+$color-active: #ca2b30;
+//$color-hover: #f25c54;
+
 $color-text: #212529;
 $color-text-titre: white;
-$color-active: #ca2b30;
-$color-hover: #f25c54;
+//$color-active: #A93F55;
+$color-hover: #F2545B;
+$color-background-black :#212529;
+$color-background-broune :#8C5E58;
+$color-background-white :#F3F7F0;
+
+
 .logo {
   width: 150px;
   height: 100px;
@@ -86,7 +96,7 @@ a {
     height: 58px;
     z-index: 100;
 
-    background-color: rgba(33, 37, 41, 0.7);
+    background-color: rgba(25, 50, 60, 0.7);
     backdrop-filter: blur(8px);
     a {
       font-weight: bold;
@@ -113,7 +123,7 @@ a {
 }
 
 .footer {
-  background-color: #212529;
+  background-color: $color-background-black;
   color: #fff;
 }
 .footer-wave-svg {
@@ -184,13 +194,13 @@ a {
 }
 .footer-call-to-action-button:hover {
   background-color: #fffff2;
-  color: #f25c54;
+  color: $color-hover;
 }
 .button:last-of-type {
   margin-right: 0;
 }
 .footer-call-to-action-button {
-  background-color: #ca2b30;
+  background-color: $color-active;
   border-radius: 21px;
   color: #fffff2;
   display: inline-block;
