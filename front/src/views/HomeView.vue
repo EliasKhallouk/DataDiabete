@@ -20,7 +20,7 @@
     </div>
 
     <div class="gallery" id="carousel">
-      <div class="gallery-container">
+      <div class="gallery-container" id="gallery-anchor">
         <router-link to="/carte">
         <div class="gallery-item gallery-item-1">
           <img src="../assets/carte2.jpg" alt="Image 1" />
@@ -186,7 +186,7 @@ export default {
     },
     methods: {
         scrollToCarousel() {
-            const carouselElement = document.getElementById("carousel");
+            const carouselElement = document.getElementById("gallery-anchor ");
             if (carouselElement) {
                 carouselElement.scrollIntoView({
                     behavior: "smooth",
