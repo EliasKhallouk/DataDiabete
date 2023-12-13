@@ -2,7 +2,7 @@
 <template>
 
   <div style="margin-top: 150px;">
-    <h1 style="font-size: 40px;">Ajout de donnee</h1>
+    <h1 style="font-size: 40px;">Ajout de données</h1>
     <div class="centered-container">
        <div class="gestion">
           <form>
@@ -24,6 +24,12 @@
             <button class="button" type="submit">AJOUTER LES DONNÉES</button>
           </form>
        </div>
+    </div>
+    <div class="valeurs">
+      <p>Pourriez-vous ajoutez vos valeurs : </p>
+      <input name="number1" type="number" id="number1" v-model="nombre1" min="1" placeholder="numérateur" value="1"/>
+      <input name="number2" type="number" id="number2" v-model="nombre2" min="1" placeholder="dénominateur"/>
+      <button type="submit" @click="handleValidation"> Valider </button>
     </div>
   </div>
 
@@ -50,6 +56,8 @@ export default {
           Authorization: `Bearer ${this.userId}`, // Include user_id in the headers
         },
       },
+      nombre1:'',
+      nombre2:''
     };
   },
   methods: {
@@ -66,6 +74,14 @@ export default {
       // Gérer les erreurs de téléchargement
       console.error('Erreur de téléchargement:', file, error, xhr);
     },
+    handleValidation() {
+    console.log("Nombre 1:", this.nombre1);
+    console.log("Nombre 2:", this.nombre2);
+    this.saveData(this.nombre1, this.nombre2);
+    },
+    saveData(number1, number2) {
+      console.log("Enregistrer les données:", number1, number2);
+    }
   },
 };
 </script>
@@ -147,7 +163,20 @@ button:hover {
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   text-align: center; /* Center text */
+}
 
+.valeurs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Ajustement de l'espacement intérieur */
+  margin: 5vw; /* Ajout de marges pour rendre le fond carré */
+
+  background-color: $color-red-pastel; /* Couleur de fond */
+  text-align: center;
+  
+  margin-bottom: 60px;
 }
 
 form {
