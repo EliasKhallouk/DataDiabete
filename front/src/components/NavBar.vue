@@ -21,6 +21,7 @@
         <router-link to="/gestion-utilisateur">Gestion utilisateurs</router-link>
         <router-link to="/validation-donnee">Validation de données</router-link>
         <router-link to="/ajoute-donnee">Ajout de données</router-link>
+        <router-link to="/modif">Modification administrateur</router-link>
         <a href="" class="logout-link" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?')" @click="effacerToutLocalStorage">Déconnexion</a>
       </div>
     </div>
@@ -48,7 +49,7 @@ export default {
     },
     effacerToutLocalStorage() {
       localStorage.clear();
-    }
+    },
   },
 };
 </script>

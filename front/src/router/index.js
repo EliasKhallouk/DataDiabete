@@ -17,6 +17,14 @@ const routes = [
     component: () => import('../views/HomeAdminView.vue'),
     meta: { requiresAuth: true, requiresAdmin: false}
   },
+  // {
+  //   path: '/about',
+  //   name: 'about',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  // },
   {
     path: '/connexion',
     name: 'connexion',
@@ -77,6 +85,18 @@ const routes = [
     component: () => import('../views/HomeView.vue'),
     meta: { requiresAuth: true, requiresAdmin: false}
   },
+  {
+    path: '/modif',
+    name: 'modif',
+    component: () => import('../views/ModifView.vue'),
+    meta: { requiresAuth: true, requiresAdmin: false}
+  }
+  /*{
+    path: '/deconnexion',
+    name: 'deconnexion',
+    component: () => import('../views/DeconnexionView.vue')
+  }*/
+
 ]
 
 const router = new VueRouter({
@@ -84,7 +104,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
 
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);
@@ -114,6 +133,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
 
 export default router
