@@ -89,7 +89,7 @@ const routes = [
     path: '/modif',
     name: 'modif',
     component: () => import('../views/ModifView.vue'),
-    meta: { requiresAuth: true, requiresAdmin: false}
+    meta: { requiresAuth: true, requiresAdmin: true}
   }
   /*{
     path: '/deconnexion',

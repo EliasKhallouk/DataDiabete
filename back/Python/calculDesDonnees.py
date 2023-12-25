@@ -328,7 +328,8 @@ def prmg():
    if len(sys.argv) < 2:
       print("Pas d'argument")
       return False
-   fichier = sys.argv[1]
+   #fichier = sys.argv[1]
+   fichier = "1-1701966983768.csv"
    #Verifier si le fichier est bien un fichier csv
    if verifIfCSV(fichier) == False:
       print("Pas un csv")

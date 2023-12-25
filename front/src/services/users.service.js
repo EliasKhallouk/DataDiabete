@@ -96,6 +96,18 @@ function isAdmin() {
     return groupe === 'Administrateurs';
 }
 
+async function changeInfo(id,email,password){
+    try {
+        console.log("change info service debut")
+        console.log('SERVICE',id,email,password);
+        const response = await axios.post(`${usersAPI}/changeInfo/?id=${id}&email=${email}&password=${password}`);
+        console.log("change info service fin")
+        return response;
+    }catch (error){
+        console.log(error);
+        throw error;
+    }
+}
 
 export default {
     getAllUsers,
@@ -106,4 +118,5 @@ export default {
     verifUsers,
     isAuthenticated,
     isAdmin,
+    changeInfo,
 }

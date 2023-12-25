@@ -13,9 +13,10 @@ router.get('/Telechargement',/*isAdmin,*/ userController.getUserInsertData);
 router.delete('/Telechargement/:uuid',/*isAdmin,*/ userController.deleteUsersAddData);
 router.delete('/:uuid',/*isAdmin,*/ userController.deleteUsers);//http://localhost:3000/users?uuid=aab46b73-40d2-495a-a5ea-83688c044d2a
 router.post('/AjoutData',userMiddleware.verifData,userController.insertDataUsers);
+// il va passer par insertUsers si next est appler alors insertUsers sera appeler
+router.post('/',userMiddleware.insertUsers,userController.insertUsers);//http://localhost:3000/users/?prenom=elias&nom=khallouk&email=eliaskhallouk@gmail.com&password=azerty
+router.post('/changeInfo',userMiddleware.changeInfo,userController.changeInfo);//http://localhost:3000/users/?id=2&email=eliaskhallouk@gmail.com&password=azerty
 
-// http://localhost:3000/users/?prenom=elias&nom=khallouk&email=eliaskhallouk@gmail.com&password=azerty
-router.post('/',userMiddleware.insertUsers,userController.insertUsers); // il va passer par insertUsers si next est appler alors insertUsers sera appeler
 router.get('/verif/',userController.verifUsers); // il va passer par insertUsers si next est appler alors insertUsers sera appeler
 
 /*

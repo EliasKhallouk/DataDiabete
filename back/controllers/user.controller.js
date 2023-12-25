@@ -95,3 +95,18 @@ exports.verifUsers = async (req, res) => {
         return res.status(500).send("Internal error controller back! verifUsers");
     }
 };
+
+exports.changeInfo = async (req, res) => {
+    try {
+        const id = req.query.id;
+        const email = req.query.email;
+        const password = req.query.password;
+        console.log(id,email,password);
+        const users = await userService.changeInfo(id,email,password);
+        console.log("tout est ok controller");
+        return res.status(200).json(users);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal error controller back! changeInfo");
+    }
+};

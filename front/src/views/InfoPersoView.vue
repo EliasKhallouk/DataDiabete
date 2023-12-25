@@ -4,21 +4,22 @@
     <div class="centered-container">
        <div class="gestion">
           <form>
-            <div class="ligne">
+            <!--<div class="ligne">
               <label for="email">id</label>
-              <input class="input" type="text" id="id" name="id" :value="getFirstNameFromLocalStorage.user_id" />
-            </div>
+              <input class="input" type="text" id="id" name="id" :value="getFirstNameFromLocalStorage.user_id" disabled/>
+            </div>-->
             <div class="ligne">
               <label for="email">Nom</label>
-              <input class="input" type="text" id="Nom" name="Nom" :value="getFirstNameFromLocalStorage.firstname" />
+              <input class="input" type="text" id="Nom" name="Nom" :value="getFirstNameFromLocalStorage.firstname" disabled/>
             </div>
             <div class="ligne">
               <label for="email">Prénom</label>
-              <input class="input" type="text" id="Prenom" name="Prenom" :value="getFirstNameFromLocalStorage.lastname" />
+              <input class="input" type="text" id="Prenom" name="Prenom" :value="getFirstNameFromLocalStorage.lastname" disabled/>
             </div>
             <div class="ligne">
               <label for="email">Email</label>
-              <input class="input" type="email" id="email" name="email" :value="getFirstNameFromLocalStorage.mail" />
+              <!--<input class="input" type="email" id="email" name="email"  :value="getFirstNameFromLocalStorage.mail" />-->
+              <input class="input" type="email" id="email" name="email" v-model="email" />-->
             </div>
             <div class="ligne">
               <label for="password">Password</label>
@@ -26,8 +27,9 @@
                   class="input"
                   id="Password"
                   name="Password"
-                  :value="getFirstNameFromLocalStorage.password"
+                  :placeholder="getFirstNameFromLocalStorage.password"
                   :type="showPassword ? 'text' : 'password'"
+                  v-model="password"
               /><!--:type="showPassword ? 'text' : 'password'"-->
               <button class="button" @click.prevent="togglePasswordVisibility">
                 {{ showPassword ? 'Cacher' : 'Voir' }}
@@ -35,9 +37,9 @@
             </div>
             <div class="ligne">
                 <label for="email">Rôle</label>
-                <input class="input" type="text" id="Role" name="Role" :value="getFirstNameFromLocalStorage.groupe" />
+                <input class="input" type="text" id="Role" name="Role" :value="getFirstNameFromLocalStorage.groupe" disabled/>
               </div>
-            <button class="button" type="submit">Changer mes coordonnées</button>
+            <button @click="this.change" class="button">Changer mes coordonnées</button>
           </form>
        </div>
     </div>
@@ -45,16 +47,24 @@
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
 export default {
-  data() {
-    return {
-      showPassword: false,
-    };
-  },
+  data:() => ({
+    showPassword: false,
+    id:'',
+    email:localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).mail : '', // Utilisez la valeur du localStorage si elle existe
+    password:localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')).password : '',
+  }),
   computed: {
+    ...mapState(['users']),
     getFirstNameFromLocalStorage() {
       const storedToken = localStorage.getItem('token');
+      console.log(storedToken);
       // Vérifiez si le token existe dans le localStorage
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.id=JSON.parse(storedToken).user_id;
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      //this.mail=JSON.parse(storedToken).mail;
       if (storedToken) {
         return JSON.parse(storedToken);
       }
@@ -62,9 +72,13 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['changeInfo']),
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
     },
+    change(){
+      this.changeInfo({id:this.id,email:this.email,password:this.password})
+    }
   },
 };
 

@@ -153,6 +153,24 @@ async function verifUsers(email,password) {
 function generateToken(user) {
     return jwt.sign(user, 'EliasTheBest', { expiresIn: '24h' });
 }
+
+
+async function changeInfo(id,email,password) {
+    try {
+        const client = await pool.connect();
+        const res = await client.query(
+            'UPDATE UTILISATEURS SET Mail=$2, Password=$3 WHERE user_id = $1',
+            [`${id}`,`${email}`,`${password}`]
+        );
+        client.release();
+        console.log("tout est ok service");
+        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+    } catch (error) {
+        console.error(error);
+        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+    }
+}
+
 module.exports={
     //creatUser:creatUser,
     //getUsers:getUsers,
@@ -164,4 +182,5 @@ module.exports={
     deleteUsersAddData:deleteUsersAddData,
     verifUsers:verifUsers,
     generateToken:generateToken,
+    changeInfo:changeInfo,
 }

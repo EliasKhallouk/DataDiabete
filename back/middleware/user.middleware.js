@@ -6,7 +6,7 @@ const fs = require('fs');
 
 
 const dossierParent = path.join(__dirname, '..');
-const pythonScriptPath = path.join(dossierParent, 'Python', 'test.py');
+const pythonScriptPath = path.join(dossierParent, 'Python', 'calculDesDonnees.py');
 console.log(pythonScriptPath);
 let argument = '';
 
@@ -85,6 +85,27 @@ exports.insertUsers=(req,res,next)=>{     //next est un callback
     if(!validator.isAlpha(prenom,'fr-FR',{ignore:' '})){
         console.log('NO back 3')
         return res.status(400).send("format incorrect pour prenom");
+    }
+    if(!validator.isEmail(email,{ignore:' '})){
+        console.log('NO back 4')
+        return res.status(400).send("format incorrect pour email");
+    }
+    if(!validator.isLength(password,{min:8})  || !validator.isAlphanumeric(password,'fr-FR',{ignore:' '}) ){
+        console.log('NO back 5')
+        return res.status(400).send("format incorrect pour prenom");
+    }
+    console.log('ok back')
+    next();
+};
+
+
+exports.changeInfo=(req,res,next)=>{     //next est un callback
+    console.log('debut back')
+    const email = req.query.email;
+    const password = req.query.password;
+    if( !email || !password){
+        console.log('NO back 1:'+email+" - "+password);
+        return res.status(400).send("email ou password sont nulles");
     }
     if(!validator.isEmail(email,{ignore:' '})){
         console.log('NO back 4')

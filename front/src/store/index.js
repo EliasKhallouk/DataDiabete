@@ -24,6 +24,13 @@ export default new Vuex.Store({
     setToken(state, token) {
       state.token = token;
     },
+    updateUserCredentials(state, { email, password }) {
+      // Mettez à jour l'état avec le nouveau courriel et mot de passe
+      const userData= { email, password };
+
+      // Mettez à jour le localStorage
+      localStorage.setItem('token', JSON.stringify(userData));
+    },
   },
   actions: {
     async getAllUsers({commit}){
@@ -94,6 +101,21 @@ export default new Vuex.Store({
         localStorage.setItem('token', JSON.stringify(tokenWithFirstName));
       } else {
         console.log("Erreur verifUsers User Store");
+      }
+    },
+    async changeInfo({commit},{id,email,password}){
+      console.log('OK',id,email,password);
+      let response = await usersService.changeInfo(id,email,password);
+      if(response.status === 200){
+        const tokenWithFirstName = { ...this.state.token, mail: email,password:password };
+
+        commit('setToken', tokenWithFirstName);
+
+        // Enregistrez la chaîne JSON valide dans le localStorage
+        localStorage.setItem('token', JSON.stringify(tokenWithFirstName));
+
+      } else{
+        console.log("Erreur Change info Store");
       }
     },
 // ...
