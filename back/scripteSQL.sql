@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS MODIFURL CASCADE;
 DROP TABLE IF EXISTS MODIFTEXT CASCADE;
 
 
-
 -- Création des tables
 CREATE TABLE GROUPES (
     Id SERIAL PRIMARY KEY,
@@ -96,9 +95,11 @@ CREATE TABLE IF NOT EXISTS DESCRIPTION(
 
 CREATE TABLE IF NOT EXISTS PAYS(
     Id_Pays SERIAL PRIMARY KEY,
-    Libelle_Pays VARCHAR(255) NOT NULL,
-    ISO_Pays_Num INTEGER,
-    ISO_Pays_Car VARCHAR(255)
+    Libelle_pays_en VARCHAR(255) NOT NULL,
+    Libelle_pays_fr VARCHAR(255) NOT NULL,
+    ISO_pays_num INTEGER,
+    ISO_pays_car1 VARCHAR(255),
+    ISO_pays_car2 VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS SEXE(
@@ -167,7 +168,6 @@ CREATE TABLE IF NOT EXISTS MODIFTEXT (
     text_accueil VARCHAR(255),
     id_user_add INTEGER
 );
-
 
 -- COPY report_deces FROM 'Python/report_deces.csv' WITH CSV HEADER;
 -- COPY report_population FROM 'Python/report_population.csv' WITH CSV HEADER;
@@ -243,8 +243,14 @@ INSERT INTO DESCRIPTION (Description) VALUES ('Description 2');
 -- Insertions pour la table PAYS
 -- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('France', 250, 'FR');
 -- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('Canada', 124, 'CA');
-COPY PAYS(Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/PAYS.csv' DELIMITER ',' CSV HEADER;
-
+\copy PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM 'PAYS.csv' WITH DELIMITER ',' CSV HEADER
+--COPY PAYS FROM 'PAYS.csv' WITH CSV DELIMITER ',' SKIP 1;
+/*LOAD DATA INFILE 'PAYS.csv'
+INTO TABLE PAYS
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;*/
 
 -- Insertions pour la table SEXE
 INSERT INTO SEXE (Libelle_Sexe) VALUES ('Homme');
@@ -258,7 +264,7 @@ INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (65, 99);
 -- Insertions pour la table report_deces
 --INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (1, 2022, 100);
 --INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (2, 2021, 50);
-COPY report_deces(Id_Pays, Annee, Nbr_Morts)  FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/report_deces.csv' WITH CSV HEADER;
+\copy report_deces(Id_Pays, Annee, Nbr_Morts)  FROM '/Python/report_deces.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_diabetique
 INSERT INTO report_diabetique (Id_Pays, Code_Sexe, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 1, 1, '2022-01-01', 200);

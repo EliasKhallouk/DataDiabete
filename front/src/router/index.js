@@ -90,7 +90,13 @@ const routes = [
     name: 'modif',
     component: () => import('../views/ModifView.vue'),
     meta: { requiresAuth: true, requiresAdmin: true}
-  }
+  },
+    {
+    path: '/histogramme',
+    name: 'histogramme',
+    component: () => import('../views/HistoView.vue'),
+    meta: { requiresAuth: true, requiresAdmin: false}
+    }
   /*{
     path: '/deconnexion',
     name: 'deconnexion',
