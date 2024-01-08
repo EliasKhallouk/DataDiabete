@@ -94,8 +94,8 @@ const routes = [
     {
     path: '/histogramme',
     name: 'histogramme',
-    component: () => import('../views/HistoView.vue'),
-    meta: { requiresAuth: true, requiresAdmin: false}
+    component: () => import('../views/HistogrammeView.vue'),
+    meta: { requiresAuth: false, requiresAdmin: false}
     }
   /*{
     path: '/deconnexion',

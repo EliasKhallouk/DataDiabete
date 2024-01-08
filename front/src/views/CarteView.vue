@@ -170,11 +170,82 @@ export default {
       chart: {
         map: worldMap,
       },
-      colorAxis: {
+      /*colorAxis: {
         min: 0,
         tickPixelInterval: 60,
-        minColor: '#F8EDEB',
-        maxColor: '#F25C54',
+        max: 10000,
+        minColor: '#deb5b5',
+        maxColor: '#ff0000',
+      },*/
+      colorAxis: {
+        dataClasses: [
+          {
+            from: 0,
+            to: 10000,
+            color: '#FFF5F5', // Couleur pour les valeurs de 0 à 10 000
+            name: '0-10,000'
+          },
+          {
+            from: 10001,
+            to: 20000,
+            color: '#FFCCCC', // Couleur pour les valeurs de 10 001 à 20 000
+            name: '10,001-20,000'
+          },
+          {
+            from: 20001,
+            to: 30000,
+            color: '#FFB2B2', // Couleur pour les valeurs de 20 001 à 30 000
+            name: '20,001-30,000'
+          },
+          {
+            from: 30001,
+            to: 40000,
+            color: '#FF9999', // Couleur pour les valeurs de 30 001 à 40 000
+            name: '30,001-40,000'
+          },
+          {
+            from: 40001,
+            to: 50000,
+            color: '#FF7F7F', // Couleur pour les valeurs de 40 001 à 50 000
+            name: '40,001-50,000'
+          },
+          {
+            from: 50001,
+            to: 60000,
+            color: '#FF6666', // Couleur pour les valeurs de 50 001 à 60 000
+            name: '50,001-60,000'
+          },
+          {
+            from: 60001,
+            to: 70000,
+            color: '#FF4C4C', // Couleur pour les valeurs de 60 001 à 70 000
+            name: '60,001-70,000'
+          },
+          {
+            from: 70001,
+            to: 80000,
+            color: '#FF3333', // Couleur pour les valeurs de 70 001 à 80 000
+            name: '70,001-80,000'
+          },
+          {
+            from: 80001,
+            to: 90000,
+            color: '#FF1919', // Couleur pour les valeurs de 80 001 à 90 000
+            name: '80,001-90,000'
+          },
+          {
+            from: 90001,
+            to: 100000,
+            color: '#FF0000', // Couleur pour les valeurs de 90 001 à 100 000
+            name: '90,001-100,000'
+          },
+          {
+            from: 100001,
+            to: 100000000,
+            color: '#CC0000', // Couleur pour les valeurs de 100 001 à 1 000 000
+            name: '100,001-100,000,000'
+          },
+        ],
       },
       title: {
         text: 'Carte Mondiale de la Mortalité due au Diabète en 2021',
@@ -258,14 +329,15 @@ export default {
     this.getCarte(this.annee).
     then( () => {
       this.cartes.forEach((item) => {
+        //console.log(item);
         //console.log(item.iso_pays_car, item.nbr_morts);
         const tabTemp = [item.iso_pays_car, item.nbr_morts]
         this.chartOptions.series[0].data.push(tabTemp);
-
       })
       //console.log(this.chartOptions.series[0].data);
       //console.log(this.testData);
     }).catch((error) => console.log(error))
+    console.log(this.chartOptions.series[0].data);
   }
 };
 </script>

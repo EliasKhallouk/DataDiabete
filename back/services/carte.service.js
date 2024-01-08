@@ -9,13 +9,15 @@ const pool = require("../database/db");
 async function getCarte(annee) {
     try {
         const client = await pool.connect();
-        const res = await client.query('SELECT lower(substr(iso_pays_car,0,3)) AS iso_pays_car,nbr_morts,annee\n' +
+        const res = await client.query('SELECT lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,report_deces.nbr_morts,report_deces.annee\n' +
             'from PAYS\n' +
             'inner JOIN report_deces ON PAYS.id_pays = report_deces.id_pays\n' +
             'WHERE annee=$1\n' +
             'ORDER BY iso_pays_car',
             [annee]);
         client.release();
+        //console.log(res.rows);
+        //console.log(res.rows[0]);
         return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
     } catch (error) {
         console.error(error);
