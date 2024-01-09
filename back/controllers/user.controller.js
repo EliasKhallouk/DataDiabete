@@ -11,7 +11,7 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
-exports.deleteUsers = async (req, res) => {
+/*exports.deleteUsers = async (req, res) => {
     try {
         const uuid = req.params.uuid;
         if(!uuid){
@@ -25,6 +25,7 @@ exports.deleteUsers = async (req, res) => {
     }
 };
 
+
 exports.deleteUsersAddData = async (req, res) => {
     try {
         const uuid = req.params.uuid;
@@ -37,7 +38,54 @@ exports.deleteUsersAddData = async (req, res) => {
         console.error(error);
         return res.status(500).send("Internal error controller back! deleteUsersAddData");
     }
+};*/
+
+exports.deleteUsers = async (req, res) => {
+    try {
+        const uuid = req.params.uuid;
+        if (!uuid) {
+            return res.status(400).send("UUID Required !");
+        }
+
+        // Appel à la fonction de suppression de l'utilisateur
+        await userService.deleteUsers(uuid);
+
+        return res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+        console.error(error);
+
+        // Vérifie si c'est l'erreur spécifique liée à la suppression du dernier admin
+        if (error.message === 'Impossible de supprimer le dernier admin du groupe') {
+            return res.status(403).json({ error: "Cannot delete the last admin in the group" });
+        }
+
+        return res.status(500).send("Internal error controller back! deleteUser");
+    }
 };
+
+exports.deleteUsersAddData = async (req, res) => {
+    try {
+        const uuid = req.params.uuid;
+        if (!uuid) {
+            return res.status(400).send("UUID Required !");
+        }
+
+        // Appel à la fonction de suppression des données additionnelles de l'utilisateur
+        await userService.deleteUsersAddData(uuid);
+
+        return res.status(200).json({ message: "User additional data deleted successfully" });
+    } catch (error) {
+        console.error(error);
+
+        // Vérifie si c'est l'erreur spécifique liée à la suppression du dernier admin
+        if (error.message === 'Impossible de supprimer le dernier admin du groupe') {
+            return res.status(403).json({ error: "Cannot delete the last admin in the group" });
+        }
+
+        return res.status(500).send("Internal error controller back! deleteUserAddData");
+    }
+};
+
 
 exports.insertUsers = async (req, res) => {
     try {

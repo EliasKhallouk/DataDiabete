@@ -60,7 +60,7 @@ async function getAllUsers() {
     }
 }
 
-async function deleteUsers(uuid) {
+/*async function deleteUsers(uuid) {
     try {
         const client = await pool.connect()
         const res = await client.query(
@@ -73,9 +73,48 @@ async function deleteUsers(uuid) {
         console.error(error);
         throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
     }
+}*/
+
+async function deleteUsers(uuid) {
+    try {
+        const client = await pool.connect();
+        
+        // Vérification si l'utilisateur à supprimer est administrateur
+        const isAdminQuery = await client.query(
+            'SELECT COUNT(*) FROM UTILISATEURS u INNER JOIN DROITS_DE_GROUPES dg ON u.Group_Id = dg.Group_Id INNER JOIN DROITS d ON dg.Right_Id = d.Id WHERE u.User_Id = $1 AND d.Right_Name = $2',
+            [uuid, 'Créer']
+        );
+        const isAdmin = parseInt(isAdminQuery.rows[0].count) > 0;
+
+        if (isAdmin) {
+            // Vérification si c'est le dernier administrateur dans le groupe
+            const lastAdminQuery = await client.query(
+                'SELECT COUNT(*) FROM UTILISATEURS WHERE Group_Id = (SELECT Group_Id FROM UTILISATEURS WHERE User_Id = $1) AND User_Id <> $1 AND User_Id IN (SELECT u.User_Id FROM UTILISATEURS u INNER JOIN DROITS_DE_GROUPES dg ON u.Group_Id = dg.Group_Id INNER JOIN DROITS d ON dg.Right_Id = d.Id WHERE d.Right_Name = $2)',
+                [uuid, 'Créer']
+            );
+            const isLastAdmin = parseInt(lastAdminQuery.rows[0].count) === 0;
+
+            if (isLastAdmin) {
+                throw new Error('Impossible de supprimer le dernier admin du groupe');
+            }
+        }
+
+        // Si l'utilisateur n'est pas le dernier admin, on le supprime
+        const res = await client.query(
+            'DELETE FROM UTILISATEURS WHERE User_Id = $1',
+            [uuid]
+        );
+
+        client.release();
+        return res.rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
 
-async function deleteUsersAddData(uuid) {
+
+/*async function deleteUsersAddData(uuid) {
     try {
         const client = await pool.connect()
         const res = await client.query(
@@ -88,7 +127,46 @@ async function deleteUsersAddData(uuid) {
         console.error(error);
         throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
     }
+}*/
+
+async function deleteUsersAddData(uuid) {
+    try {
+        const client = await pool.connect();
+
+        // Vérification si l'utilisateur à supprimer est administrateur
+        const isAdminQuery = await client.query(
+            'SELECT COUNT(*) FROM UTILISATEURS u INNER JOIN DROITS_DE_GROUPES dg ON u.Group_Id = dg.Group_Id INNER JOIN DROITS d ON dg.Right_Id = d.Id WHERE u.User_Id = $1 AND d.Right_Name = $2',
+            [uuid, 'Créer']
+        );
+        const isAdmin = parseInt(isAdminQuery.rows[0].count) > 0;
+
+        if (isAdmin) {
+            // Vérification si c'est le dernier administrateur dans le groupe
+            const lastAdminQuery = await client.query(
+                'SELECT COUNT(*) FROM UTILISATEURS WHERE Group_Id = (SELECT Group_Id FROM UTILISATEURS WHERE User_Id = $1) AND User_Id <> $1 AND User_Id IN (SELECT u.User_Id FROM UTILISATEURS u INNER JOIN DROITS_DE_GROUPES dg ON u.Group_Id = dg.Group_Id INNER JOIN DROITS d ON dg.Right_Id = d.Id WHERE d.Right_Name = $2)',
+                [uuid, 'Créer']
+            );
+            const isLastAdmin = parseInt(lastAdminQuery.rows[0].count) === 0;
+
+            if (isLastAdmin) {
+                throw new Error('Impossible de supprimer le dernier admin du groupe');
+            }
+        }
+
+        // Si l'utilisateur n'est pas le dernier admin, on le supprime
+        const res = await client.query(
+            'DELETE FROM UTILISATEURSWANTADD WHERE id_user_want_add = $1',
+            [uuid]
+        );
+
+        client.release();
+        return res.rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
+
 
 async function insertUsers(nom,prenom,email,password) {
     try {

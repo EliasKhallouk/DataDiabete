@@ -285,3 +285,35 @@ INSERT INTO MODIFURL VALUES (3, '/front/src/assets/histogramme.jpg',1);
 
 -- Insertions pour la table MODIFTEXT
 INSERT INTO MODIFTEXT VALUES (1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',1);
+
+
+
+
+CREATE OR REPLACE FUNCTION prevent_last_admin_delete()
+RETURNS TRIGGER AS $$
+DECLARE
+    admin_count INTEGER;
+BEGIN
+    SELECT COUNT(*)
+    INTO admin_count
+    FROM UTILISATEURS
+    WHERE Group_Id = OLD.Group_Id AND User_Id <> OLD.User_Id AND User_Id IN (
+        SELECT u.User_Id
+        FROM UTILISATEURS u
+        JOIN DROITS_DE_GROUPES dg ON u.Group_Id = dg.Group_Id
+        JOIN DROITS d ON dg.Right_Id = d.Id
+        WHERE d.Right_Name = 'Créer'
+    );
+
+    IF admin_count = 0 THEN
+        RAISE EXCEPTION 'Impossible de supprimer le dernier admin du groupe';
+    END IF;
+
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_last_admin
+BEFORE DELETE ON UTILISATEURS
+FOR EACH ROW
+EXECUTE FUNCTION prevent_last_admin_delete();
