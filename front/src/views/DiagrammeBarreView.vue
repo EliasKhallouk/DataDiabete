@@ -36,7 +36,7 @@ import {mapActions, mapState} from "vuex";
 //import Highcharts from 'highcharts';
 import {Chart} from "highcharts-vue";
 //import {ref} from "vue";
-import diagrammeService from "@/services/diagramme.service";
+//import diagrammeService from "@/services/diagramme.service";
 
 let date1 = new Date();
 let dateLocale = date1.toLocaleDateString('Fr-FR',{
