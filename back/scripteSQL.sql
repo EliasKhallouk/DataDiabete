@@ -266,8 +266,34 @@ INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (2, 2021, 50);
 \copy report_deces(Id_Pays, Annee, Nbr_Morts)  FROM 'Python/report_deces.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_diabetique
-INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 1, 2022, 200);
-INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 2, 2022, 100);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 1, 2021, 200);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 2, 2021, 100);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 3, 2021, 180);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (3, 2, 2021, 150);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 3, 2021, 220);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (4, 1, 2021, 190);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 2, 2021, 200);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (3, 3, 2021, 170);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 1, 2020, 210);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (4, 2, 2020, 180);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 3, 2020, 230);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (3, 1, 2020, 160);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 2, 2020, 195);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (4, 3, 2020, 175);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 1, 2020, 205);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (3, 2, 2020, 185);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 3, 2006, 240);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (4, 1, 2006, 195);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 2, 2006, 175);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (3, 3, 2006, 210);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 1, 2006, 225);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (4, 2, 2006, 190);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 3, 2006, 185);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (3, 1, 2006, 220);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 2, 2006, 165);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (4, 3, 2006, 200);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 1, 2006, 195);
+
 
 -- Insertions pour la table report_prix_ass
 INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (1, 2022, 5000.50);
