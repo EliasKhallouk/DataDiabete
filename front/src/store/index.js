@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     users : [],
     cartes : [],
+    diagrammes : [],
     token: localStorage.getItem('token') || '',
   },
   getters: {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     updateCartes(state, carte){
       state.cartes = carte;
+    },
+    updateDiagrammes(state, diagramme){
+      state.diagrammes = diagramme;
     },
     setToken(state, token) {
       state.token = token;
@@ -76,6 +80,15 @@ export default new Vuex.Store({
       } else{
         console.log("Erreur Get Carte Store");
       }
+    },
+    async getDiagramme({commit},annee){
+        console.log("--------",annee);
+        let response = await cartesService.getDiagramme(annee);
+        if(response.status === 200){
+            commit('updateDiagrammes',response.data)
+        } else{
+            console.log("Erreur Get Diagramme Store");
+        }
     },
     async getUserInsertData({commit}){
       let response = await usersService.getUserInsertData();

@@ -124,28 +124,28 @@ CREATE TABLE IF NOT EXISTS report_deces(
 CREATE TABLE IF NOT EXISTS report_diabetique(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
     Id_Tranche INTEGER REFERENCES TRANCHE_AGE(Id_Tranche),
-    Annee DATE,
+    Annee INTEGER,
     Nbr_Diabetique INTEGER,
     PRIMARY KEY (Id_Pays, Id_Tranche, Annee)
 );
 
 CREATE TABLE IF NOT EXISTS report_prix_ass(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
-    Annee DATE,
+    Annee INTEGER,
     Prix_Assurance DECIMAL(15, 2),
     PRIMARY KEY (Id_Pays, Annee)
 );
 
 CREATE TABLE IF NOT EXISTS report_prix_ins(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
-    Annee DATE,
+    Annee INTEGER,
     Prix_Insuline DECIMAL(15, 2),
     PRIMARY KEY (Id_Pays, Annee)
 );
 
 CREATE TABLE IF NOT EXISTS report_population(
     Id_Pays INTEGER REFERENCES  PAYS(Id_Pays),
-    Annee DATE,
+    Annee INTEGER,
     Nbr_Habitants INTEGER,
     Nbr_Ajout INTEGER,
     PRIMARY KEY(Id_Pays, Annee)
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS MODIFURL(
 
 CREATE TABLE IF NOT EXISTS MODIFTEXT (
     id_text SERIAL PRIMARY KEY,
-    text_accueil VARCHAR(255),
+    text_accueil VARCHAR(20000),
     id_user_add INTEGER
 );
 
@@ -261,21 +261,21 @@ INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (18, 64);
 INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (65, 99);
 
 -- Insertions pour la table report_deces
---INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (1, 2022, 100);
---INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (2, 2021, 50);
+INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (1, 2022, 100);
+INSERT INTO report_deces (Id_Pays, Annee, Nbr_Morts) VALUES (2, 2021, 50);
 \copy report_deces(Id_Pays, Annee, Nbr_Morts)  FROM 'Python/report_deces.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_diabetique
-INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 1, '2022-01-01', 200);
-INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 2, '2022-01-01', 100);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (1, 1, 2022, 200);
+INSERT INTO report_diabetique (Id_Pays, Id_Tranche, Annee, Nbr_Diabetique) VALUES (2, 2, 2022, 100);
 
 -- Insertions pour la table report_prix_ass
-INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (1, '2022-01-01', 5000.50);
-INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (2, '2022-01-01', 4500.75);
+INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (1, 2022, 5000.50);
+INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (2, 2022, 4500.75);
 
 -- Insertions pour la table report_prix_ins
-INSERT INTO report_prix_ins (Id_Pays, Annee, Prix_Insuline) VALUES (1, '2022-01-01', 100.25);
-INSERT INTO report_prix_ins (Id_Pays, Annee, Prix_Insuline) VALUES (2, '2022-01-01', 80.50);
+INSERT INTO report_prix_ins (Id_Pays, Annee, Prix_Insuline) VALUES (1, 2022, 100.25);
+INSERT INTO report_prix_ins (Id_Pays, Annee, Prix_Insuline) VALUES (2, 2022, 80.50);
 
 -- Insertions pour la table MODIFURL
 INSERT INTO MODIFURL VALUES (1, '/front/src/assets/carte2.jpg',1);

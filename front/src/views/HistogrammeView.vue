@@ -1,5 +1,5 @@
 <template>
-  <div class="body-diagramme-bare">
+  <div class="body-histogramme">
     <highcharts class="hc" :options="chartOptions" ref="chart"></highcharts>
     <p>
       Explorez ces graphiques interactifs qui vous permettent de comparer diverses informations liées au diabète. Ces graphiques
@@ -35,12 +35,13 @@ export default {
         },
         series: [
           {
-            name: 'Mortalité',
+            name: 'histogramme',
+            //type :'histogram', // Définir le type de graphique sur 'histogram' pour un histogramme
             data: [1, 2, 3]
           }
         ],
         title: {
-          text: 'Carte Mondiale de la Mortalité due au Diabète',
+          text: 'Histogramme',
           margin: 50,
           style: {
             color: '#000000',
@@ -77,7 +78,7 @@ export default {
 </script>
 
 <style scoped>
-.body-diagramme-bare{
+.body-histogramme{
   margin-top: 150px;
   padding-right: 8%;
   padding-left: 8%;
