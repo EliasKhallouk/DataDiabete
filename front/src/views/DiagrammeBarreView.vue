@@ -24,8 +24,8 @@
       </thead>
       <tbody>
       <tr v-for="(ligne, index) in diagrammes" :key="index">
-        <td data-title="Id">{{ligne.iso_pays_car}}</td>
-        <td data-title="Id">{{ligne.nbr_diabetique}}</td>
+        <td data-title="Id">{{ ligne.iso_pays_car }}</td>
+        <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
       </tr>
       </tbody>
     </table>
@@ -34,26 +34,31 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-//import Highcharts from "highcharts";
-//import HighchartsVue from "highcharts-vue";
-//import {ref} from "vue";
-import Highcharts from 'highcharts';
+import Highcharts from "highcharts";
 
 export default {
   computed: {
     ...mapState(["diagrammes"]),
   },
-  data:() =>({
+  data: () => ({
     annee: 2022,
     chartOptions: {
       chart: {
-        type: 'column'
+        type: "column",
+        renderTo: "container",
       },
       title: {
-        text: 'Corn vs wheat estimated production for 2020',
-        align: 'left'
+        text: "Diagramme du nombre de personnes atteintes de diabète de l'année 2022",
+        align: "left",
       },
-      // ... other options
+      xAxis: {
+        type: "category",
+      },
+      yAxis: {
+        title: {
+          text: "Nombre de personnes atteintes",
+        },
+      },
       series: [
         {
           name: "Nombre de personnes atteintes",
@@ -65,34 +70,56 @@ export default {
   methods: {
     ...mapActions(["getDiagramme"]),
     getter() {
-      this.getDiagramme(this.annee).
-      then(() => {
-        // Rafraîchissons le graphique
-        this.chartOptions.series[0].data = [];
-        this.chartOptions.title.text = '';
+      this.getDiagramme(this.annee)
+          .then(() => {
+            // Destroy the existing chart if it exists
+            if (this.chart) {
+              this.chart.destroy();
+            }
 
-        this.diagrammes.forEach((item) => {
-          const dataPoint = { name: item.iso_pays_car, y: item.nbr_diabetique };
-          this.chartOptions.series[0].data.push(dataPoint);
-        });
+            // Create a new chart
+            this.chart = new Highcharts.Chart({
+              ...this.chartOptions,
+              accessibility: {
+                enabled: false, // Disable accessibility module
+              },
+            });
 
-        this.chartOptions.title.text =
-            "Diagramme du nombre de personnes atteintes de diabète de l'année " +
-            this.annee;
-      }).catch((error) => console.log(error));
+            // Update the new chart with new data
+            this.chart.series[0].setData(
+                this.diagrammes.map((item) => ({
+                  name: item.iso_pays_car,
+                  y: parseFloat(item.nbr_diabetique),
+                }))
+            );
+
+            this.chart.setTitle({
+              text:
+                  "Diagramme du nombre de personnes atteintes de diabète de l'année " +
+                  this.annee,
+            });
+          })
+          .catch((error) => console.log(error));
     },
   },
   mounted() {
-    Highcharts.chart('container', this.chartOptions); // Call Highcharts.chart here
     this.getDiagramme(this.annee)
         .then(() => {
-          this.diagrammes.forEach((item) => {
-            const dataPoint = { name: item.iso_pays_car, y: item.nbr_diabetique };
-            this.chartOptions.series[0].data.push(dataPoint);
+          this.chart = new Highcharts.Chart({
+            ...this.chartOptions,
+            accessibility: {
+              enabled: false, // Disable accessibility module
+            },
           });
+
+          this.chart.series[0].setData(
+              this.diagrammes.map((item) => ({
+                name: item.iso_pays_car,
+                y: parseFloat(item.nbr_diabetique),
+              }))
+          );
         })
         .catch((error) => console.log(error));
-    console.log(this.chartOptions.series[0].data);
   },
 };
 </script>
