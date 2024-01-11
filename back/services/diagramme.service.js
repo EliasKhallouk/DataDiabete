@@ -6,6 +6,7 @@ const filePath = path.join(__dirname, "..", "user.json")
 const format = require("pg-format");
 const pool = require("../database/db");
 
+/*
 async function getDiagramme(annee) {
     try {
         const client = await pool.connect();
@@ -24,7 +25,33 @@ async function getDiagramme(annee) {
         console.error(error);
         throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
     }
+}*/
+async function getDiagramme(annee) {
+    try {
+        const client = await pool.connect();
+        const res = await client.query(
+            'SELECT ' +
+            'LOWER(SUBSTRING(p.ISO_pays_car2, 2, 2)) AS iso_pays_car, ' +
+            'rd.Nbr_Diabetique, ' +
+            'rd.Annee ' +
+            'FROM ' +
+            'PAYS p ' +
+            'INNER JOIN ' +
+            'report_diabetique rd ON p.Id_Pays = rd.Id_Pays ' +
+            'WHERE ' +
+            'rd.Annee = $1 ' +
+            'ORDER BY ' +
+            'iso_pays_car',
+            [annee]
+        );
+        client.release();
+        return res.rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
+
 
 module.exports= {
     getDiagramme: getDiagramme,

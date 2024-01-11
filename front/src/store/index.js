@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 import usersService from "@/services/users.service";
 import cartesService from "@/services/carte.service";
+import diagrammesService from "@/services/diagramme.service";
 
 export default new Vuex.Store({
   state: {
@@ -83,7 +84,7 @@ export default new Vuex.Store({
     },
     async getDiagramme({commit},annee){
         console.log("--------",annee);
-        let response = await cartesService.getDiagramme(annee);
+        let response = await diagrammesService.getDiagramme(annee);
         if(response.status === 200){
             commit('updateDiagrammes',response.data)
         } else{
