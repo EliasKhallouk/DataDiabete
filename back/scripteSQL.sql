@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS TRANCHE_AGE(
 CREATE TABLE IF NOT EXISTS report_deces(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
     Annee INTEGER,
-    Nbr_Morts NUMERIC,
+    Nbr_Morts DECIMAL(20, 2),
     PRIMARY KEY (Id_Pays,Annee)
 );
 
@@ -124,8 +124,8 @@ CREATE TABLE IF NOT EXISTS report_deces(
 CREATE TABLE IF NOT EXISTS report_diabetique(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
     Annee INTEGER,
-    Nbr_Diabetique INTEGER,
-    PRIMARY KEY (Id_Pays, Annee)
+    Nbr_Diabetique NUMERIC(20, 2),
+    PRIMARY KEY (Id_Pays, Annee, Nbr_Diabetique)
 );
 
 CREATE TABLE IF NOT EXISTS report_prix_ass(
@@ -263,23 +263,7 @@ INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (65, 99);
 \copy report_deces(Id_Pays, Annee, Nbr_Morts)  FROM 'Python/report_deces.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_diabetique
---\copy report_diabetique(Id_Pays, Annee, Nbr_Diabetique)  FROM 'report_diabetique.csv' WITH CSV HEADER;
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (1, 2022, 100000);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (2, 2022, 50000);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (3, 2022, 20000);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (4, 2022, 10000);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (5, 2022, 5000);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (6, 2022, 2000);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (7, 2022, 1000);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (8, 2022, 500);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (9, 2021, 200);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (10, 2021, 100);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (11, 2021, 50);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (12, 2021, 20);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (13, 2021, 10);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (14, 2021, 5);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (15, 2021, 2);
-INSERT INTO report_diabetique (Id_Pays, Annee, Nbr_Diabetique) VALUES (16, 2021, 1);
+\copy report_diabetique(Id_Pays, Annee, Nbr_Diabetique)  FROM 'report_diabetique.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_prix_ass
 INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (1, 2022, 5000.50);

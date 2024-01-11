@@ -1,9 +1,11 @@
 <template>
   <div class="body-diagramme-bare">
-    <canvas ref="barChart"></canvas>
+    <figure class="highcharts-figure">
+      <div id="container"></div>
+    </figure>
     <form>
       <input id="annee" name="annee" v-model="annee" />
-      <button @click.prevent="getDiagramme(annee)" class="button">CHOISIR L'ANNÉE</button>
+      <button @click.prevent="getter" class="button">CHOISIR L'ANNÉE</button>
     </form>
     <p>
       Explorez ces graphiques interactifs qui vous permettent de comparer
@@ -22,8 +24,8 @@
       </thead>
       <tbody>
       <tr v-for="(ligne, index) in diagrammes" :key="index">
-        <td data-title="Id">{{ ligne.iso_pays_car }}</td>
-        <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
+        <td data-title="Id">{{ligne.iso_pays_car}}</td>
+        <td data-title="Id">{{ligne.nbr_diabetique}}</td>
       </tr>
       </tbody>
     </table>
@@ -32,100 +34,65 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import Chart from "chart.js/auto"; // Import Chart.js
-
-let date1 = new Date();
-let dateLocale = date1.toLocaleDateString("Fr-FR", {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-  hour: "numeric",
-  minute: "numeric",
-  second: "numeric",
-});
+//import Highcharts from "highcharts";
+//import HighchartsVue from "highcharts-vue";
+//import {ref} from "vue";
+import Highcharts from 'highcharts';
 
 export default {
-  name: "DiagrammeBarreView",
-  data: () => ({
-    annee: 2021,
-  }),
   computed: {
     ...mapState(["diagrammes"]),
   },
+  data:() =>({
+    annee: 2022,
+    chartOptions: {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Corn vs wheat estimated production for 2020',
+        align: 'left'
+      },
+      // ... other options
+      series: [
+        {
+          name: "Nombre de personnes atteintes",
+          data: [],
+        },
+      ],
+    },
+  }),
   methods: {
     ...mapActions(["getDiagramme"]),
-    async renderChart() {
-      const labels = this.diagrammes.map((item) => item.iso_pays_car);
-      const data = this.diagrammes.map((item) => item.nbr_diabetique);
+    getter() {
+      this.getDiagramme(this.annee).
+      then(() => {
+        // Rafraîchissons le graphique
+        this.chartOptions.series[0].data = [];
+        this.chartOptions.title.text = '';
 
-      const ctx = this.$refs.barChart.getContext("2d");
+        this.diagrammes.forEach((item) => {
+          const dataPoint = { name: item.iso_pays_car, y: item.nbr_diabetique };
+          this.chartOptions.series[0].data.push(dataPoint);
+        });
 
-      if (this.barChart) {
-        this.barChart.destroy(); // Destroy previous chart instance if exists
-      }
-
-      this.barChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Nombre de personnes atteintes",
-              data: data,
-              backgroundColor: "#ca2b30",
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: "Pays",
-              },
-            },
-            y: {
-              title: {
-                display: true,
-                text: "Nombre de personnes atteintes",
-              },
-            },
-          },
-          plugins: {
-            legend: {
-              display: false,
-            },
-            title: {
-              display: true,
-              text: "Diagramme du nombre de personnes atteintes de diabète",
-              font: {
-                size: 20,
-                weight: "bold",
-                family: "Poppins",
-              },
-            },
-            subtitle: {
-              display: true,
-              text: "Données mises à jour le " + dateLocale,
-              font: {
-                size: 14,
-                family: "Poppins",
-              },
-            },
-          },
-        },
-      });
-    },
-    async getDiagramme() {
-      await this.$store.dispatch("getDiagramme", this.annee);
-      this.renderChart();
+        this.chartOptions.title.text =
+            "Diagramme du nombre de personnes atteintes de diabète de l'année " +
+            this.annee;
+      }).catch((error) => console.log(error));
     },
   },
   mounted() {
-    this.getDiagramme();
+    Highcharts.chart('container', this.chartOptions); // Call Highcharts.chart here
+    this.getDiagramme(this.annee)
+        .then(() => {
+          this.diagrammes.forEach((item) => {
+            const dataPoint = { name: item.iso_pays_car, y: item.nbr_diabetique };
+            this.chartOptions.series[0].data.push(dataPoint);
+          });
+        })
+        .catch((error) => console.log(error));
+    console.log(this.chartOptions.series[0].data);
   },
 };
 </script>
@@ -155,31 +122,5 @@ tr:nth-child(even) {
 th {
   background-color: #ca2b30;
   color: white;
-}
-
-.button {
-  background-color: #ca2b30;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  font-size: 18px;
-  margin-left: 10px;
-}
-
-.button:hover {
-  background-color: #f25c54;
-}
-
-.hc {
-  margin-top: 50px;
-}
-
-input {
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 18px;
-  margin-left: 10px;
 }
 </style>
