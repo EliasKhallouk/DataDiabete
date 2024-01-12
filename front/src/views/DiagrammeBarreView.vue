@@ -61,7 +61,8 @@ export default {
       },
       series: [
         {
-          name: "Nombre de personnes atteintes",
+          name: "Pays",
+          colorByPoint: true,
           data: [],
         },
       ],
