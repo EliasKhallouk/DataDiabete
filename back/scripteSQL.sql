@@ -125,7 +125,8 @@ CREATE TABLE IF NOT EXISTS report_diabetique(
     Id_Pays INTEGER REFERENCES PAYS(Id_Pays),
     Annee INTEGER,
     Nbr_Diabetique NUMERIC(20, 2),
-    PRIMARY KEY (Id_Pays, Annee, Nbr_Diabetique)
+    Code_Sexe INTEGER REFERENCES SEXE(Code_Sexe),
+    PRIMARY KEY (Id_Pays, Annee, Nbr_Diabetique, Code_Sexe)
 );
 
 CREATE TABLE IF NOT EXISTS report_prix_ass(
@@ -251,8 +252,8 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;*/
 
 -- Insertions pour la table SEXE
-INSERT INTO SEXE (Libelle_Sexe) VALUES ('Homme');
-INSERT INTO SEXE (Libelle_Sexe) VALUES ('Femme');
+INSERT INTO SEXE (code_sexe,Libelle_Sexe) VALUES (1,'Homme');
+INSERT INTO SEXE (code_sexe,Libelle_Sexe) VALUES (0,'Femme');
 
 -- Insertions pour la table TRANCHE_AGE
 INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (0, 17);
@@ -263,7 +264,7 @@ INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (65, 99);
 \copy report_deces(Id_Pays, Annee, Nbr_Morts)  FROM 'Python/report_deces.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_diabetique
-\copy report_diabetique(Id_Pays, Annee, Nbr_Diabetique)  FROM 'report_diabetique.csv' WITH CSV HEADER;
+\copy report_diabetique(Id_Pays, Annee, Nbr_Diabetique,Code_Sexe)  FROM 'report_diabetique.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_prix_ass
 INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (1, 2022, 5000.50);

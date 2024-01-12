@@ -31,7 +31,7 @@ async function getDiagramme(annee) {
         const client = await pool.connect();
         const res = await client.query(
             'SELECT ' +
-            'LOWER(SUBSTRING(p.ISO_pays_car2, 2, 2)) AS iso_pays_car, ' +
+            'LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS iso_pays_car, ' +
             'rd.Nbr_Diabetique, ' +
             'rd.Annee ' +
             'FROM ' +
