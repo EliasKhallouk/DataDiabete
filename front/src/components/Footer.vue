@@ -61,7 +61,7 @@
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/amajoure-iut90">Majourel Ambre</a>
               </li>
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
-                <a target="_blank" rel="noopener noreferrer" href="https://github.com/TheoIUTBM">Vievill Théo</a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/TheoIUTBM">Vieville Théo</a>
               </li>
             </ul>
           </div>
