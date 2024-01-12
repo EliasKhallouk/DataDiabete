@@ -186,7 +186,7 @@ export default {
     },
     methods: {
         scrollToCarousel() {
-            const carouselElement = document.getElementById("gallery-anchor ");
+            const carouselElement = document.getElementById("gallery-anchor");
             if (carouselElement) {
                 carouselElement.scrollIntoView({
                     behavior: "smooth",
