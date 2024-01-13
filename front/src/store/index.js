@@ -82,9 +82,10 @@ export default new Vuex.Store({
         console.log("Erreur Get Carte Store");
       }
     },
-    async getDiagramme({commit},annee){
+    async getDiagramme({commit},annee,codeSexe){
         console.log("--------",annee);
-        let response = await diagrammesService.getDiagramme(annee);
+        console.log("--------",codeSexe);
+        let response = await diagrammesService.getDiagramme(annee,codeSexe);
         if(response.status === 200){
             commit('updateDiagrammes',response.data)
         } else{

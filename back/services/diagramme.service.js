@@ -26,25 +26,28 @@ async function getDiagramme(annee) {
         throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
     }
 }*/
-async function getDiagramme(annee) {
+async function getDiagramme(annee, codeSexe) {
     try {
         const client = await pool.connect();
         const res = await client.query(
             'SELECT ' +
             'LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS iso_pays_car, ' +
             'rd.Nbr_Diabetique, ' +
-            'rd.Annee ' +
+            'rd.Annee, ' +
+            'rd.CodeSexe ' +
             'FROM ' +
             'PAYS p ' +
             'INNER JOIN ' +
             'report_diabetique rd ON p.Id_Pays = rd.Id_Pays ' +
             'WHERE ' +
             'rd.Annee = $1 ' +
+            'AND rd.Code_Sexe = $2 ' +
             'ORDER BY ' +
             'iso_pays_car',
-            [annee]
+            [annee, codeSexe]
         );
         client.release();
+        console.log(res.rows);
         return res.rows;
     } catch (error) {
         console.error(error);
@@ -52,7 +55,6 @@ async function getDiagramme(annee) {
     }
 }
 
-
-module.exports= {
+module.exports = {
     getDiagramme: getDiagramme,
 }

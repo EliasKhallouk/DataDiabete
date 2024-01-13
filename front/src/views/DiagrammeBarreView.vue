@@ -5,6 +5,11 @@
     </figure>
     <form>
       <input id="annee" name="annee" v-model="annee" />
+      <select v-model="codeSexe">
+        <option value="1">Homme</option>
+        <option value="0">Femme</option>
+        <!-- Ajoutez d'autres options selon votre modèle de données -->
+      </select>
       <button @click.prevent="getter" class="button">CHOISIR L'ANNÉE</button>
     </form>
     <p>
@@ -20,12 +25,14 @@
       <tr>
         <th>Pays</th>
         <th>Nombre de personnes atteints</th>
+        <th>Sexe</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="(ligne, index) in diagrammes" :key="index">
         <td data-title="Id">{{ ligne.iso_pays_car }}</td>
         <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
+        <td data-title="Id">{{ ligne.code_sexe }}</td>
       </tr>
       </tbody>
     </table>
@@ -41,7 +48,8 @@ export default {
     ...mapState(["diagrammes"]),
   },
   data: () => ({
-    annee: 2022,
+    annee: 2011,
+    codeSexe: 0,
     chartOptions: {
       chart: {
         type: "column",
@@ -71,7 +79,9 @@ export default {
   methods: {
     ...mapActions(["getDiagramme"]),
     getter() {
-      this.getDiagramme(this.annee)
+      console.log("annee", this.annee);
+      console.log("code sexe", this.codeSexe);
+      this.getDiagramme(this.annee,this.codeSexe)
           .then(() => {
             // Destroy the existing chart if it exists
             if (this.chart) {
@@ -151,4 +161,37 @@ th {
   background-color: #ca2b30;
   color: white;
 }
+
+select {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+input{
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+
+.button{
+  background-color: #ca2b30;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.button:hover{
+  background-color: #f25c54;
+}
+
+
 </style>
