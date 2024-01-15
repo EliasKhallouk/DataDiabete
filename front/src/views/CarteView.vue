@@ -130,7 +130,7 @@ const chartOptions = ref({
       <tbody>
       <div v-if="cartes.length <=0">pas d'utilisateur</div>
       <tr v-for="(ligne, index) in cartes" :key="index">
-        <td data-title="Id">{{ligne.iso_pays_car}}</td>
+        <td data-title="Id">{{ligne.name_pays}}</td>
         <td data-title="Id">{{ligne.nbr_morts}}</td>
       </tr>
       </tbody>
