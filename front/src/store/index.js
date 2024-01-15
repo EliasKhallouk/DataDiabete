@@ -82,7 +82,7 @@ export default new Vuex.Store({
         console.log("Erreur Get Carte Store");
       }
     },
-    async getDiagramme({commit},annee,codeSexe){
+    async getDiagramme({commit},{annee,codeSexe}){
         console.log("--------",annee);
         console.log("--------",codeSexe);
         let response = await diagrammesService.getDiagramme(annee,codeSexe);

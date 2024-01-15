@@ -19,7 +19,7 @@
             <div class="ligne">
               <label for="email">Email</label>
               <!--<input class="input" type="email" id="email" name="email"  :value="getFirstNameFromLocalStorage.mail" />-->
-              <input class="input" type="email" id="email" name="email" v-model="email" />-->
+              <input class="input" type="email" id="email" name="email" v-model="email" />
             </div>
             <div class="ligne">
               <label for="password">Password</label>

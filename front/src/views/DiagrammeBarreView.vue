@@ -81,7 +81,7 @@ export default {
     getter() {
       console.log("annee", this.annee);
       console.log("code sexe", this.codeSexe);
-      this.getDiagramme(this.annee,this.codeSexe)
+      this.getDiagramme({annee:this.annee,codeSexe:this.codeSexe})
           .then(() => {
             // Destroy the existing chart if it exists
             if (this.chart) {
@@ -114,7 +114,9 @@ export default {
     },
   },
   mounted() {
-    this.getDiagramme(this.annee)
+    console.log("annee==", this.annee);
+    console.log("code sexe==", this.codeSexe);
+    this.getDiagramme({annee:this.annee,codeSexe:this.codeSexe})
         .then(() => {
           this.chart = new Highcharts.Chart({
             ...this.chartOptions,

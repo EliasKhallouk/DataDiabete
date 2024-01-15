@@ -34,7 +34,7 @@ async function getDiagramme(annee, codeSexe) {
             'LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS iso_pays_car, ' +
             'rd.Nbr_Diabetique, ' +
             'rd.Annee, ' +
-            'rd.CodeSexe ' +
+            'rd.Code_Sexe ' +
             'FROM ' +
             'PAYS p ' +
             'INNER JOIN ' +
@@ -43,7 +43,8 @@ async function getDiagramme(annee, codeSexe) {
             'rd.Annee = $1 ' +
             'AND rd.Code_Sexe = $2 ' +
             'ORDER BY ' +
-            'iso_pays_car',
+            'iso_pays_car ' +
+            'LIMIT 10',
             [annee, codeSexe]
         );
         client.release();

@@ -124,7 +124,7 @@ const chartOptions = ref({
     <table>
       <thead>
       <tr>
-        <th>iso_pays_car</th><th>nbr_morts</th>
+        <th>Pays</th><th>Nombre de personnes mortes</th>
       </tr>
       </thead>
       <tbody>

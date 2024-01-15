@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS PAYS(
 );
 
 CREATE TABLE IF NOT EXISTS SEXE(
-    CodeSexe SERIAL PRIMARY KEY,
+    Code_Sexe SERIAL PRIMARY KEY,
     Libelle_Sexe VARCHAR(255) NOT NULL
 );
 
@@ -170,6 +170,25 @@ CREATE TABLE IF NOT EXISTS MODIFTEXT (
 
 -- COPY report_deces FROM 'Python/report_deces.csv' WITH CSV HEADER;
 -- COPY report_population FROM 'Python/report_population.csv' WITH CSV HEADER;
+
+-- Déclaration des variables pour les chemins relatifs
+/*DO $$
+    DECLARE
+        current_folder VARCHAR(255);
+    BEGIN
+        -- Construction du chemin relatif du dossier courant
+        SELECT substring(pg_backend_current_query() from '.*from ''(.*)/[^/]+\.sql''') INTO current_folder;
+
+        -- Utilisez EXECUTE pour construire dynamiquement la commande COPY
+        EXECUTE 'COPY PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM ''' || current_folder || '/Python/PAYS.csv'' DELIMITER '','' CSV HEADER;';
+    END;
+$$;*/
+
+
+
+
+
+
 
 
 
@@ -242,7 +261,9 @@ INSERT INTO DESCRIPTION (Description) VALUES ('Description 2');
 -- Insertions pour la table PAYS
 -- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('France', 250, 'FR');
 -- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('Canada', 124, 'CA');
-\copy PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM 'PAYS.csv' WITH DELIMITER ',' CSV HEADER
+-- \copy PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM 'PAYS.csv' WITH DELIMITER ',' CSV HEADER
+COPY PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/PAYS.csv' DELIMITER ',' CSV HEADER;
+
 --COPY PAYS FROM 'PAYS.csv' WITH CSV DELIMITER ',' SKIP 1;
 /*LOAD DATA INFILE 'PAYS.csv'
 INTO TABLE PAYS
@@ -252,8 +273,8 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;*/
 
 -- Insertions pour la table SEXE
-INSERT INTO SEXE (CodeSexe,Libelle_Sexe) VALUES (1,'Homme');
-INSERT INTO SEXE (CodeSexe,Libelle_Sexe) VALUES (0,'Femme');
+INSERT INTO SEXE (code_sexe,Libelle_Sexe) VALUES (1,'Homme');
+INSERT INTO SEXE (code_sexe,Libelle_Sexe) VALUES (0,'Femme');
 
 -- Insertions pour la table TRANCHE_AGE
 INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (0, 17);
@@ -261,18 +282,21 @@ INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (18, 64);
 INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (65, 99);
 
 -- Insertions pour la table report_deces
-\copy report_deces(Id_Pays, Annee, Nbr_Morts)  FROM 'Python/report_deces.csv' WITH CSV HEADER;
+-- \copy report_deces(Id_Pays, Annee, Nbr_Morts)  FROM 'Python/report_deces.csv' WITH CSV HEADER;
+COPY report_deces(Id_Pays, Annee, Nbr_Morts)  FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/report_deces.csv' WITH CSV HEADER;
 
 -- Insertions pour la table report_diabetique
-\copy report_diabetique(Id_Pays, Annee, Nbr_Diabetique,CodeSexe)  FROM 'report_diabetique.csv' WITH CSV HEADER;
+-- \copy report_diabetique(Id_Pays, Annee, Nbr_Diabetique,Code_Sexe)  FROM 'report_diabetique.csv' WITH CSV HEADER;
+COPY report_diabetique(Id_Pays, Annee, Nbr_Diabetique,Code_Sexe)  FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/report_diabetique.csv' WITH CSV HEADER;
+
 
 -- Insertions pour la table report_prix_ass
-INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (1, 2022, 5000.50);
-INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (2, 2022, 4500.75);
+-- INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (1, 2022, 5000.50);
+-- INSERT INTO report_prix_ass (Id_Pays, Annee, Prix_Assurance) VALUES (2, 2022, 4500.75);
 
 -- Insertions pour la table report_prix_ins
-INSERT INTO report_prix_ins (Id_Pays, Annee, Prix_Insuline) VALUES (1, 2022, 100.25);
-INSERT INTO report_prix_ins (Id_Pays, Annee, Prix_Insuline) VALUES (2, 2022, 80.50);
+-- INSERT INTO report_prix_ins (Id_Pays, Annee, Prix_Insuline) VALUES (1, 2022, 100.25);
+--- INSERT INTO report_prix_ins (Id_Pays, Annee, Prix_Insuline) VALUES (2, 2022, 80.50);
 
 -- Insertions pour la table MODIFURL
 INSERT INTO MODIFURL VALUES (1, '/front/src/assets/carte2.jpg',1);
