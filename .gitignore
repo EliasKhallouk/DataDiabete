@@ -24,3 +24,5 @@ pnpm-debug.log*
 *.sw?
 /back/node_modules/
 /front/node_modules/
+/back/package-lock.json
+/back/package.json
