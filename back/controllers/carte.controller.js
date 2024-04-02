@@ -18,11 +18,15 @@ exports.getCarte = async (req, res) => {
 exports.getCarteTouche = async (req, res) => {
     try {
         let annee = req.query.annee;
+        let codeSexe = req.query.codeSexe;
         console.log(annee);
         if(!annee){
             annee = 2011;
         }
-        const users = await carteService.getCarteTouche(annee);
+        if(!codeSexe){
+            codeSexe = 0;
+        }
+        const users = await carteService.getCarteTouche(annee,codeSexe);
         return res.status(200).json(users);
     } catch (error) {
         console.error(error);

@@ -40,7 +40,7 @@ const routes = [
   {
     path: '/mort',
     name: 'mort',
-    component: () => import('../views/MortView.vue'),
+    component: () => import('../components/CarteMort.vue'),
     meta: { requiresAuth: false, requiresAdmin: false}
   },
   {

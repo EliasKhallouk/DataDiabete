@@ -15,10 +15,10 @@ async function getDiagramme (annee, codeSexe)  {
     }
 }
 
-async function getCarteTouche (annee)  {
+async function getCarteTouche (annee,codeSexe)  {
     try {
         console.log("geeeet carte")
-        const response = await axios.get(`${cartesAPI}/touche?annee=${annee}`);
+        const response = await axios.get(`${cartesAPI}/touche?annee=${annee}&codeSexe=${codeSexe}`);
         console.log("okkkkk gett carte")
         return response;
     }catch (error){
@@ -28,10 +28,10 @@ async function getCarteTouche (annee)  {
 }
 
 
-async function getInfoCarteTouche(annee)  {
+async function getInfoCarteTouche(annee,codeSexe)  {
     try {
         console.log("geeeet info carte")
-        const response = await axios.get(`${cartesAPI}/touche?annee=${annee}`);
+        const response = await axios.get(`${cartesAPI}/touche?annee=${annee}&codeSexe=${codeSexe}`);
         const data = response.data;
 
         // Calcul de la moyenne

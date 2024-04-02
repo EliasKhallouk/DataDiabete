@@ -8,7 +8,7 @@ router.get('/home',(req,res)=>{
 });
 
 router.get('/',carteController.getCarte); // http://localhost:3000/carte?annee=2000
-router.get('/touche',carteController.getCarteTouche); // http://localhost:3000/carte/touche?annee=2000
+router.get('/touche',carteController.getCarteTouche); // http://localhost:3000/carte/touche?annee=2000&codeSexe=1
 
 /*
 // mettre /top avant /uuid parceuque sinon il le considere comme id de user

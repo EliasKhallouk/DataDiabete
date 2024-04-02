@@ -25,32 +25,55 @@ async function getCarte(annee) {
     }
 }
 
-async function getCarteTouche(annee) {
+async function getCarteTouche(annee,codeSexe) {
     try {
         const client = await pool.connect();
-        const res = await client.query('SELECT DISTINCT\n' +
-            '    LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS name_pays,\n' +
-            '    lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,\n' +
-            '    rd.Nbr_Diabetique,\n' +
-            '    rd.Annee,\n' +
-            '    rd.code_sexe\n' +
-            'FROM\n' +
-            '    PAYS p\n' +
-            '        INNER JOIN\n' +
-            '    report_diabetique rd ON p.Id_Pays = rd.Id_Pays\n' +
-            'WHERE\n' +
-            '        rd.Annee = $1\n' +
-            'ORDER BY\n' +
-            '    name_pays,\n' +
-            '    code_sexe',
-            [annee]);
+        let res = null;
+        if(codeSexe==0 || codeSexe==1){
+            res = await client.query(
+                'SELECT ' +
+                '    LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS name_pays,\n' +
+                '    lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,\n' +
+                'rd.Nbr_Diabetique, ' +
+                'rd.Annee, ' +
+                'rd.Code_Sexe ' +
+                'FROM ' +
+                'PAYS p ' +
+                'INNER JOIN ' +
+                'report_diabetique rd ON p.Id_Pays = rd.Id_Pays ' +
+                'WHERE ' +
+                'rd.Annee = $1 ' +
+                'AND rd.Code_Sexe = $2 ' +
+                'ORDER BY\n' +
+                '    name_pays,\n' +
+                '    code_sexe',
+                [annee, codeSexe]
+            );
+        }else{
+            res = await client.query(
+                'SELECT \n' +
+                '    LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS name_pays,\n' +
+                '    LOWER(SUBSTRING(iso_pays_car2, 2, 2)) AS iso_pays_car,\n' +
+                '    SUM(CASE WHEN rd.Code_Sexe = 1 THEN rd.Nbr_Diabetique ELSE 0 END) + \n' +
+                '    SUM(CASE WHEN rd.Code_Sexe = 0 THEN rd.Nbr_Diabetique ELSE 0 END) AS Nbr_Diabetique,\n' +
+                '    rd.Annee\n' +
+                'FROM \n' +
+                '    PAYS p\n' +
+                'INNER JOIN \n' +
+                '    report_diabetique rd ON p.Id_Pays = rd.Id_Pays\n' +
+                'WHERE \n' +
+                '    rd.Annee = $1\n' +
+                'GROUP BY \n' +
+                '    name_pays, iso_pays_car, rd.Annee\n' +
+                'ORDER BY \n' +
+                '    name_pays',
+                [annee]);
+        }
         client.release();
-        //console.log(res.rows);
-        //console.log(res.rows[0]);
-        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+        return res.rows;
     } catch (error) {
         console.error(error);
-        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+        throw error;
     }
 }
 

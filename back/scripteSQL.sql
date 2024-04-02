@@ -216,7 +216,7 @@ INSERT INTO DROITS_DE_GROUPES (Group_Id, Right_Id) VALUES (1, 1);
 INSERT INTO DROITS_DE_GROUPES (Group_Id, Right_Id) VALUES (1, 2);
 INSERT INTO DROITS_DE_GROUPES (Group_Id, Right_Id) VALUES (1, 3);
 INSERT INTO DROITS_DE_GROUPES (Group_Id, Right_Id) VALUES (1, 4); -- Admins can do everything
-INSERT INTO DROITS_DE_GROUPES (Group_Id, Right_Id) VALUES (2, 2); -- Éditeurs can read
+INSERT INTO DROITS_DE_GROUPES (Group_Id, Right_Id) VALUES (2, 2); -- Éditeurs can readv
 INSERT INTO DROITS_DE_GROUPES (Group_Id, Right_Id) VALUES (2, 3); -- Éditeurs can update
 
 INSERT INTO JOURNAUX_UTILISATEURS (User_Id, Date_Time, Event) VALUES (1, NOW(), 'Connexion réussie');

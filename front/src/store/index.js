@@ -4,8 +4,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import usersService from "@/services/users.service";
-import cartesService from "@/services/carte.service";
-import diagrammesService from "@/services/diagramme.service";
+import mortService from "@/services/mort.service";
+import toucheService from "@/services/touche.service";
 import modifService from "@/services/modif.service";
 
 export default new Vuex.Store({
@@ -80,7 +80,7 @@ export default new Vuex.Store({
     },
     async getCarte({commit},annee){
       console.log("--------",annee);
-      let response = await cartesService.getCarte(annee);
+      let response = await mortService.getCarte(annee);
       if(response.status === 200){
         commit('updateCartes',response.data)
       } else{
@@ -89,17 +89,17 @@ export default new Vuex.Store({
     },
     async getInfoCarte({commit},annee) {
       console.log("--------", annee,commit);
-      let response = await cartesService.getInfoCarte(annee);
+      let response = await mortService.getInfoCarte(annee);
       return response;
     },
-    async getInfoCarteTouche({commit},annee) {
+    async getInfoCarteTouche({commit},{ annee, codeSexe}) {
       console.log("--------", annee,commit);
-      let response = await diagrammesService.getInfoCarteTouche(annee);
+      let response = await toucheService.getInfoCarteTouche(annee,codeSexe);
       return response;
     },
-    async getCarteTouche({commit},annee){
+    async getCarteTouche({commit},{annee,codeSexe}){
       console.log("--------",annee);
-      let response = await diagrammesService.getCarteTouche(annee);
+      let response = await toucheService.getCarteTouche(annee,codeSexe);
       if(response.status === 200){
         commit('updateCartes',response.data)
       } else{
@@ -109,7 +109,7 @@ export default new Vuex.Store({
     async getDiagramme({commit},{annee,codeSexe}){
         console.log("--------",annee);
         console.log("--------",codeSexe);
-        let response = await diagrammesService.getDiagramme(annee,codeSexe);
+        let response = await toucheService.getDiagramme(annee,codeSexe);
         if(response.status === 200){
             commit('updateDiagrammes',response.data)
         } else{
