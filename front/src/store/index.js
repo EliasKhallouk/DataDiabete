@@ -6,12 +6,14 @@ Vue.use(Vuex)
 import usersService from "@/services/users.service";
 import cartesService from "@/services/carte.service";
 import diagrammesService from "@/services/diagramme.service";
+import modifService from "@/services/modif.service";
 
 export default new Vuex.Store({
   state: {
     users : [],
     cartes : [],
     diagrammes : [],
+    modifs : [],
     token: localStorage.getItem('token') || '',
   },
   getters: {
@@ -36,6 +38,9 @@ export default new Vuex.Store({
       // Mettez à jour le localStorage
       localStorage.setItem('token', JSON.stringify(userData));
     },
+    updateModif(state, modif){
+      state.modifs = modif;
+    }
   },
   actions: {
     async getAllUsers({commit}){
@@ -124,8 +129,10 @@ export default new Vuex.Store({
       if(response.status === 200){
         const tokenWithFirstName = { ...this.state.token, mail: email,password:password };
 
-        commit('setToken', tokenWithFirstName);
-
+        commit('setToken', tokenWithFirstName)
+        // Actualiser le localStorage avec push
+        response.data.splice(0, 1, tokenWithFirstName);
+        response.data.push(tokenWithFirstName);
         // Enregistrez la chaîne JSON valide dans le localStorage
         localStorage.setItem('token', JSON.stringify(tokenWithFirstName));
 
@@ -134,7 +141,24 @@ export default new Vuex.Store({
       }
     },
 // ...
-
+    async getAllModif({commit}){
+      let response = await modifService.getAllModif();
+      if(response.status === 200){
+        commit('updateModif',response.data)
+      } else{
+        console.log("Erreur Get Modif Store");
+      }
+    },
+    // éditer une modification
+    async updateModif({commit},{id,chemin,id_user_add}){
+      let response = await modifService.updateModif(id,chemin,id_user_add);
+      if(response.status === 200){
+        const result = this.state.modifs.filter(modif => modif.id !== id)
+        commit('updateModif',result)
+      } else{
+        console.log("Erreur Update Modif Store");
+      }
+    },
   },
   modules: {
   }

@@ -9,13 +9,12 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(caroussel, index) in caroussels" :key="index">
+          <tr v-for="(caroussel, index) in modifs" :key="index">
             <td data-title="Id_url">{{caroussel.id_url}}</td>
             <td data-title="chemin">{{caroussel.chemin}}</td>
             <td data-title="id_user_add">{{caroussel.id_user_add}}</td>
             <td data-title="opérations">
-              <a @click="ModifCaroussel(caroussel.id_url)">Modifier</a>
-              <a href="" style="margin-left: 40px;">Éditer</a>
+              <a @click="updateModif(caroussel.id_url)">Editer</a>
             </td>
           </tr>
           </tbody>
@@ -28,11 +27,11 @@
   import {mapState,mapActions} from "vuex";
   export default {
     computed: {
-      ...mapState(['caroussels'])
+      ...mapState(['modifs'])
     }, methods :{
-      ...mapActions(['getAllUrls','updateUrl'])
+      ...mapActions(['getAllModif','updateModif']),
     }, mounted() {
-      this.getAllUrls().
+      this.getAllModif().
       then( () => {
         console.log("SISI")
       }).catch((error) => console.log(error))

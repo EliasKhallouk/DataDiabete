@@ -254,6 +254,10 @@ p{
   margin-right: 15%;
   text-align: justify;
 }
+
+.gallery{
+  margin-top: 100px;
+}
 @media screen and (max-width: 1000px) {
   p {
     font-size: 18px; /* Taille de police en pixels pour les écrans plus petits */
