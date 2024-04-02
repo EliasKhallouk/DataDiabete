@@ -86,11 +86,11 @@ const chartOptions = ref({
 <template>
   <div class="body-carte">
     <!-- PREMIERE PARTIE-->
-    <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
-    <form>
-      <input id="annee" name="annee" v-model="annee"/>
-      <button @click.prevent="getter" class="button" >CHOISIR L'ANNÉE</button>
-    </form>
+      <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
+      <form>
+        <input id="annee" name="annee" v-model="annee"/>
+        <button @click.prevent="getter" class="button" >CHOISIR L'ANNÉE</button>
+      </form>
 
     <p>
       Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte
@@ -99,27 +99,16 @@ const chartOptions = ref({
       des informations actuelles.
     </p>
 
-
-    <!-- PREMIERE PARTIE-->
-    <!--<div class="deuxieme" >
-
-      <p style="font-size:xx-large">Ce que nous faisons :</p>
-      <div style="text-align: justify;padding-right: 38%;">
-      <p>
-        1. Carte Mondiale de la Mortalité due au Diabète
-        Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte vous montre le nombre de décès attribués au diabète dans chaque pays, vous permettant ainsi de comprendre l'ampleur du problème à l'échelle internationale. Les données sont régulièrement mises à jour pour vous fournir des informations actuelles.
-      </p><p>
-        2. Graphiques Comparatifs sur le Diabète
-        Nous avons créé des graphiques interactifs qui vous permettent de comparer diverses informations liées au diabète. Ces graphiques comprennent des données sur l'âge des personnes touchées par le diabète, leur pays de résidence, leur sexe, et bien plus encore. Ces visualisations vous aident à identifier les tendances et les disparités dans la prévalence du diabète à travers le monde.
-      </p><p>
-        3. Graphique d'Histogramme du Prix de l'Insuline par Pays
-        L'accès à l'insuline est crucial pour de nombreuses personnes atteintes de diabète. Notre graphique en histogramme vous permet de comparer les prix de l'insuline dans différents pays. Cette information peut être vitale pour les personnes atteintes de diabète qui doivent gérer les coûts de leur traitement. Nous nous efforçons de maintenir ces données à jour pour vous aider à prendre des décisions éclairées.
-      </p>
+    <div class="stats-group">
+      <div id="gauche">
+        <p>Moyenne : {{ moyenne }}</p>
+        <p>Ecart-type : {{ ecartType }}</p>
       </div>
-      <div style="float: right;position: absolute;"><img style="height: 510px;width: 352px;margin-left: 228%;margin-top: -492px;" src="../assets/carte.png" alt="Image 1" /></div>
-      deeeee
+      <div id="droite">
+        <p>Plus grand: {{plusGrand}}</p>
+        <p>Plus petit: {{plusPetit}}</p>
+      </div>
     </div>
-    azazzaza-->
 
     <table>
       <thead>
@@ -128,7 +117,7 @@ const chartOptions = ref({
       </tr>
       </thead>
       <tbody>
-      <div v-if="cartes.length <=0">pas d'utilisateur</div>
+      <div v-if="cartes.length <=0">pas de pays</div>
       <tr v-for="(ligne, index) in cartes" :key="index">
         <td data-title="Id">{{ligne.name_pays}}</td>
         <td data-title="Id">{{ligne.nbr_morts}}</td>
@@ -166,6 +155,10 @@ export default {
   },
   data: () => ({
     annee:2021,
+    moyenne:null,
+    ecartType:null,
+    plusGrand:null,
+    plusPetit:null,
     chartOptions: ref({
       chart: {
         map: worldMap,
@@ -308,7 +301,7 @@ export default {
   computed: {
     ...mapState(['cartes'])
   }, methods : {
-    ...mapActions(['getCarte']),
+    ...mapActions(['getCarte','getInfoCarte']),
     getter(){
       this.getCarte(this.annee).
       then( () => {
@@ -322,7 +315,21 @@ export default {
         })
         this.chartOptions.title.text='Carte Mondiale de la Mortalité due au Diabète en '+this.annee;
         //console.log(this.chartOptions.series[0].data);
-      }).catch((error) => console.log(error))
+      }).catch((error) => console.log(error));
+      console.log("+"+this.chartOptions.series[0].data);
+      this.getInfoCarte(this.annee)
+          .then(result => {
+            console.log("result :"+ result);
+            this.moyenne = result.moyenne;
+            this.ecartType = result.ecartType;
+            this.plusGrand = result.paysMaxMorts.name_pays;
+            this.plusPetit = result.paysMinMorts.name_pays;
+            console.log("moyenne :"+ result.moyenne)
+          })
+          .catch(error => {
+            console.log(error);
+            this.moyenne = null; // Gérer les erreurs en mettant la moyenne à null
+          });
     }
   },
   mounted() {
@@ -337,7 +344,20 @@ export default {
       //console.log(this.chartOptions.series[0].data);
       //console.log(this.testData);
     }).catch((error) => console.log(error))
-    console.log(this.chartOptions.series[0].data);
+    console.log("+"+this.chartOptions.series[0].data);
+    this.getInfoCarte(this.annee)
+        .then(result => {
+          console.log("result :"+ result);
+          this.moyenne = result.moyenne;
+          this.ecartType = result.ecartType;
+          this.plusGrand = result.paysMaxMorts.name_pays;
+          this.plusPetit = result.paysMinMorts.name_pays;
+          console.log("moyenne :"+ result.moyenne)
+        })
+        .catch(error => {
+          console.log(error);
+          this.moyenne = null; // Gérer les erreurs en mettant la moyenne à null
+        });
   }
 };
 </script>
@@ -404,5 +424,40 @@ th {
   color: white;
 }
 
+.stats-group {
+  --b: .5em; /* border width */
+  --c: 3em; /* corner size */
+  --r: 2em; /* corner rounding */
+  position: relative;
+  margin: 1em auto;
+  border: solid var(--b) transparent;
+  padding: 1em;
+  max-width: 804px;
+  font: 1.25em ubuntu, sans-serif;
 
+  &::before {
+    position: absolute;
+    z-index: -1;
+    inset: calc(-1*var(--b));
+    border: inherit;
+    border-radius: var(--r);
+    background: linear-gradient(orange, deeppink, purple) border-box;
+    --corner:
+        conic-gradient(from -90deg at var(--c) var(--c), red 25%, #0000 0)
+        0 0/ calc(100% - var(--c))  calc(100% - var(--c)) border-box;
+    --inner: conic-gradient(red 0 0 ) padding-box;
+    -webkit-mask: var(--corner), var(--inner);
+    -webkit-mask-composite: source-out;
+    mask: var(--corner) subtract, var(--inner);
+    content: ''
+  }
+}
+
+.stats-group #gauche {
+  float:left;
+  width:60%;
+}
+.stats-group #droite {
+  margin-left:60%
+}
 </style>
