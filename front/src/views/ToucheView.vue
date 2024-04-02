@@ -1,5 +1,7 @@
 <template>
-  <div class="body-diagramme-bare">
+  <div>
+    <CarteTouche />
+    <div class="body-diagramme-bare">
     <figure class="highcharts-figure">
       <div id="container"></div>
     </figure>
@@ -39,13 +41,18 @@
       </tbody>
     </table>
   </div>
+  </div>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import Highcharts from "highcharts";
+import CarteTouche from "../components/CarteTouche";
 
 export default {
+  components: {
+    CarteTouche
+  },
   computed: {
     ...mapState(["diagrammes"]),
   },

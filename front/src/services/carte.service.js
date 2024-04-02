@@ -48,5 +48,5 @@ async function getInfoCarte(annee)  {
 
 export default {
     getCarte,
-    getInfoCarte
+    getInfoCarte,
 }

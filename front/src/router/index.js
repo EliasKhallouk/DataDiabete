@@ -38,15 +38,15 @@ const routes = [
     meta: { requiresAuth: false, requiresAdmin: false}
   },
   {
-    path: '/carte',
-    name: 'carte',
-    component: () => import('../views/CarteView.vue'),
+    path: '/mort',
+    name: 'mort',
+    component: () => import('../views/MortView.vue'),
     meta: { requiresAuth: false, requiresAdmin: false}
   },
   {
-    path: '/diagramme',
-    name: 'diagramme',
-    component: () => import('../views/DiagrammeBarreView.vue'),
+    path: '/diabetique',
+    name: 'diabetique',
+    component: () => import('../views/ToucheView.vue'),
     meta: { requiresAuth: false, requiresAdmin: false}
   },
   {

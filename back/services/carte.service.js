@@ -25,7 +25,37 @@ async function getCarte(annee) {
     }
 }
 
+async function getCarteTouche(annee) {
+    try {
+        const client = await pool.connect();
+        const res = await client.query('SELECT DISTINCT\n' +
+            '    LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS name_pays,\n' +
+            '    lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,\n' +
+            '    rd.Nbr_Diabetique,\n' +
+            '    rd.Annee,\n' +
+            '    rd.code_sexe\n' +
+            'FROM\n' +
+            '    PAYS p\n' +
+            '        INNER JOIN\n' +
+            '    report_diabetique rd ON p.Id_Pays = rd.Id_Pays\n' +
+            'WHERE\n' +
+            '        rd.Annee = $1\n' +
+            'ORDER BY\n' +
+            '    name_pays,\n' +
+            '    code_sexe',
+            [annee]);
+        client.release();
+        //console.log(res.rows);
+        //console.log(res.rows[0]);
+        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+    } catch (error) {
+        console.error(error);
+        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+    }
+}
+
 
 module.exports= {
     getCarte: getCarte,
+    getCarteTouche:getCarteTouche,
 }

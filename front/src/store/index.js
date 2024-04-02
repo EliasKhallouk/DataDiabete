@@ -92,6 +92,20 @@ export default new Vuex.Store({
       let response = await cartesService.getInfoCarte(annee);
       return response;
     },
+    async getInfoCarteTouche({commit},annee) {
+      console.log("--------", annee,commit);
+      let response = await diagrammesService.getInfoCarteTouche(annee);
+      return response;
+    },
+    async getCarteTouche({commit},annee){
+      console.log("--------",annee);
+      let response = await diagrammesService.getCarteTouche(annee);
+      if(response.status === 200){
+        commit('updateCartes',response.data)
+      } else{
+        console.log("Erreur Get Carte Touche Store");
+      }
+    },
     async getDiagramme({commit},{annee,codeSexe}){
         console.log("--------",annee);
         console.log("--------",codeSexe);

@@ -86,11 +86,16 @@ const chartOptions = ref({
 <template>
   <div class="body-carte">
     <!-- PREMIERE PARTIE-->
-      <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
-      <form>
-        <input id="annee" name="annee" v-model="annee"/>
-        <button @click.prevent="getter" class="button" >CHOISIR L'ANNÉE</button>
-      </form>
+    <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
+    <form>
+      <input id="annee" name="annee" v-model="annee"/>
+      <select v-model="codeSexe">
+        <option value="2">Homme et Femme</option>
+        <option value="1">Homme</option>
+        <option value="0">Femme</option>
+      </select>
+      <button @click.prevent="getter" class="button" >CHOISIR L'ANNÉE</button>
+    </form>
 
     <p>
       Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte
@@ -113,14 +118,17 @@ const chartOptions = ref({
     <table>
       <thead>
       <tr>
-        <th>Pays</th><th>Nombre de personnes mortes</th>
+        <th>Pays</th><th>Nombre de personne diabétique</th><th>Sexe</th>
       </tr>
       </thead>
       <tbody>
       <div v-if="cartes.length <=0">pas de pays</div>
       <tr v-for="(ligne, index) in cartes" :key="index">
         <td data-title="Id">{{ligne.name_pays}}</td>
-        <td data-title="Id">{{ligne.nbr_morts}}</td>
+        <td data-title="Id">{{ligne.nbr_diabetique}}</td>
+        <td data-title="Id">
+          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : '') }}
+        </td>
       </tr>
       </tbody>
     </table>
@@ -154,7 +162,8 @@ export default {
     msg: String,
   },
   data: () => ({
-    annee:2021,
+    annee:2014,
+    codeSexe: 0,
     moyenne:null,
     ecartType:null,
     plusGrand:null,
@@ -241,7 +250,7 @@ export default {
         ],
       },
       title: {
-        text: 'Carte Mondiale de la Mortalité due au Diabète en 2021',
+        text: 'Carte Mondiale des personne atteinte du Diabète en 2014',
         margin: 50,
         style: {
           color: '#000000',
@@ -301,23 +310,23 @@ export default {
   computed: {
     ...mapState(['cartes'])
   }, methods : {
-    ...mapActions(['getCarte','getInfoCarte']),
+    ...mapActions(['getCarteTouche','getInfoCarteTouche']),
     getter(){
-      this.getCarte(this.annee).
+      this.getCarteTouche(this.annee).
       then( () => {
         //console.log("RES : "+res);
         this.chartOptions.series[0].data= [];
         this.chartOptions.title.text ='';
         this.cartes.forEach((item) => {
           //console.log(item.iso_pays_car, item.nbr_morts);
-          const tabTemp = [item.iso_pays_car, item.nbr_morts]
+          const tabTemp = [item.iso_pays_car, item.nbr_diabetique]
           this.chartOptions.series[0].data.push(tabTemp);
         })
-        this.chartOptions.title.text='Carte Mondiale de la Mortalité due au Diabète en '+this.annee;
+        this.chartOptions.title.text='Carte Mondiale des personne atteinte du Diabète en '+this.annee;
         //console.log(this.chartOptions.series[0].data);
       }).catch((error) => console.log(error));
       console.log("+"+this.chartOptions.series[0].data);
-      this.getInfoCarte(this.annee)
+      this.getInfoCarteTouche(this.annee)
           .then(result => {
             console.log("result :"+ result);
             this.moyenne = result.moyenne;
@@ -328,24 +337,27 @@ export default {
           })
           .catch(error => {
             console.log(error);
-            this.moyenne = null; // Gérer les erreurs en mettant la moyenne à null
+            this.moyenne = null;
+            this.ecartType = null;
+            this.plusGrand = null;
+            this.plusPetit = null;
           });
     }
   },
   mounted() {
-    this.getCarte(this.annee).
+    this.getCarteTouche(this.annee).
     then( () => {
       this.cartes.forEach((item) => {
         //console.log(item);
         //console.log(item.iso_pays_car, item.nbr_morts);
-        const tabTemp = [item.iso_pays_car, item.nbr_morts]
+        const tabTemp = [item.iso_pays_car, item.nbr_diabetique]
         this.chartOptions.series[0].data.push(tabTemp);
       })
       //console.log(this.chartOptions.series[0].data);
       //console.log(this.testData);
     }).catch((error) => console.log(error))
     console.log("+"+this.chartOptions.series[0].data);
-    this.getInfoCarte(this.annee)
+    this.getInfoCarteTouche(this.annee)
         .then(result => {
           console.log("result :"+ result);
           this.moyenne = result.moyenne;
@@ -356,7 +368,10 @@ export default {
         })
         .catch(error => {
           console.log(error);
-          this.moyenne = null; // Gérer les erreurs en mettant la moyenne à null
+          this.moyenne = null;
+          this.ecartType = null;
+          this.plusGrand = null;
+          this.plusPetit = null;
         });
   }
 };
