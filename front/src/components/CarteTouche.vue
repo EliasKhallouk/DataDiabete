@@ -90,12 +90,22 @@ const chartOptions = ref({
     <form>
       <input id="annee" name="annee" v-model="annee"/>
       <select v-model="codeSexe">
-        <option value="2">Homme et Femme</option>
+        <option value="2">Tous les sexes</option>
         <option value="1">Homme</option>
         <option value="0">Femme</option>
       </select>
+      <select v-model="codeCont">
+        <option value="8">Tous les continents</option>
+        <option value="1">Afrique</option>
+        <option value="2">Antartique</option>
+        <option value="3">Asie</option>
+        <option value="4">Europe</option>
+        <option value="5">Amerique du Nord</option>
+        <option value="6">Oceanie</option>
+        <option value="7">Amerique du Sud</option>
+      </select>
       <select v-model="developpement">
-        <option value="2">Développé et non développé</option>
+        <option value="2">Tous les développement</option>
         <option value="1">Développé</option>
         <option value="0">Non développé</option>
       </select>
@@ -191,6 +201,7 @@ export default {
     plusPetit:null,
     showTable: true,
     developpement: 2,
+    codeCont:8,
     chartOptions: ref({
       chart: {
         map: worldMap,
@@ -339,7 +350,7 @@ export default {
     },
     getter(){
       console.log("code sexe", this.codeSexe);
-      this.getCarteTouche({ annee: this.annee, codeSexe: this.codeSexe, developpement: this.developpement}).
+      this.getCarteTouche({ annee: this.annee, codeSexe: this.codeSexe, codeCont: this.codeCont, developpement: this.developpement}).
       then( () => {
         //console.log("RES : "+res);
         this.chartOptions.series[0].data= [];
@@ -372,7 +383,7 @@ export default {
     }
   },
   mounted() {
-    this.getCarteTouche({ annee: this.annee, codeSexe: this.codeSexe, developpement: this.developpement}).
+    this.getCarteTouche({ annee: this.annee, codeSexe: this.codeSexe, codeCont: this.codeCont, developpement: this.developpement}).
     then( () => {
       this.cartes.forEach((item) => {
         //console.log(item);

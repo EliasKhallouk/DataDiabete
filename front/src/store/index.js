@@ -158,9 +158,9 @@ export default new Vuex.Store({
       return await toucheService.getInfoCarteTouche(annee,codeSexe);
     },
 
-    async getCarteTouche({commit},{annee,codeSexe,developpement}){
-      console.log("--------",annee);
-      let response = await toucheService.getCarteTouche(annee,codeSexe,developpement);
+    async getCarteTouche({commit},{annee,codeSexe,codeCont,developpement}){
+      console.log("--------STORE",annee+" "+" "+codeSexe+" "+codeCont+" "+developpement);
+      let response = await toucheService.getCarteTouche(annee,codeSexe,codeCont,developpement);
       if(response.status === 200){
         commit('updateCartes',response.data)
       } else{

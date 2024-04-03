@@ -15,10 +15,11 @@ async function getDiagramme (annee, codeSexe)  {
     }
 }
 
-async function getCarteTouche (annee,codeSexe,developpement)  {
+async function getCarteTouche (annee,codeSexe,codeCont,developpement)  {
     try {
         console.log("geeeet carte Touche developpement: "+developpement)
-        const response = await axios.get(`${cartesAPI}/touche?annee=${annee}&codeSexe=${codeSexe}`);
+        console.log("--------SERVICE",annee+" "+" "+codeSexe+" "+codeCont+" "+developpement);
+        const response = await axios.get(`${cartesAPI}/touche?annee=${annee}&codeSexe=${codeSexe}&codeCont=${codeCont}&developpement=${developpement}`);
         console.log("okkkkk gett carte")
         return response;
     }catch (error){

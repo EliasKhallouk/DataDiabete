@@ -19,14 +19,23 @@ exports.getCarteTouche = async (req, res) => {
     try {
         let annee = req.query.annee;
         let codeSexe = req.query.codeSexe;
-        console.log(annee);
+        let codeCont = req.query.codeCont;
+        let developpement = req.query.developpement;
+        console.log(annee+" - "+codeSexe+"+"+codeCont);
         if(!annee){
             annee = 2011;
         }
         if(!codeSexe){
-            codeSexe = 0;
+            codeSexe = 2;
         }
-        const users = await carteService.getCarteTouche(annee,codeSexe);
+        if(!codeCont){
+            codeCont = 8;
+        }
+        if(!developpement){
+            developpement = 2;
+        }
+        console.log(annee+" - "+codeSexe+"+"+codeCont);
+        const users = await carteService.getCarteTouche(annee,codeSexe,codeCont,developpement);
         return res.status(200).json(users);
     } catch (error) {
         console.error(error);
