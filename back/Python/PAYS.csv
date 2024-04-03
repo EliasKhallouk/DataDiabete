@@ -1,253 +1,254 @@
-libelle_pays_en,libelle_pays_fr,ISO_pays_num,ISO_pays_car1,ISO_pays_car2
-'afghanistan','afghanistan',4,'af','afg'
-'south africa','afrique du sud',710,'za','zaf'
-'aland islands','aland',248,'ax','ala'
-'albania','albanie',8,'al','alb'
-'algeria','algerie',12,'dz','dza'
-'germany','allemagne',276,'de','deu'
-'german democratic republic','allemagne (rda)',148,'dd','ddr'
-'andorra','andorre',20,'ad','and'
-'angola','angola',24,'ao','ago'
-'anguilla','anguilla',660,'ai','aia'
-'antarctica','antarctique',10,'aq','ata'
-'antigua and barbuda','antigua et barbuda',28,'ag','atg'
-'netherlands antilles','antilles neerlandaises',531,'an','ant'
-'saudi arabia','arabie saoudite',682,'sa','sau'
-'argentina','argentine',32,'ar','arg'
-'armenia','armenie',51,'am','arm'
-'aruba','aruba',533,'aw','abw'
-'australia','australie',36,'au','aus'
-'austria','autriche',40,'at','aut'
-'azerbaijan','azerbaidjan',31,'az','aze'
-'bahamas','bahamas',44,'bs','bhs'
-'bahrain','bahrein',48,'bh','bhr'
-'bangladesh','bangladesh',50,'bd','bgd'
-'barbados','barbade',52,'bb','brb'
-'belarus','belarus',112,'by','blr'
-'belgium','belgique',56,'be','bel'
-'belize','belize',84,'bz','blz'
-'benin','benin',204,'bj','ben'
-'bermuda','bermudes',60,'bm','bmu'
-'bhutan','bhoutan',64,'bt','btn'
-'bolivia','bolivie',68,'bo','bol'
-'bonaire sint eustatius and saba','bonaire saint eustache et saba',535,'bq','bes'
-'bosnia and herzegovina','bosnie herzegovine',70,'ba','bih'
-'botswana','botswana',72,'bw','bwa'
-'bouvet island','bouvet',74,'bv','bvt'
-'brazil','bresil',76,'br','bra'
-'brunei darussalam','brunei',96,'bn','brn'
-'bulgaria','bulgarie',100,'bg','bgr'
-'burkina faso','burkina faso',854,'bf','bfa'
-'burundi','burundi',108,'bi','bdi'
-'cape verde','cap vert',132,'cv','cpv'
-'cayman islands','iles caimanes',136,'ky','cym'
-'cambodia','cambodge',116,'kh','khm'
-'cameroon','cameroun',120,'cm','cmr'
-'canada','canada',124,'ca','can'
-'chile','chili',152,'cl','chl'
-'china','chine',156,'cn','chn'
-'christmas island','ile christmas',162,'cx','cxr'
-'cyprus','chypre',196,'cy','cyp'
-'cocos (keeling) islands','iles cocos (keeling)',166,'cc','cck'
-'colombia','colombie',170,'co','col'
-'comoros','comores',174,'km','com'
-'republic of the congo','republique du congo',178,'cg','cog'
-'democratic republic of the congo','republique democratique du congo',180,'cd','cod'
-'cook islands','iles cook',184,'ck','cok'
-'south korea','coree du sud',410,'kr','kor'
-'north korea','coree du nord',408,'kp','prk'
-'costa rica','costa rica',188,'cr','cri'
-'cote d ivoire','cote d ivoire',384,'ci','civ'
-'croatia','croatie',191,'hr','hrv'
-'cuba','cuba',192,'cu','cub'
-'curaçao','curacao',531,'cw','cuw'
-'denmark','danemark',208,'dk','dnk'
-'djibouti','djibouti',262,'dj','dji'
-'dominican republic','republique dominicaine',214,'do','dom'
-'dominica','dominique',212,'dm','dma'
-'egypt','egypte',818,'eg','egy'
-'el salvador','salvador',222,'sv','slv'
-'united arab emirates','emirats arabes unis',784,'ae','are'
-'ecuador','equateur',218,'ec','ecu'
-'eritrea','erythree',232,'er','eri'
-'spain','espagne',724,'es','esp'
-'estonia','estonie',233,'ee','est'
-'united states','etats unis',840,'us','usa'
-'ethiopia','ethiopie',231,'et','eth'
-'falkland islands','iles malouines',238,'fk','flk'
-'faroe islands','iles faroe',234,'fo','fro'
-'fiji','fidji',242,'fj','fji'
-'finland','finlande',246,'fi','fin'
-'france','france',250,'fr','fra'
-'gabon','gabon',266,'ga','gab'
-'gambia','gambie',270,'gm','gmb'
-'georgia','georgie',268,'ge','geo'
-'south georgia and the south sandwich islands','georgie du sud et les iles sandwich du sud',239,'gs','sgs'
-'ghana','ghana',288,'gh','gha'
-'gibraltar','gibraltar',292,'gi','gib'
-'greece','grece',300,'gr','grc'
-'grenada','grenade',308,'gd','grd'
-'greenland','groenland',304,'gl','grl'
-'guadeloupe','guadeloupe',312,'gp','glp'
-'guam','guam',316,'gu','gum'
-'guatemala','guatemala',320,'gt','gtm'
-'guernsey','guernesey',831,'gg','ggy'
-'guinea','guinee',324,'gn','gin'
-'guinea bissau','guinee bissau',624,'gw','gnb'
-'equatorial guinea','guinee equatoriale',226,'gq','gnq'
-'guyana','guyana',328,'gy','guy'
-'haiti','haiti',332,'ht','hti'
-'heard island and mcdonald islands','iles heard et mcdonald',334,'hm','hmd'
-'honduras','honduras',340,'hn','hnd'
-'hong kong','hong kong',344,'hk','hkg'
-'hungary','hongrie',348,'hu','hun'
-'isle of man','ile de man',833,'im','imn'
-'united states minor outlying islands','iles mineures eloignees des etats unis',581,'um','umi'
-'british virgin islands','iles vierges britanniques',92,'vg','vgb'
-'united states virgin islands','iles vierges des etats unis',850,'vi','vir'
-'india','inde',356,'in','ind'
-'british indian ocean territory','territoire britannique de l ocean indien',86,'io','iot'
-'indonesia','indonesie',360,'id','idn'
-'iran','iran',364,'ir','irn'
-'iraq','irak',368,'iq','irq'
-'ireland','irlande',372,'ie','irl'
-'iceland','islande',352,'is','isl'
-'israel','israel',376,'il','isr'
-'italy','italie',380,'it','ita'
-'jamaica','jamaique',388,'jm','jam'
-'japan','japon',392,'jp','jpn'
-'jersey','jersey',832,'je','jey'
-'jordan','jordanie',400,'jo','jor'
-'kazakhstan','kazakhstan',398,'kz','kaz'
-'kenya','kenya',404,'ke','ken'
-'kyrgyzstan','kirghizistan',417,'kg','kgz'
-'kiribati','kiribati',296,'ki','kir'
-'kuwait','koweit',414,'kw','kwt'
-'laos','laos',418,'la','lao'
-'lesotho','lesotho',426,'ls','lso'
-'latvia','lettonie',428,'lv','lva'
-'lebanon','liban',430,'lb','lbn'
-'liberia','liberia',434,'lr','lbr'
-'libya','libye',438,'ly','lby'
-'liechtenstein','liechtenstein',438,'li','lie'
-'lithuania','lituanie',440,'lt','ltu'
-'luxembourg','luxembourg',442,'lu','lux'
-'macau','macao',446,'mo','mac'
-'north macedonia','macedoine du nord',807,'mk','mkd'
-'madagascar','madagascar',450,'mg','mdg'
-'malawi','malawi',458,'mw','mwi'
-'maldives','maldives',454,'mv','mdv'
-'mali','mali',462,'ml','mli'
-'malta','malte',466,'mt','mlt'
-'northern mariana islands','iles marianne du nord',580,'mp','mnp'
-'morocco','maroc',504,'ma','mar'
-'marshall islands','iles marshall',584,'mh','mhl'
-'martinique','martinique',474,'mq','mtq'
-'mauritius','maurice',480,'mu','mus'
-'mauritania','mauritanie',478,'mr','mrt'
-'mayotte','mayotte',175,'yt','myt'
-'mexico','mexique',484,'mx','mex'
-'micronesia','micronesie',583,'fm','fsm'
-'moldova','moldavie',498,'md','mda'
-'monaco','monaco',492,'mc','mco'
-'mongolia','mongolie',496,'mn','mng'
-'montenegro','montenegro',499,'me','mne'
-'montserrat','montserrat',500,'ms','msr'
-'mozambique','mozambique',508,'mz','moz'
-'myanmar','myanmar',104,'mm','mmr'
-'namibia','namibie',516,'na','nam'
-'nauru','nauru',520,'nr','nru'
-'nepal','nepal',524,'np','npl'
-'nicaragua','nicaragua',558,'ni','nic'
-'niger','niger',562,'ne','ner'
-'nigeria','nigeria',566,'ng','nga'
-'niue','niue',570,'nu','niu'
-'norfolk island','ile norfolk',574,'nf','nfk'
-'norway','norvege',578,'no','nor'
-'new caledonia','caledonie',540,'nc','ncl'
-'new zealand','nouvelle zelande',554,'nz','nzl'
-'oman','oman',512,'om','omn'
-'uganda','ouganda',800,'ug','uga'
-'uzbekistan','ouzbekistan',860,'uz','uzb'
-'pakistan','pakistan',586,'pk','pak'
-'palau','palaos',585,'pw','plw'
-'palestine','palestine',275,'ps','pse'
-'panama','panama',591,'pa','pan'
-'papua new guinea','papouasie nouvelle guinee',598,'pg','png'
-'paraguay','paraguay',600,'py','pry'
-'netherlands','pays bas',528,'nl','nld'
-'peru','perou',604,'pe','per'
-'philippines','philippines',608,'ph','phl'
-'pitcairn','pitcairn',612,'pn','pcn'
-'poland','pologne',616,'pl','pol'
-'french polynesia','polynesie francaise',258,'pf','pyf'
-'puerto rico','porto rico',630,'pr','pri'
-'portugal','portugal',620,'pt','prt'
-'qatar','qatar',634,'qa','qat'
-'reunion','reunion',638,'re','reu'
-'romania','roumanie',642,'ro','rou'
-'united kingdom','royaume uni',826,'gb','gbr'
-'russia','russie',643,'ru','rus'
-'rwanda','rwanda',646,'rw','rwa'
-'western sahara','sahara occidental',732,'eh','esh'
-'saint barthelemy','saint barthelemy',652,'bl','blm'
-'saint kitts and nevis','saint kitts et nevis',659,'kn','kna'
-'san marino','san marino',674,'sm','smr'
-'saint martin','saint martin',663,'mf','maf'
-'sint maarten','saint martin',534,'sx','sxm'
-'saint pierre and miquelon','saint pierre et miquelon',666,'pm','spm'
-'holy see','saint siege',336,'va','vat'
-'saint vincent and the grenadines','saint vincent et les grenadines',670,'vc','vct'
-'saint helena','sainte helene',654,'sh','shn'
-'saint lucia','sainte lucie',662,'lc','lca'
-'solomon islands','iles salomon',90,'sb','slb'
-'samoa','samoa',882,'ws','wsm'
-'american samoa','samoa americaines',16,'as','asm'
-'sao tome and principe','sao tome et principe',678,'st','stp'
-'senegal','senegal',686,'sn','sen'
-'serbia','serbie',688,'rs','srb'
-'seychelles','seychelles',690,'sc','syc'
-'sierra leone','sierra leone',694,'sl','sle'
-'singapore','singapour',702,'sg','sgp'
-'slovakia','slovaquie',703,'sk','svk'
-'slovenia','slovenie',705,'si','svn'
-'somalia','somalie',706,'so','som'
-'sudan','soudan',729,'sd','sdn'
-'south sudan','soudan du sud',728,'ss','ssd'
-'sri lanka','sri lanka',144,'lk','lka'
-'sweden','suede',752,'se','swe'
-'switzerland','suisse',756,'ch','che'
-'suriname','surinam',740,'sr','sur'
-'svalbard and jan mayen','svalbard et jan mayen',744,'sj','sjm'
-'swaziland','swaziland',748,'sz','swz'
-'tajikistan','tadjikistan',762,'tj','tjk'
-'taiwan','taiwan',158,'tw','twn'
-'tanzania','tanzanie',834,'tz','tza'
-'chad','tchad',148,'td','tcd'
-'czechoslovakia','tchecoslovaquie',200,'cs','csk'
-'czech republic','republique tcheque',203,'cz','cze'
-'french southern territories','terres australes francaises',260,'tf','atf'
-'thailand','thailande',764,'th','tha'
-'timor leste','timor leste',626,'tl','tls'
-'togo','togo',768,'tg','tgo'
-'tokelau','tokelau',772,'tk','tkl'
-'tonga','tonga',776,'to','ton'
-'trinidad and tobago','trinite et tobago',780,'tt','tto'
-'tunisia','tunisie',788,'tn','tun'
-'turkmenistan','turkmenistan',795,'tm','tkm'
-'turks and caicos islands','iles turques et caicos',796,'tc','tca'
-'turkey','turquie',792,'tr','tur'
-'tuvalu','tuvalu',798,'tv','tuv'
-'ukraine','ukraine',804,'ua','ukr'
-'soviet union','union sovietique',810,'su','sun'
-'uruguay','uruguay',858,'uy','ury'
-'vanuatu','vanuatu',548,'vu','vut'
-'venezuela','venezuela',862,'ve','ven'
-'vietnam','viet nam',704,'vn','vnm'
-'north vietnam','viet nam du nord',670,'vd','vdr'
-'wallis and futuna','wallis et futuna',876,'wf','wlf'
-'yemen','yemen',887,'ye','yem'
-'yugoslavia','yougoslavie',891,'yu','yug'
-'zaire','zaire',180,'zr','zar'
-'zambia','zambie',894,'zm','zmb'
-'zimbabwe','zimbabwe',716,'zw','zwe'
+libelle_pays_en,libelle_pays_fr,ISO_pays_num,ISO_pays_car1,ISO_pays_car2,Continent_id,Développement_id
+'afghanistan','afghanistan',4,'af','afg',3,0
+'south africa','afrique du sud',710,'za','zaf',1,1
+'aland islands','aland',248,'ax','ala',4,0
+'albania','albanie',8,'al','alb',4,0
+'algeria','algerie',12,'dz','dza',1,0
+'germany','allemagne',276,'de','deu',4,1
+'german democratic republic','allemagne (rda)',148,'dd','ddr',4,0
+'andorra','andorre',20,'ad','and',4,1
+'angola','angola',24,'ao','ago',1,0
+'anguilla','anguilla',660,'ai','aia',5,0
+'antarctica','antarctique',10,'aq','ata',2,0
+'antigua and barbuda','antigua et barbuda',28,'ag','atg',5,0
+'netherlands antilles','antilles neerlandaises',531,'an','ant',5,0
+'saudi arabia','arabie saoudite',682,'sa','sau',3,1
+'argentina','argentine',32,'ar','arg',7,0
+'armenia','armenie',51,'am','arm',4,0
+'aruba','aruba',533,'aw','abw',5,0
+'australia','australie',36,'au','aus',6,1
+'austria','autriche',40,'at','aut',4,1
+'azerbaijan','azerbaidjan',31,'az','aze',4,0
+'bahamas','bahamas',44,'bs','bhs',5,1
+'bahrain','bahrein',48,'bh','bhr',3,1
+'bangladesh','bangladesh',50,'bd','bgd',3,0
+'barbados','barbade',52,'bb','brb',5,0
+'belarus','belarus',112,'by','blr',4,0
+'belgium','belgique',56,'be','bel',4,1
+'belize','belize',84,'bz','blz',5,0
+'benin','benin',204,'bj','ben',1,0
+'bermuda','bermudes',60,'bm','bmu',5,0
+'bhutan','bhoutan',64,'bt','btn',3,0
+'bolivia','bolivie',68,'bo','bol',7,0
+'bonaire sint eustatius and saba','bonaire saint eustache et saba',535,'bq','bes',5,0
+'bosnia and herzegovina','bosnie herzegovine',70,'ba','bih',4,0
+'botswana','botswana',72,'bw','bwa',1,1
+'bouvet island','bouvet',74,'bv','bvt',7,0
+'brazil','bresil',76,'br','bra',7,0
+'brunei','brunei',96,'bn','brn',3,1
+'bulgaria','bulgarie',100,'bg','bgr',4,0
+'burkina faso','burkina faso',854,'bf','bfa',1,0
+'burundi','burundi',108,'bi','bdi',1,0
+'cape verde','cap vert',132,'cv','cpv',1,0
+'cayman islands','iles caimanes',136,'ky','cym',5,0
+'cambodia','cambodge',116,'kh','khm',3,0
+'cameroon','cameroun',120,'cm','cmr',1,0
+'canada','canada',124,'ca','can',5,1
+'chile','chili',152,'cl','chl',7,0
+'china','chine',156,'cn','chn',3,0
+'christmas island','ile christmas',162,'cx','cxr',6,0
+'cyprus','chypre',196,'cy','cyp',4,1
+'cocos (keeling) islands','iles cocos (keeling)',166,'cc','cck',3,0
+'colombia','colombie',170,'co','col',7,0
+'comoros','comores',174,'km','com',1,0
+'republic of the congo','republique du congo',178,'cg','cog',1,0
+'democratic republic of the congo','republique democratique du congo',180,'cd','cod',1,0
+'cook islands','iles cook',184,'ck','cok',6,0
+'south korea','coree du sud',410,'kr','kor',3,0
+'north korea','coree du nord',408,'kp','prk',3,1
+'costa rica','costa rica',188,'cr','cri',5,0
+'ivory coast','cote d ivoire',384,'ci','civ',1,0
+'croatia','croatie',191,'hr','hrv',4,0
+'cuba','cuba',192,'cu','cub',5,0
+'curaçao','curacao',531,'cw','cuw',5,0
+'denmark','danemark',208,'dk','dnk',4,1
+'djibouti','djibouti',262,'dj','dji',1,0
+'dominican republic','republique dominicaine',214,'do','dom',5,0
+'dominica','dominique',212,'dm','dma',5,0
+'egypt','egypte',818,'eg','egy',1,0
+'el salvador','salvador',222,'sv','slv',5,0
+'united arab emirates','emirats arabes unis',784,'ae','are',3,1
+'ecuador','equateur',218,'ec','ecu',7,0
+'eritrea','erythree',232,'er','eri',1,0
+'spain','espagne',724,'es','esp',4,1
+'estonia','estonie',233,'ee','est',4,1
+'united states','etats unis',840,'us','usa',5,1
+'ethiopia','ethiopie',231,'et','eth',1,0
+'falkland islands','iles malouines',238,'fk','flk',7,0
+'faroe islands','iles faroe',234,'fo','fro',6,0
+'fiji','fidji',242,'fj','fji',6,0
+'finland','finlande',246,'fi','fin',4,1
+'france','france',250,'fr','fra',4,1
+'gabon','gabon',266,'ga','gab',1,1
+'gambia','gambie',270,'gm','gmb',1,0
+'georgia','georgie',268,'ge','geo',4,0
+'south georgia and the south sandwich islands','georgie du sud et les iles sandwich du sud',239,'gs','sgs',7,0
+'ghana','ghana',288,'gh','gha',1,0
+'gibraltar','gibraltar',292,'gi','gib',7,0
+'greece','grece',300,'gr','grc',4,0
+'grenada','grenade',308,'gd','grd',5,0
+'greenland','groenland',304,'gl','grl',5,0
+'guadeloupe','guadeloupe',312,'gp','glp',5,0
+'guam','guam',316,'gu','gum',6,0
+'guatemala','guatemala',320,'gt','gtm',5,0
+'guernsey','guernesey',831,'gg','ggy',4,0
+'guinea','guinee',324,'gn','gin',1,0
+'guinea bissau','guinee bissau',624,'gw','gnb',1,0
+'equatorial guinea','guinee equatoriale',226,'gq','gnq',1,0
+'guyana','guyana',328,'gy','guy',7,0
+'haiti','haiti',332,'ht','hti',5,0
+'heard island and mcdonald islands','iles heard et mcdonald',334,'hm','hmd',3,0
+'honduras','honduras',340,'hn','hnd',5,0
+'hong kong','hong kong',344,'hk','hkg',3,0
+'hungary','hongrie',348,'hu','hun',4,0
+'isle of man','ile de man',833,'im','imn',4,0
+'united states minor outlying islands','iles mineures eloignees des etats unis',581,'um','umi',5,0
+'british virgin islands','iles vierges britanniques',92,'vg','vgb',6,0
+'united states virgin islands','iles vierges des etats unis',850,'vi','vir',5,0
+'india','inde',356,'in','ind',3,0
+'british indian ocean territory','territoire britannique de l ocean indien',86,'io','iot',6,0
+'indonesia','indonesie',360,'id','idn',3,0
+'iran','iran',364,'ir','irn',3,0
+'iraq','irak',368,'iq','irq',3,0
+'ireland','irlande',372,'ie','irl',4,1
+'iceland','islande',352,'is','isl',4,1
+'israel','israel',376,'il','isr',3,1
+'italy','italie',380,'it','ita',4,1
+'jamaica','jamaique',388,'jm','jam',5,0
+'japan','japon',392,'jp','jpn',3,1
+'jersey','jersey',832,'je','jey',4,0
+'jordan','jordanie',400,'jo','jor',3,0
+'kazakhstan','kazakhstan',398,'kz','kaz',3,0
+'kenya','kenya',404,'ke','ken',1,0
+'kyrgyzstan','kirghizistan',417,'kg','kgz',3,0
+'kiribati','kiribati',296,'ki','kir',6,0
+'kuwait','koweit',414,'kw','kwt',3,1
+'laos','laos',418,'la','lao',3,0
+'lesotho','lesotho',426,'ls','lso',1,0
+'latvia','lettonie',428,'lv','lva',4,0
+'lebanon','liban',430,'lb','lbn',3,0
+'liberia','liberia',434,'lr','lbr',1,0
+'libya','libye',438,'ly','lby',1,0
+'liechtenstein','liechtenstein',438,'li','lie',4,1
+'lithuania','lituanie',440,'lt','ltu',4,0
+'luxembourg','luxembourg',442,'lu','lux',4,1
+'macau','macao',446,'mo','mac',6,0
+'north macedonia','macedoine du nord',807,'mk','mkd',4,0
+'madagascar','madagascar',450,'mg','mdg',1,0
+'malawi','malawi',458,'mw','mwi',1,0
+'maldives','maldives',454,'mv','mdv',3,0
+'mali','mali',462,'ml','mli',1,0
+'malta','malte',466,'mt','mlt',4,1
+'northern mariana islands','iles marianne du nord',580,'mp','mnp',6,0
+'morocco','maroc',504,'ma','mar',1,0
+'marshall islands','iles marshall',584,'mh','mhl',6,0
+'martinique','martinique',474,'mq','mtq',5,0
+'mauritius','maurice',480,'mu','mus',1,1
+'mauritania','mauritanie',478,'mr','mrt',1,0
+'mayotte','mayotte',175,'yt','myt',6,0
+'mexico','mexique',484,'mx','mex',5,0
+'micronesia','micronesie',583,'fm','fsm',6,0
+'moldova','moldavie',498,'md','mda',4,0
+'monaco','monaco',492,'mc','mco',4,1
+'mongolia','mongolie',496,'mn','mng',3,0
+'montenegro','montenegro',499,'me','mne',4,0
+'montserrat','montserrat',500,'ms','msr',6,0
+'mozambique','mozambique',508,'mz','moz',1,0
+'myanmar','myanmar',104,'mm','mmr',3,0
+'namibia','namibie',516,'na','nam',1,0
+'nauru','nauru',520,'nr','nru',6,0
+'nepal','nepal',524,'np','npl',3,0
+'nicaragua','nicaragua',558,'ni','nic',5,0
+'niger','niger',562,'ne','ner',1,0
+'nigeria','nigeria',566,'ng','nga',1,0
+'niue','niue',570,'nu','niu',6,0
+'norfolk island','ile norfolk',574,'nf','nfk',6,0
+'norway','norvege',578,'no','nor',4,1
+'new caledonia','caledonie',540,'nc','ncl',6,0
+'new zealand','nouvelle zelande',554,'nz','nzl',6,1
+'oman','oman',512,'om','omn',3,1
+'uganda','ouganda',800,'ug','uga',1,0
+'uzbekistan','ouzbekistan',860,'uz','uzb',3,0
+'pakistan','pakistan',586,'pk','pak',3,0
+'palau','palaos',585,'pw','plw',6,0
+'palestine','palestine',275,'ps','pse',6,0
+'panama','panama',591,'pa','pan',5,0
+'papua new guinea','papouasie nouvelle guinee',598,'pg','png',6,0
+'paraguay','paraguay',600,'py','pry',7,0
+'netherlands','pays bas',528,'nl','nld',4,1
+'peru','perou',604,'pe','per',7,0
+'philippines','philippines',608,'ph','phl',3,0
+'pitcairn','pitcairn',612,'pn','pcn',6,0
+'poland','pologne',616,'pl','pol',4,1
+'french polynesia','polynesie francaise',258,'pf','pyf',6,0
+'puerto rico','porto rico',630,'pr','pri',5,0
+'portugal','portugal',620,'pt','prt',4,1
+'qatar','qatar',634,'qa','qat',3,1
+'reunion','reunion',638,'re','reu',1,0
+'romania','roumanie',642,'ro','rou',4,0
+'united kingdom','royaume uni',826,'gb','gbr',4,1
+'russia','russie',643,'ru','rus',3,1
+'rwanda','rwanda',646,'rw','rwa',1,0
+'western sahara','sahara occidental',732,'eh','esh',1,0
+'saint barthelemy','saint barthelemy',652,'bl','blm',6,0
+'saint kitts and nevis','saint kitts et nevis',659,'kn','kna',5,0
+'san marino','san marino',674,'sm','smr',4,1
+'saint martin','saint martin',663,'mf','maf',6,0
+'sint maarten','saint martin',534,'sx','sxm',6,0
+'saint pierre and miquelon','saint pierre et miquelon',666,'pm','spm',6,0
+'holy see','saint siege',336,'va','vat',6,0
+'saint vincent and the grenadines','saint vincent et les grenadines',670,'vc','vct',5,0
+'saint helena','sainte helene',654,'sh','shn',6,0
+'saint lucia','sainte lucie',662,'lc','lca',5,0
+'solomon islands','iles salomon',90,'sb','slb',6,0
+'samoa','samoa',882,'ws','wsm',6,0
+'american samoa','samoa americaines',16,'as','asm',6,0
+'sao tome and principe','sao tome et principe',678,'st','stp',1,0
+'senegal','senegal',686,'sn','sen',1,0
+'serbia','serbie',688,'rs','srb',4,0
+'seychelles','seychelles',690,'sc','syc',1,1
+'sierra leone','sierra leone',694,'sl','sle',1,0
+'singapore','singapour',702,'sg','sgp',3,1
+'slovakia','slovaquie',703,'sk','svk',4,0
+'slovenia','slovenie',705,'si','svn',4,1
+'somalia','somalie',706,'so','som',1,0
+'sudan','soudan',729,'sd','sdn',1,0
+'south sudan','soudan du sud',728,'ss','ssd',1,0
+'sri lanka','sri lanka',144,'lk','lka',3,0
+'sweden','suede',752,'se','swe',4,1
+'switzerland','suisse',756,'ch','che',4,1
+'suriname','surinam',740,'sr','sur',7,0
+'svalbard and jan mayen','svalbard et jan mayen',744,'sj','sjm',6,0
+'swaziland','swaziland',748,'sz','swz',1,0
+'tajikistan','tadjikistan',762,'tj','tjk',3,0
+'taiwan','taiwan',158,'tw','twn',1,0
+'tanzania','tanzanie',834,'tz','tza',1,0
+'chad','tchad',148,'td','tcd',1,0
+'czechoslovakia','tchecoslovaquie',200,'cs','csk',4,0
+'czech republic','republique tcheque',203,'cz','cze',4,1
+'french southern territories','terres australes francaises',260,'tf','atf',6,0
+'thailand','thailande',764,'th','tha',3,0
+'timor leste','timor leste',626,'tl','tls',3,0
+'togo','togo',768,'tg','tgo',1,0
+'tokelau','tokelau',772,'tk','tkl',6,0
+'tonga','tonga',776,'to','ton',6,0
+'trinidad and tobago','trinite et tobago',780,'tt','tto',5,0
+'tunisia','tunisie',788,'tn','tun',1,0
+'turkmenistan','turkmenistan',795,'tm','tkm',3,0
+'turks and caicos islands','iles turques et caicos',796,'tc','tca',6,0
+'turkey','turquie',792,'tr','tur',3,0
+'tuvalu','tuvalu',798,'tv','tuv',6,0
+'ukraine','ukraine',804,'ua','ukr',4,0
+'soviet union','union sovietique',810,'su','sun',7,0
+'uruguay','uruguay',858,'uy','ury',6,0
+'vanuatu','vanuatu',548,'vu','vut',7,0
+'venezuela','venezuela',862,'ve','ven',3,0
+'vietnam','viet nam',704,'vn','vnm',3,0
+'north vietnam','viet nam du nord',670,'vd','vdr',3,0
+'wallis and futuna','wallis et futuna',876,'wf','wlf',6,0
+'yemen','yemen',887,'ye','yem',3,0
+'yugoslavia','yougoslavie',891,'yu','yug',4,0
+'zaire','zaire',180,'zr','zar',1,0
+'zambia','zambie',894,'zm','zmb',1,0
+'zimbabwe','zimbabwe',716,'zw','zwe',1,0
+'syria,'syrie','760','sy','syr',3,0
