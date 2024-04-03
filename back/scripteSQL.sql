@@ -273,12 +273,25 @@ INSERT INTO DESCRIPTION (Description) VALUES ('Description 2');
 -- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('France', 250, 'FR');
 -- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('Canada', 124, 'CA');
 
-    --DEUX SOLUTIONS POSSIBLE:
-        -- LIGNE A ENTRER DANS LE TERMINAL :
-            --\copy PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM 'Python/PAYS.csv' WITH DELIMITER ',' CSV HEADER
-        -- LIGNE A LAISSER DANS LE CODE MAIS METTRE LE CHEMINS ABSOLUE :
-COPY PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2, Développement_non_oui, Continent_id) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/PAYS.csv' DELIMITER ',' CSV HEADER;
-COPY CONTINENT(Libelle_continent_en, Libelle_continent_fr, ISO) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/CONTINENT.csv' DELIMITER ',' CSV HEADER;
+--DEUX SOLUTIONS POSSIBLE:
+    -- LIGNE A ENTRER DANS LE TERMINAL :
+        --\copy CONTINENT(Libelle_continent_en, Libelle_continent_fr, ISO) FROM 'Python/PAYS.csv' WITH DELIMITER ',' CSV HEADER
+    -- LIGNE A LAISSER DANS LE CODE MAIS METTRE LE CHEMINS ABSOLUE :
+        COPY CONTINENT(Libelle_continent_en, Libelle_continent_fr, ISO) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/CONTINENT.csv' DELIMITER ',' CSV HEADER;
+
+
+
+
+-- Insertions pour la table PAYS
+-- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('France', 250, 'FR');
+-- INSERT INTO PAYS (Libelle_Pays, ISO_Pays_Num, ISO_Pays_Car) VALUES ('Canada', 124, 'CA');
+
+--DEUX SOLUTIONS POSSIBLE:
+    -- LIGNE A ENTRER DANS LE TERMINAL :
+        --\copy PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM 'Python/PAYS.csv' WITH DELIMITER ',' CSV HEADER
+    -- LIGNE A LAISSER DANS LE CODE MAIS METTRE LE CHEMINS ABSOLUE :
+        COPY PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2, Développement_non_oui, Continent_id) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/PAYS.csv' DELIMITER ',' CSV HEADER;
+
 
 
 --COPY PAYS FROM 'PAYS.csv' WITH CSV DELIMITER ',' SKIP 1;
