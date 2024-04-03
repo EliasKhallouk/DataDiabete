@@ -95,10 +95,6 @@ CREATE TABLE IF NOT EXISTS DESCRIPTION(
     Description TEXT
 );
 
-CREATE TABLE IF NOT EXISTS DEVELOPPEMENT(
-    Id_développement SERIAL PRIMARY KEY,
-    Libelle_développement VARCHAR(255) NOT NULL
-);
 
 CREATE TABLE IF NOT EXISTS CONTINENT(
     Id_Continent SERIAL PRIMARY KEY,
@@ -114,8 +110,8 @@ CREATE TABLE IF NOT EXISTS PAYS(
     ISO_pays_num INTEGER,
     ISO_pays_car1 VARCHAR(255),
     ISO_pays_car2 VARCHAR(255),
-    Continent_id INTEGER REFERENCES CONTINENT(Id_Continent),
-    Développement_id INTEGER REFERENCES DEVELOPPEMENT(Id_développement)
+    Développement_non_oui BOOLEAN,
+    Continent_id INTEGER REFERENCES CONTINENT(Id_Continent)
 );
 
 CREATE TABLE IF NOT EXISTS SEXE(
@@ -282,7 +278,8 @@ INSERT INTO DESCRIPTION (Description) VALUES ('Description 2');
         -- LIGNE A ENTRER DANS LE TERMINAL :
             --\copy PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM 'Python/PAYS.csv' WITH DELIMITER ',' CSV HEADER
         -- LIGNE A LAISSER DANS LE CODE MAIS METTRE LE CHEMINS ABSOLUE :
-            COPY PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/PAYS.csv' DELIMITER ',' CSV HEADER;
+COPY PAYS(Libelle_pays_en, Libelle_pays_fr, ISO_pays_num, ISO_pays_car1, ISO_pays_car2, Développement_non_oui, Continent_id) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/PAYS.csv' DELIMITER ',' CSV HEADER;
+COPY CONTINENT(Libelle_continent_en, Libelle_continent_fr, ISO) FROM '/home/userdepinfo/A2/SAE/DataDiabete/back/Python/CONTINENT.csv' DELIMITER ',' CSV HEADER;
 
 
 --COPY PAYS FROM 'PAYS.csv' WITH CSV DELIMITER ',' SKIP 1;
