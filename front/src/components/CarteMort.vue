@@ -25,15 +25,24 @@
       </div>
     </div>
 
+    <button @click="toggleTable" class="button">{{ showTable ? 'Afficher le tableau' : 'Rétrécir le tableau'  }}</button>
     <table>
       <thead>
       <tr>
         <th>Pays</th><th>Nombre de personnes mortes</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody v-if="!showTable">
       <div v-if="cartes.length <=0">pas de pays</div>
       <tr v-for="(ligne, index) in cartes" :key="index">
+        <td data-title="Id">{{ligne.name_pays}}</td>
+        <td data-title="Id">{{ligne.nbr_morts}}</td>
+      </tr>
+      </tbody>
+
+      <tbody v-if="showTable">
+      <div v-if="cartes.length <=0">pas de pays</div>
+      <tr v-for="(ligne, index) in cartes.slice(0,5)" :key="index">
         <td data-title="Id">{{ligne.name_pays}}</td>
         <td data-title="Id">{{ligne.nbr_morts}}</td>
       </tr>
@@ -74,6 +83,7 @@ export default {
     ecartType:null,
     plusGrand:null,
     plusPetit:null,
+    showTable: true,
     chartOptions: ref({
       chart: {
         map: worldMap,
@@ -217,6 +227,9 @@ export default {
     ...mapState(['cartes'])
   }, methods : {
     ...mapActions(['getCarte','getInfoCarte']),
+    toggleTable() {
+      this.showTable = !this.showTable;
+    },
     getter(){
       this.getCarte(this.annee).
       then( () => {

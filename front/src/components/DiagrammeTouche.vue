@@ -20,6 +20,7 @@
       et bien plus encore, sur les pays les plus touché. Ces visualisations vous aident à identifier les
       tendances et les disparités dans la prévalence  du diabète à travers le monde.
     </p>
+    <button @click="toggleTable" class="button">{{ showTable ? 'Afficher le tableau' : 'Rétrécir le tableau'  }}</button>
     <table>
       <thead>
       <tr>
@@ -28,8 +29,18 @@
         <th>Sexe</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody v-if="!showTable">
       <tr v-for="(ligne, index) in diagrammes" :key="index">
+        <td data-title="Id">{{ ligne.iso_pays_car }}</td>
+        <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
+        <td data-title="Id">
+          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : '') }}
+        </td>
+      </tr>
+      </tbody>
+
+      <tbody v-if="showTable">
+      <tr v-for="(ligne, index) in diagrammes.slice(0,5)" :key="index">
         <td data-title="Id">{{ ligne.iso_pays_car }}</td>
         <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
         <td data-title="Id">
@@ -53,6 +64,7 @@ export default {
   data: () => ({
     annee: 2014,
     codeSexe: 0,
+    showTable: true,
     chartOptions: {
       chart: {
         type: "column",
@@ -92,6 +104,9 @@ export default {
   }),
   methods: {
     ...mapActions(["getDiagramme"]),
+    toggleTable() {
+      this.showTable = !this.showTable;
+    },
     getter() {
       console.log("annee", this.annee);
       console.log("code sexe", this.codeSexe);

@@ -94,6 +94,11 @@ const chartOptions = ref({
         <option value="1">Homme</option>
         <option value="0">Femme</option>
       </select>
+      <select v-model="developpement">
+        <option value="2">Développé et non développé</option>
+        <option value="1">Développé</option>
+        <option value="0">Non développé</option>
+      </select>
       <button @click.prevent="getter" class="button" >FILTRER</button>
     </form>
 
@@ -115,21 +120,37 @@ const chartOptions = ref({
       </div>
     </div>
 
+    <button @click="toggleTable" class="button">{{ showTable ? 'Afficher le tableau' : 'Rétrécir le tableau'  }}</button>
+
+    <!-- Tableau conditionnel -->
     <table>
       <thead>
       <tr>
-        <th>Pays</th><th>Nombre de personne diabétique</th><th>Sexe</th>
+        <th>Pays</th>
+        <th>Nombre de personne diabétique</th>
+        <th>Sexe</th>
       </tr>
       </thead>
-      <tbody>
-      <div v-if="cartes.length <=0">pas de pays</div>
-      <tr v-for="(ligne, index) in cartes" :key="index">
-        <td data-title="Id">{{ligne.name_pays}}</td>
-        <td data-title="Id">{{ligne.nbr_diabetique}}</td>
-        <td data-title="Id">
-          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
-        </td>
-      </tr>
+      <tbody v-if="!showTable">
+        <div v-if="cartes.length <=0">pas de pays</div>
+        <tr v-for="(ligne, index) in cartes" :key="index">
+          <td data-title="Id">{{ligne.name_pays}}</td>
+          <td data-title="Id">{{ligne.nbr_diabetique}}</td>
+          <td data-title="Id">
+            {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
+          </td>
+        </tr>
+      </tbody>
+
+      <tbody v-if="showTable">
+        <div v-if="cartes.length <=0">pas de pays</div>
+        <tr v-for="(ligne, index) in cartes.slice(0, 5)" :key="index">
+          <td data-title="Id">{{ligne.name_pays}}</td>
+          <td data-title="Id">{{ligne.nbr_diabetique}}</td>
+          <td data-title="Id">
+            {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -168,6 +189,8 @@ export default {
     ecartType:null,
     plusGrand:null,
     plusPetit:null,
+    showTable: true,
+    developpement: 2,
     chartOptions: ref({
       chart: {
         map: worldMap,
@@ -311,9 +334,12 @@ export default {
     ...mapState(['cartes'])
   }, methods : {
     ...mapActions(['getCarteTouche','getInfoCarteTouche']),
+    toggleTable() {
+      this.showTable = !this.showTable;
+    },
     getter(){
       console.log("code sexe", this.codeSexe);
-      this.getCarteTouche({ annee: this.annee, codeSexe: this.codeSexe }).
+      this.getCarteTouche({ annee: this.annee, codeSexe: this.codeSexe, developpement: this.developpement}).
       then( () => {
         //console.log("RES : "+res);
         this.chartOptions.series[0].data= [];
@@ -346,7 +372,7 @@ export default {
     }
   },
   mounted() {
-    this.getCarteTouche({ annee: this.annee, codeSexe: this.codeSexe }).
+    this.getCarteTouche({ annee: this.annee, codeSexe: this.codeSexe, developpement: this.developpement}).
     then( () => {
       this.cartes.forEach((item) => {
         //console.log(item);

@@ -34,7 +34,6 @@ export default new Vuex.Store({
     updateUserCredentials(state, { email, password }) {
       // Mettez à jour l'état avec le nouveau courriel et mot de passe
       const userData= { email, password };
-
       // Mettez à jour le localStorage
       localStorage.setItem('token', JSON.stringify(userData));
     },
@@ -43,6 +42,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    /////////////////////////
+    ///       USER        ///
+    /////////////////////////
     async getAllUsers({commit}){
       let response = await usersService.getAllUsers();
       if(response.status === 200){
@@ -51,6 +53,7 @@ export default new Vuex.Store({
         console.log("Erreur Get User Store");
       }
     },
+
     async deleteUsers({commit},id){
       let response = await usersService.deleteUsers(id);
       if(response.status === 200){
@@ -60,6 +63,7 @@ export default new Vuex.Store({
         console.log("Erreur Delete User Store");
       }
     },
+
     async deleteUsersAddData({commit},id){
       let response = await usersService.deleteUsersAddData(id);
       if(response.status === 200){
@@ -69,6 +73,7 @@ export default new Vuex.Store({
         console.log("Erreur Delete User Store");
       }
     },
+
     async insertUsers({commit},{nom,prenom,email,password}){
       console.log(nom,prenom,email,password);
       let response = await usersService.insertUsers(nom,prenom,email,password);
@@ -78,44 +83,7 @@ export default new Vuex.Store({
         console.log("Erreur Insert User Store");
       }
     },
-    async getCarte({commit},annee){
-      console.log("--------",annee);
-      let response = await mortService.getCarte(annee);
-      if(response.status === 200){
-        commit('updateCartes',response.data)
-      } else{
-        console.log("Erreur Get Carte Store");
-      }
-    },
-    async getInfoCarte({commit},annee) {
-      console.log("--------", annee,commit);
-      let response = await mortService.getInfoCarte(annee);
-      return response;
-    },
-    async getInfoCarteTouche({commit},{ annee, codeSexe}) {
-      console.log("--------", annee,commit);
-      let response = await toucheService.getInfoCarteTouche(annee,codeSexe);
-      return response;
-    },
-    async getCarteTouche({commit},{annee,codeSexe}){
-      console.log("--------",annee);
-      let response = await toucheService.getCarteTouche(annee,codeSexe);
-      if(response.status === 200){
-        commit('updateCartes',response.data)
-      } else{
-        console.log("Erreur Get Carte Touche Store");
-      }
-    },
-    async getDiagramme({commit},{annee,codeSexe}){
-        console.log("--------",annee);
-        console.log("--------",codeSexe);
-        let response = await toucheService.getDiagramme(annee,codeSexe);
-        if(response.status === 200){
-            commit('updateDiagrammes',response.data)
-        } else{
-            console.log("Erreur Get Diagramme Store");
-        }
-    },
+
     async getUserInsertData({commit}){
       let response = await usersService.getUserInsertData();
       if(response.status === 200){
@@ -124,7 +92,7 @@ export default new Vuex.Store({
         console.log("Erreur Get User Insert Data Store");
       }
     },
-    // ...
+
     async verifUsers({ commit }, conf) {
       console.log(conf);
       let response = await usersService.verifUsers(conf);
@@ -142,12 +110,12 @@ export default new Vuex.Store({
         console.log("Erreur verifUsers User Store");
       }
     },
+
     async changeInfo({commit},{id,email,password}){
       console.log('OK',id,email,password);
       let response = await usersService.changeInfo(id,email,password);
       if(response.status === 200){
         const tokenWithFirstName = { ...this.state.token, mail: email,password:password };
-
         commit('setToken', tokenWithFirstName)
         // Actualiser le localStorage avec push
         response.data.splice(0, 1, tokenWithFirstName);
@@ -159,7 +127,63 @@ export default new Vuex.Store({
         console.log("Erreur Change info Store");
       }
     },
-// ...
+
+
+
+    /////////////////////////
+    ///       MORT        ///
+    /////////////////////////
+    async getCarte({commit},annee){
+      console.log("--------",annee);
+      let response = await mortService.getCarte(annee);
+      if(response.status === 200){
+        commit('updateCartes',response.data)
+      } else{
+        console.log("Erreur Get Carte Store");
+      }
+    },
+
+    async getInfoCarte({commit},annee) {
+      console.log("--------", annee,commit);
+      return await mortService.getInfoCarte(annee);
+    },
+
+
+
+    /////////////////////////
+    ///       TOUCHE      ///
+    /////////////////////////
+    async getInfoCarteTouche({commit},{ annee, codeSexe}) {
+      console.log("--------", annee,commit);
+      return await toucheService.getInfoCarteTouche(annee,codeSexe);
+    },
+
+    async getCarteTouche({commit},{annee,codeSexe,developpement}){
+      console.log("--------",annee);
+      let response = await toucheService.getCarteTouche(annee,codeSexe,developpement);
+      if(response.status === 200){
+        commit('updateCartes',response.data)
+      } else{
+        console.log("Erreur Get Carte Touche Store");
+      }
+    },
+
+    async getDiagramme({commit},{annee,codeSexe}){
+        console.log("--------",annee);
+        console.log("--------",codeSexe);
+        let response = await toucheService.getDiagramme(annee,codeSexe);
+        if(response.status === 200){
+            commit('updateDiagrammes',response.data)
+        } else{
+            console.log("Erreur Get Diagramme Store");
+        }
+    },
+
+
+
+    /////////////////////////
+    ///       MODIF       ///
+    /////////////////////////
     async getAllModif({commit}){
       let response = await modifService.getAllModif();
       if(response.status === 200){
@@ -168,7 +192,7 @@ export default new Vuex.Store({
         console.log("Erreur Get Modif Store");
       }
     },
-    // éditer une modification
+
     async updateModif({commit},{id,chemin,id_user_add}){
       let response = await modifService.updateModif(id,chemin,id_user_add);
       if(response.status === 200){
