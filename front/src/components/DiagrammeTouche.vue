@@ -9,7 +9,6 @@
         <option value="2">Homme et Femme</option>
         <option value="1">Homme</option>
         <option value="0">Femme</option>
-        <!-- Ajoutez d'autres options selon votre modèle de données -->
       </select>
       <select v-model="codeCont">
         <option value="8">Tous les continents</option>
@@ -73,7 +72,7 @@ export default {
   },
   data: () => ({
     annee: 2014,
-    codeSexe: 0,
+    codeSexe: 2,
     codeCont:8,
     showTable: true,
     chartOptions: {
@@ -82,7 +81,7 @@ export default {
         renderTo: "container",
       },
       title: {
-        text: "Diagramme du nombre de personnes atteintes de diabète en 2014",
+        text: "(TOP 10) Diagramme du nombre de personnes atteintes de diabète en 2014",
         margin: 50,
         style: {
           color: '#000000',
@@ -155,7 +154,7 @@ export default {
 
             this.chart.setTitle({
               text:
-                  "Diagramme du nombre de personnes atteintes de diabète en " +
+                  "(TOP 10) Diagramme du nombre de personnes atteintes de diabète en " +
                   this.annee,
             });
           })
@@ -179,7 +178,7 @@ export default {
               this.diagrammes.map((item) => ({
                 name: item.iso_pays_car,
                 y: parseFloat(item.nbr_diabetique),
-                color: "#FF69B4", // Default color if codeSexe is not specified
+                color: "orange", // Default color if codeSexe is not specified
               }))
           );
         })

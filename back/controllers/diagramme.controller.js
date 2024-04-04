@@ -10,7 +10,7 @@ exports.getDiagramme = async (req, res) => {
             annee = 2011;
         }
         if(!codeSexe){
-            codeSexe = 0;
+            codeSexe = 2    ;
         }
         if(!codeCont){
             codeCont = 8;
