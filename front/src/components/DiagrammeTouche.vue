@@ -36,24 +36,33 @@
         <th>Pays</th>
         <th>Nombre de personnes atteints</th>
         <th>Sexe</th>
+        <th>Continent</th>
       </tr>
       </thead>
       <tbody v-if="!showTable">
+      <div v-if="diagrammes.length <=0">pas de pays</div>
       <tr v-for="(ligne, index) in diagrammes" :key="index">
         <td data-title="Id">{{ ligne.iso_pays_car }}</td>
         <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
         <td data-title="Id">
-          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : '') }}
+          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
+        </td>
+        <td data-title="Id">
+          {{ ligne.continent_id === 1 ? 'Afrique' : (ligne.continent_id === 2 ? 'Antarctique' : (ligne.continent_id === 3 ? 'Asie' : (ligne.continent_id === 4 ? 'Europe' : (ligne.continent_id === 5 ? 'Amérique du Nord' : (ligne.continent_id === 6 ? 'Océanie' : (ligne.continent_id === 7 ? 'Amérique du Sud' : 'Tous les continents')))))) }}
         </td>
       </tr>
       </tbody>
 
       <tbody v-if="showTable">
+      <div v-if="diagrammes.length <=0">pas de pays</div>
       <tr v-for="(ligne, index) in diagrammes.slice(0,5)" :key="index">
         <td data-title="Id">{{ ligne.iso_pays_car }}</td>
         <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
         <td data-title="Id">
-          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : '') }}
+          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
+        </td>
+        <td data-title="Id">
+          {{ ligne.continent_id === 1 ? 'Afrique' : (ligne.continent_id === 2 ? 'Antarctique' : (ligne.continent_id === 3 ? 'Asie' : (ligne.continent_id === 4 ? 'Europe' : (ligne.continent_id === 5 ? 'Amérique du Nord' : (ligne.continent_id === 6 ? 'Océanie' : (ligne.continent_id === 7 ? 'Amérique du Sud' : 'Tous les continents')))))) }}
         </td>
       </tr>
       </tbody>
@@ -107,6 +116,11 @@ export default {
         {
           name: "Homme",
           color: "#6495ED", // Bleu
+          data: [],
+        },
+        {
+          name: "Homme et Femme",
+          color: "orange",
           data: [],
         },
       ],
