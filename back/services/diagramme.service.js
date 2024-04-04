@@ -68,8 +68,8 @@ async function getDiagramme(annee, codeSexe, codeCont) {
             'LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS iso_pays_car, ' +
             'rd.Nbr_Diabetique, ' +
             'rd.Annee, ' +
-            'rd.Code_Sexe ' +
-            'c.id_continent, ' +
+            'rd.Code_Sexe, ' +
+            'c.id_continent ' +
             'FROM ' +
             'PAYS p ' +
             'INNER JOIN ' +
