@@ -13,6 +13,7 @@ export default new Vuex.Store({
     users : [],
     cartes : [],
     diagrammes : [],
+    lines : [],
     modifs : [],
     token: localStorage.getItem('token') || '',
   },
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     updateCartes(state, carte){
       state.cartes = carte;
+    },
+    updateLines(state, line){
+      state.lines = line;
     },
     updateDiagrammes(state, diagramme){
       state.diagrammes = diagramme;
@@ -143,9 +147,23 @@ export default new Vuex.Store({
       }
     },
 
+    async getLine({commit}){
+      let response = await mortService.getLine();
+      if(response.status === 200){
+        commit('updateLines',response.data)
+      } else{
+        console.log("Erreur Get Carte Store");
+      }
+    },
+
     async getInfoCarte({commit},{ annee, codeCont, developpement}){
       console.log("--------", annee,commit);
       return await mortService.getInfoCarte(annee,codeCont,developpement);
+    },
+
+    async getInfoLineMort({commit},){
+      console.log("--------",commit);
+      return await mortService.getInfoLineMort();
     },
 
 
@@ -178,6 +196,20 @@ export default new Vuex.Store({
         } else{
             console.log("Erreur Get Diagramme Store");
         }
+    },
+
+    async getLineTouche({commit}){
+      let response = await toucheService.getLineTouche();
+      if(response.status === 200){
+        commit('updateLines',response.data)
+      } else{
+        console.log("Erreur Get Carte Store");
+      }
+    },
+
+    async getInfoLineTouche({commit}) {
+      console.log("--------",commit);
+      return await toucheService.getInfoLineTouche();
     },
 
 

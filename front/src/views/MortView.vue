@@ -1,15 +1,19 @@
 <template>
   <div>
     <CarteMort />
+    <LineMort />
   </div>
 </template>
 
 <script>
 import CarteMort from "../components/CarteMort";
+import LineMort from "../components/LineMort";
+
 
 export default {
   components: {
-    CarteMort
+    CarteMort,
+    LineMort
   },
 };
 </script>
