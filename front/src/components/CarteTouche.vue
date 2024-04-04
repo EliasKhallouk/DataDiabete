@@ -132,7 +132,6 @@ const chartOptions = ref({
 
     <button @click="toggleTable" class="button">{{ showTable ? 'Afficher le tableau' : 'Rétrécir le tableau'  }}</button>
 
-    <!-- Tableau conditionnel -->
     <table>
       <thead>
       <tr>
