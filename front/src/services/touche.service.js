@@ -2,10 +2,10 @@ import axios from 'axios';
 const diagrammeAPI = "http://localhost:3000/diagramme"
 const cartesAPI = "http://localhost:3000/carte"
 
-async function getDiagramme (annee, codeSexe)  {
+async function getDiagramme (annee, codeSexe,codeCont)  {
     try {
         console.log("geeeet diagramme")
-        const response = await axios.get(`${diagrammeAPI}?annee=${annee}&codeSexe=${codeSexe}`);
+        const response = await axios.get(`${diagrammeAPI}?annee=${annee}&codeSexe=${codeSexe}&codeCont=${codeCont}`);
         console.log("okkkkk gett diagramme")
         console.log(response)
         return response;

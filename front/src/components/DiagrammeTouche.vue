@@ -11,7 +11,17 @@
         <option value="0">Femme</option>
         <!-- Ajoutez d'autres options selon votre modèle de données -->
       </select>
-      <button @click.prevent="getter" class="button">FILTRER LES DONNÉES</button>
+      <select v-model="codeCont">
+        <option value="8">Tous les continents</option>
+        <option value="1">Afrique</option>
+        <option value="2">Antartique</option>
+        <option value="3">Asie</option>
+        <option value="4">Europe</option>
+        <option value="5">Amerique du Nord</option>
+        <option value="6">Oceanie</option>
+        <option value="7">Amerique du Sud</option>
+      </select>
+      <button @click.prevent="getter" class="button">FILTRER</button>
     </form>
     <p>
       Explorez ces graphiques interactifs qui vous permettent de comparer
@@ -64,6 +74,7 @@ export default {
   data: () => ({
     annee: 2014,
     codeSexe: 0,
+    codeCont:8,
     showTable: true,
     chartOptions: {
       chart: {
@@ -110,7 +121,8 @@ export default {
     getter() {
       console.log("annee", this.annee);
       console.log("code sexe", this.codeSexe);
-      this.getDiagramme({ annee: this.annee, codeSexe: this.codeSexe })
+      console.log("code continent", this.codeCont);
+      this.getDiagramme({ annee: this.annee, codeSexe: this.codeSexe, codeCont: this.codeCont })
           .then(() => {
             // Destroy the existing chart if it exists
             if (this.chart) {
@@ -153,7 +165,8 @@ export default {
   mounted() {
     console.log("annee==", this.annee);
     console.log("code sexe==", this.codeSexe);
-    this.getDiagramme({ annee: this.annee, codeSexe: this.codeSexe })
+    console.log("code continent==", this.codeCont);
+    this.getDiagramme({ annee: this.annee, codeSexe: this.codeSexe , codeCont: this.codeCont})
         .then(() => {
           this.chart = new Highcharts.Chart({
             ...this.chartOptions,
