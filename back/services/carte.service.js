@@ -6,22 +6,72 @@ const filePath = path.join(__dirname, "..", "user.json")
 const format = require("pg-format");
 const pool = require("../database/db");
 
-async function getCarte(annee) {
+async function getCarte(annee,codeCont,developpement) {
     try {
         const client = await pool.connect();
-        const res = await client.query('SELECT LOWER(SUBSTRING(PAYS.libelle_pays_fr, 2, LENGTH(PAYS.libelle_pays_fr) - 2)) AS name_pays,lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,report_deces.nbr_morts,report_deces.annee\n' +
-            'from PAYS\n' +
-            'inner JOIN report_deces ON PAYS.id_pays = report_deces.id_pays\n' +
-            'WHERE annee=$1\n' +
-            'ORDER BY iso_pays_car',
-            [annee]);
+        let res = null;
+        if(codeCont>=1 && codeCont<=7) {
+            if(developpement==0 || developpement==1) {
+                let codeDev = true;
+                if (developpement == 0) {
+                    codeDev = false;
+                }
+                res = await client.query('SELECT LOWER(SUBSTRING(PAYS.libelle_pays_fr, 2, LENGTH(PAYS.libelle_pays_fr) - 2)) AS name_pays,\n' +
+                    '       lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,\n' +
+                    '       report_deces.nbr_morts,report_deces.annee,\n' +
+                    '       PAYS.continent_id,\n' +
+                    '       pays.développement_non_oui\n' +
+                    '                    from PAYS\n' +
+                    '                    inner JOIN report_deces ON PAYS.id_pays = report_deces.id_pays\n' +
+                    '                    inner JOIN continent c on pays.continent_id = c.id_continent\n' +
+                    '                    WHERE annee=$1\n' +
+                    '                    AND pays.continent_id=$2\n' +
+                    '                    AND pays.développement_non_oui=$3\n' +
+                    '                    ORDER BY iso_pays_car',
+                    [annee,codeCont,codeDev]);
+            }else{
+                res = await client.query('SELECT LOWER(SUBSTRING(PAYS.libelle_pays_fr, 2, LENGTH(PAYS.libelle_pays_fr) - 2)) AS name_pays,\n' +
+                    '       lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,\n' +
+                    '       report_deces.nbr_morts,report_deces.annee,\n' +
+                    '       PAYS.continent_id\n' +
+                    '                    from PAYS\n' +
+                    '                    inner JOIN report_deces ON PAYS.id_pays = report_deces.id_pays\n' +
+                    '                    inner JOIN continent c on pays.continent_id = c.id_continent\n' +
+                    '                    WHERE annee=$1\n' +
+                    '                    AND pays.continent_id=$2\n' +
+                    '                    ORDER BY iso_pays_car',
+                    [annee,codeCont]);
+            }
+        }else{
+            if(developpement==0 || developpement==1) {
+                let codeDev = true;
+                if (developpement == 0) {
+                    codeDev = false;
+                }
+                res = await client.query('SELECT LOWER(SUBSTRING(PAYS.libelle_pays_fr, 2, LENGTH(PAYS.libelle_pays_fr) - 2)) AS name_pays,\n' +
+                    '       lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,\n' +
+                    '       report_deces.nbr_morts,report_deces.annee,\n' +
+                    '       pays.développement_non_oui\n' +
+                    '                    from PAYS\n' +
+                    '                    inner JOIN report_deces ON PAYS.id_pays = report_deces.id_pays\n' +
+                    '                    WHERE annee=$1\n' +
+                    '                    AND pays.développement_non_oui=$2\n' +
+                    '                    ORDER BY iso_pays_car',
+                    [annee,codeDev]);
+            }else{
+                res = await client.query('SELECT LOWER(SUBSTRING(PAYS.libelle_pays_fr, 2, LENGTH(PAYS.libelle_pays_fr) - 2)) AS name_pays,lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,report_deces.nbr_morts,report_deces.annee\n' +
+                    'from PAYS\n' +
+                    'inner JOIN report_deces ON PAYS.id_pays = report_deces.id_pays\n' +
+                    'WHERE annee=$1\n' +
+                    'ORDER BY iso_pays_car',
+                    [annee]);
+            }
+        }
         client.release();
-        //console.log(res.rows);
-        //console.log(res.rows[0]);
-        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
+        return res.rows;
     } catch (error) {
         console.error(error);
-        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
+        throw error;
     }
 }
 
@@ -100,7 +150,6 @@ async function getCarteTouche(annee,codeSexe,codeCont,developpement) {
                         '                rd.Nbr_Diabetique,  \n' +
                         '                rd.Annee,  \n' +
                         '                rd.Code_Sexe,\n' +
-                        '                p.continent_id,\n' +
                         '                p.développement_non_oui\n' +
                         '                FROM  \n' +
                         '                PAYS p  \n' +
@@ -111,12 +160,11 @@ async function getCarteTouche(annee,codeSexe,codeCont,developpement) {
                         '                WHERE  \n' +
                         '                rd.Annee = $1\n' +
                         '                AND rd.Code_Sexe = $2\n' +
-                        '                AND p.continent_id = $3\n' +
-                        '                AND p.développement_non_oui = $4\n' +
+                        '                AND p.développement_non_oui = $3\n' +
                         '                ORDER BY \n' +
                         '                    name_pays, \n' +
                         '                    code_sexe',
-                        [annee, codeSexe, codeCont,codeDev]
+                        [annee, codeSexe,codeDev]
                     );
                 }else {
                     res = await client.query(

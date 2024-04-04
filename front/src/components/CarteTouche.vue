@@ -139,6 +139,8 @@ const chartOptions = ref({
         <th>Pays</th>
         <th>Nombre de personne diabétique</th>
         <th>Sexe</th>
+        <th>Continents</th>
+        <th>Développement</th>
       </tr>
       </thead>
       <tbody v-if="!showTable">
@@ -148,6 +150,12 @@ const chartOptions = ref({
           <td data-title="Id">{{ligne.nbr_diabetique}}</td>
           <td data-title="Id">
             {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
+          </td>
+          <td data-title="Id">
+            {{ ligne.continent_id === 1 ? 'afrique' : (ligne.continent_id === 2 ? 'antarctique' : (ligne.continent_id === 3 ? 'asie' : (ligne.continent_id === 4 ? 'europe' : (ligne.continent_id === 5 ? 'amérique du nord' : (ligne.continent_id === 6 ? 'océanie' : (ligne.continent_id === 7 ? 'amérique du Sud' : 'tous les continents')))))) }}
+          </td>
+          <td data-title="Id">
+            {{ ligne.développement_non_oui === false ? 'non développé' : (ligne.développement_non_oui === true ? 'développé' : (ligne.développement_non_oui === undefined   ? 'tous les développement' : '')) }}
           </td>
         </tr>
       </tbody>
@@ -159,6 +167,12 @@ const chartOptions = ref({
           <td data-title="Id">{{ligne.nbr_diabetique}}</td>
           <td data-title="Id">
             {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
+          </td>
+          <td data-title="Id">
+            {{ ligne.continent_id === 1 ? 'Afrique' : (ligne.continent_id === 2 ? 'Antarctique' : (ligne.continent_id === 3 ? 'Asie' : (ligne.continent_id === 4 ? 'Europe' : (ligne.continent_id === 5 ? 'Amérique du Nord' : (ligne.continent_id === 6 ? 'Océanie' : (ligne.continent_id === 7 ? 'Amérique du Sud' : 'Tous les continents')))))) }}
+          </td>
+          <td data-title="Id">
+            {{ ligne.développement_non_oui === false ? 'non développé' : (ligne.développement_non_oui === true ? 'développé' : (ligne.développement_non_oui === undefined   ? 'tous les développement' : '')) }}
           </td>
         </tr>
       </tbody>
@@ -312,7 +326,7 @@ export default {
       },
       legend: {
         title: {
-          text: 'Nombre de morts en millier'
+          text: 'Nombre de personne atteinte en millier'
         },
         backgroundColor: '#FFFFFF',
         align: 'right',
@@ -324,7 +338,7 @@ export default {
       series: [
         {
           animation: true,
-          name: "MORTS",
+          name: "ATTEINTE",
           states: {
             hover: {
               color: "#F8EDEB ",
@@ -364,7 +378,7 @@ export default {
         //console.log(this.chartOptions.series[0].data);
       }).catch((error) => console.log(error));
       console.log("+"+this.chartOptions.series[0].data);
-      this.getInfoCarteTouche({ annee: this.annee, codeSexe: this.codeSexe })
+      this.getInfoCarteTouche({ annee: this.annee, codeSexe: this.codeSexe, codeCont: this.codeCont, developpement: this.developpement})
           .then(result => {
             console.log("result :"+ result);
             this.moyenne = result.moyenne;
@@ -395,7 +409,7 @@ export default {
       //console.log(this.testData);
     }).catch((error) => console.log(error))
     console.log("+"+this.chartOptions.series[0].data);
-    this.getInfoCarteTouche({ annee: this.annee, codeSexe: this.codeSexe })
+    this.getInfoCarteTouche({ annee: this.annee, codeSexe: this.codeSexe, codeCont: this.codeCont, developpement: this.developpement})
         .then(result => {
           console.log("result :"+ result);
           this.moyenne = result.moyenne;

@@ -2,10 +2,25 @@
   <div class="body-carte">
     <!-- PREMIERE PARTIE-->
       <highcharts :constructor-type="'mapChart'" :options="chartOptions" style="height: 694px"  />
-      <form>
-        <input id="annee" name="annee" v-model="annee"/>
-        <button @click.prevent="getter" class="button" >CHOISIR L'ANNÉE</button>
-      </form>
+    <form>
+      <input id="annee" name="annee" v-model="annee"/>
+      <select v-model="codeCont">
+        <option value="8">Tous les continents</option>
+        <option value="1">Afrique</option>
+        <option value="2">Antartique</option>
+        <option value="3">Asie</option>
+        <option value="4">Europe</option>
+        <option value="5">Amerique du Nord</option>
+        <option value="6">Oceanie</option>
+        <option value="7">Amerique du Sud</option>
+      </select>
+      <select v-model="developpement">
+        <option value="2">Tous les développement</option>
+        <option value="1">Développé</option>
+        <option value="0">Non développé</option>
+      </select>
+      <button @click.prevent="getter" class="button" >FILTRER</button>
+    </form>
 
     <p>
       Explorez notre carte interactive qui illustre visuellement l'impact du diabète à l'échelle mondiale. Cette carte
@@ -29,7 +44,7 @@
     <table>
       <thead>
       <tr>
-        <th>Pays</th><th>Nombre de personnes mortes</th>
+        <th>Pays</th><th>Nombre de personnes mortes</th><th>Continents</th><th>Développement</th>
       </tr>
       </thead>
       <tbody v-if="!showTable">
@@ -37,6 +52,12 @@
       <tr v-for="(ligne, index) in cartes" :key="index">
         <td data-title="Id">{{ligne.name_pays}}</td>
         <td data-title="Id">{{ligne.nbr_morts}}</td>
+        <td data-title="Id">
+          {{ ligne.continent_id === 1 ? 'Afrique' : (ligne.continent_id === 2 ? 'Antarctique' : (ligne.continent_id === 3 ? 'Asie' : (ligne.continent_id === 4 ? 'Europe' : (ligne.continent_id === 5 ? 'Amérique du Nord' : (ligne.continent_id === 6 ? 'Océanie' : (ligne.continent_id === 7 ? 'Amérique du Sud' : 'Tous les continents')))))) }}
+        </td>
+        <td data-title="Id">
+          {{ ligne.développement_non_oui === false ? 'non développé' : (ligne.développement_non_oui === true ? 'développé' : (ligne.développement_non_oui === undefined   ? 'tous les développement' : '')) }}
+        </td>
       </tr>
       </tbody>
 
@@ -45,6 +66,12 @@
       <tr v-for="(ligne, index) in cartes.slice(0,5)" :key="index">
         <td data-title="Id">{{ligne.name_pays}}</td>
         <td data-title="Id">{{ligne.nbr_morts}}</td>
+        <td data-title="Id">
+          {{ ligne.continent_id === 1 ? 'Afrique' : (ligne.continent_id === 2 ? 'Antarctique' : (ligne.continent_id === 3 ? 'Asie' : (ligne.continent_id === 4 ? 'Europe' : (ligne.continent_id === 5 ? 'Amérique du Nord' : (ligne.continent_id === 6 ? 'Océanie' : (ligne.continent_id === 7 ? 'Amérique du Sud' : 'Tous les continents')))))) }}
+        </td>
+        <td data-title="Id">
+          {{ ligne.développement_non_oui === false ? 'non développé' : (ligne.développement_non_oui === true ? 'développé' : (ligne.développement_non_oui === undefined   ? 'tous les développement' : '')) }}
+        </td>
       </tr>
       </tbody>
     </table>
@@ -84,6 +111,8 @@ export default {
     plusGrand:null,
     plusPetit:null,
     showTable: true,
+    developpement: 2,
+    codeCont:8,
     chartOptions: ref({
       chart: {
         map: worldMap,
@@ -231,7 +260,7 @@ export default {
       this.showTable = !this.showTable;
     },
     getter(){
-      this.getCarte(this.annee).
+      this.getCarte({ annee: this.annee, codeCont: this.codeCont, developpement: this.developpement}).
       then( () => {
         //console.log("RES : "+res);
         this.chartOptions.series[0].data= [];
@@ -245,7 +274,7 @@ export default {
         //console.log(this.chartOptions.series[0].data);
       }).catch((error) => console.log(error));
       console.log("+"+this.chartOptions.series[0].data);
-      this.getInfoCarte(this.annee)
+      this.getInfoCarte({ annee: this.annee, codeCont: this.codeCont, developpement: this.developpement})
           .then(result => {
             console.log("result :"+ result);
             this.moyenne = result.moyenne;
@@ -264,7 +293,7 @@ export default {
     }
   },
   mounted() {
-    this.getCarte(this.annee).
+    this.getCarte({ annee: this.annee, codeCont: this.codeCont, developpement: this.developpement}).
     then( () => {
       this.cartes.forEach((item) => {
         //console.log(item);
@@ -276,7 +305,7 @@ export default {
       //console.log(this.testData);
     }).catch((error) => console.log(error))
     console.log("+"+this.chartOptions.series[0].data);
-    this.getInfoCarte(this.annee)
+    this.getInfoCarte({ annee: this.annee, codeCont: this.codeCont, developpement: this.developpement})
         .then(result => {
           console.log("result :"+ result);
           this.moyenne = result.moyenne;
@@ -393,5 +422,13 @@ th {
 }
 .stats-group #droite {
   margin-left:60%
+}
+
+select {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-left: 10px;
 }
 </style>

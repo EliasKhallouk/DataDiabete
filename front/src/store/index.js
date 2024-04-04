@@ -133,9 +133,9 @@ export default new Vuex.Store({
     /////////////////////////
     ///       MORT        ///
     /////////////////////////
-    async getCarte({commit},annee){
-      console.log("--------",annee);
-      let response = await mortService.getCarte(annee);
+    async getCarte({commit},{ annee, codeCont, developpement}){
+      console.log("--------",annee+"-"+codeCont+"-"+developpement);
+      let response = await mortService.getCarte(annee,codeCont,developpement);
       if(response.status === 200){
         commit('updateCartes',response.data)
       } else{
@@ -143,9 +143,9 @@ export default new Vuex.Store({
       }
     },
 
-    async getInfoCarte({commit},annee) {
+    async getInfoCarte({commit},{ annee, codeCont, developpement}){
       console.log("--------", annee,commit);
-      return await mortService.getInfoCarte(annee);
+      return await mortService.getInfoCarte(annee,codeCont,developpement);
     },
 
 
@@ -153,9 +153,9 @@ export default new Vuex.Store({
     /////////////////////////
     ///       TOUCHE      ///
     /////////////////////////
-    async getInfoCarteTouche({commit},{ annee, codeSexe}) {
+    async getInfoCarteTouche({commit},{ annee, codeSexe, codeCont, developpement}) {
       console.log("--------", annee,commit);
-      return await toucheService.getInfoCarteTouche(annee,codeSexe);
+      return await toucheService.getInfoCarteTouche(annee,codeSexe,codeCont,developpement);
     },
 
     async getCarteTouche({commit},{annee,codeSexe,codeCont,developpement}){

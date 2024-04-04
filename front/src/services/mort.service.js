@@ -2,10 +2,10 @@ import axios from 'axios';
 const cartesAPI = "http://localhost:3000/carte"
 //const usersDeleteAPI = "http://localhost:3000/users?uuid"
 
-async function getCarte (annee)  {
+async function getCarte (annee,codeCont,developpement)  {
     try {
         console.log("geeeet carte")
-        const response = await axios.get(`${cartesAPI}?annee=${annee}`);
+        const response = await axios.get(`${cartesAPI}?annee=${annee}&codeCont=${codeCont}&developpement=${developpement}`);
         console.log("okkkkk gett carte")
         return response;
     }catch (error){
@@ -14,10 +14,10 @@ async function getCarte (annee)  {
     }
 }
 
-async function getInfoCarte(annee)  {
+async function getInfoCarte(annee,codeCont,developpement)  {
     try {
         console.log("geeeet info carte")
-        const response = await axios.get(`${cartesAPI}?annee=${annee}`);
+        const response = await axios.get(`${cartesAPI}?annee=${annee}&codeCont=${codeCont}&developpement=${developpement}`);
         const data = response.data;
 
         // Calcul de la moyenne

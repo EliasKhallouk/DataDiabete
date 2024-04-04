@@ -3,11 +3,19 @@ const carteService = require("../services/carte.service");
 exports.getCarte = async (req, res) => {
     try {
         let annee = req.query.annee;
+        let codeCont = req.query.codeCont;
+        let developpement = req.query.developpement;
         console.log(annee);
         if(!annee){
             annee = 2011;
         }
-        const users = await carteService.getCarte(annee);
+        if(!codeCont){
+            codeCont = 8;
+        }
+        if(!developpement){
+            developpement = 2;
+        }
+        const users = await carteService.getCarte(annee,codeCont,developpement);
         return res.status(200).json(users);
     } catch (error) {
         console.error(error);
