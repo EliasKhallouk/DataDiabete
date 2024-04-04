@@ -201,7 +201,7 @@ export default {
                 delay: 50,
             });
             typewriter
-                .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète, regroupées en 3 types de graphique.")
+                .typeString("Bienvenue sur notre plateforme de visualisation de données sur le diabète, regroupées en 3 types de graphiques.")
                 .pauseFor(500)
                 //.deleteChars(8)
                 //.typeString("DIABÈTE !")
