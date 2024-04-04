@@ -168,10 +168,11 @@ export default new Vuex.Store({
       }
     },
 
-    async getDiagramme({commit},{annee,codeSexe}){
+    async getDiagramme({commit},{annee,codeSexe,codeCont}){
         console.log("--------",annee);
         console.log("--------",codeSexe);
-        let response = await toucheService.getDiagramme(annee,codeSexe);
+        console.log("--------",codeCont);
+        let response = await toucheService.getDiagramme(annee,codeSexe,codeCont);
         if(response.status === 200){
             commit('updateDiagrammes',response.data)
         } else{

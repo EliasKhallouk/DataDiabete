@@ -6,27 +6,9 @@ const filePath = path.join(__dirname, "..", "user.json")
 const format = require("pg-format");
 const pool = require("../database/db");
 
+// get diagramme
 /*
-async function getDiagramme(annee) {
-    try {
-        const client = await pool.connect();
-        const res = await client.query('SELECT lower(substr(iso_pays_car2,2,2)) AS iso_pays_car,report_diabetique.Nbr_Diabetique,report_diabetique.annee,report_diabetique.id_tranche\n' +
-            'from PAYS\n' +
-            'inner JOIN report_diabetique ON PAYS.id_pays = report_diabetique.id_pays\n' +
-            'WHERE annee=$1\n' +
-            'ORDER BY iso_pays_car',
-            [annee]);
-        client.release();
-        //console.log(res.rows);
-        //console.log(res.rows[0]);
-        return res.rows; // Renvoie les lignes de résultat, ajustez cela en fonction de votre structure de données
-    }
-    catch (error) {
-        console.error(error);
-        throw error; // Vous pouvez ajuster la gestion des erreurs selon vos besoins
-    }
-}*/
-async function getDiagramme(annee, codeSexe) {
+async function getDiagramme(annee, codeSexe,codeCont) {
     try {
         const client = await pool.connect();
         let res = null;
@@ -76,6 +58,55 @@ async function getDiagramme(annee, codeSexe) {
         throw error;
     }
 }
+*/
+
+async function getDiagramme(annee, codeSexe, codeCont) {
+    try {
+        const client = await pool.connect();
+        let res = null;
+        let query = 'SELECT ' +
+            'LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS iso_pays_car, ' +
+            'rd.Nbr_Diabetique, ' +
+            'rd.Annee, ' +
+            'rd.Code_Sexe ' +
+            'c.id_continent, ' +
+            'FROM ' +
+            'PAYS p ' +
+            'INNER JOIN ' +
+            'report_diabetique rd ON p.Id_Pays = rd.Id_Pays ' +
+            'INNER JOIN ' +
+            'CONTINENT c ON p.Continent_id = c.Id_Continent ' +
+            'WHERE ' +
+            'rd.Annee = $1 ';
+
+        const queryParams = [annee];
+
+        if (codeSexe == 0 || codeSexe == 1) {
+            query += 'AND rd.Code_Sexe = $2 ';
+            queryParams.push(codeSexe);
+        }
+
+        if (codeCont && codeCont != 8) { // Vérifiez si le codeCont est défini et différent de 8 (Tous les continents)
+            query += 'AND c.Id_Continent = $' + (queryParams.length + 1) + ' ';
+            queryParams.push(codeCont);
+        }
+
+        query += 'ORDER BY ' +
+            'nbr_diabetique DESC, Code_Sexe ASC ' +
+            'LIMIT 10';
+
+        res = await client.query(query, queryParams);
+
+        client.release();
+        console.log(res.rows);
+        return res.rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+
 
 module.exports = {
     getDiagramme: getDiagramme,
