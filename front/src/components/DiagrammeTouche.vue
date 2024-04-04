@@ -45,7 +45,7 @@
         <td data-title="Id">{{ ligne.iso_pays_car }}</td>
         <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
         <td data-title="Id">
-          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
+          {{ ligne.code_sexe === '[Homme, Femme]' ? 'homme et femme' : (ligne.code_sexe === '0' ? 'femme' : (ligne.code_sexe === '1' ? 'homme' : '')) }}
         </td>
         <td data-title="Id">
           {{ ligne.continent_id === 1 ? 'Afrique' : (ligne.continent_id === 2 ? 'Antarctique' : (ligne.continent_id === 3 ? 'Asie' : (ligne.continent_id === 4 ? 'Europe' : (ligne.continent_id === 5 ? 'Amérique du Nord' : (ligne.continent_id === 6 ? 'Océanie' : (ligne.continent_id === 7 ? 'Amérique du Sud' : 'Tous les continents')))))) }}
@@ -59,7 +59,7 @@
         <td data-title="Id">{{ ligne.iso_pays_car }}</td>
         <td data-title="Id">{{ ligne.nbr_diabetique }}</td>
         <td data-title="Id">
-          {{ ligne.code_sexe === 0 ? 'femme' : (ligne.code_sexe === 1 ? 'homme' : (ligne.code_sexe === undefined   ? 'homme et femme' : '')) }}
+          {{ ligne.code_sexe === '[Femme, Homme]' ? 'homme et femme' : (ligne.code_sexe === '[Femme]' ? 'femme' : (ligne.code_sexe === '[Homme]' ? 'homme' : '')) }}
         </td>
         <td data-title="Id">
           {{ ligne.continent_id === 1 ? 'Afrique' : (ligne.continent_id === 2 ? 'Antarctique' : (ligne.continent_id === 3 ? 'Asie' : (ligne.continent_id === 4 ? 'Europe' : (ligne.continent_id === 5 ? 'Amérique du Nord' : (ligne.continent_id === 6 ? 'Océanie' : (ligne.continent_id === 7 ? 'Amérique du Sud' : 'Tous les continents')))))) }}

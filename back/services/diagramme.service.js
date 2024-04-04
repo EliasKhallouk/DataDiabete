@@ -59,7 +59,6 @@ async function getDiagramme(annee, codeSexe,codeCont) {
     }
 }
 */
-
 async function getDiagramme(annee, codeSexe, codeCont) {
     try {
         const client = await pool.connect();
@@ -69,7 +68,9 @@ async function getDiagramme(annee, codeSexe, codeCont) {
             'LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS iso_pays_car, ' +
             'SUM(CASE WHEN rd.Code_Sexe = 0 THEN rd.Nbr_Diabetique ELSE 0 END) + ' +
             'SUM(CASE WHEN rd.Code_Sexe = 1 THEN rd.Nbr_Diabetique ELSE 0 END) AS Nbr_Diabetique, ' +
-            'rd.Annee ' +
+            'rd.Annee, ' +
+            "CONCAT('[', STRING_AGG(DISTINCT CASE WHEN rd.Code_Sexe = 1 THEN 'Homme' ELSE 'Femme' END, ', '), ']') AS code_sexe, " + // Renommer Code_Sexe en code_sexe
+            'p.continent_id ' +
             'FROM ' +
             'PAYS p ' +
             'INNER JOIN ' +
@@ -91,7 +92,7 @@ async function getDiagramme(annee, codeSexe, codeCont) {
             queryParams.push(codeCont);
         }
 
-        query += 'GROUP BY iso_pays_car, rd.Annee ' +
+        query += 'GROUP BY iso_pays_car, rd.Annee, p.continent_id ' + // Ajouter p.continent_id dans la clause GROUP BY
             'ORDER BY Nbr_Diabetique DESC ' +
             'LIMIT 10';
 
@@ -105,9 +106,6 @@ async function getDiagramme(annee, codeSexe, codeCont) {
         throw error;
     }
 }
-
-
-
 
 
 module.exports = {
