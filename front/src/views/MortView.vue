@@ -1,6 +1,8 @@
 <template>
   <div>
     <CarteMort />
+    <br><br><br>
+    <hr>
     <LineMort />
   </div>
 </template>

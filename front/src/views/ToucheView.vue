@@ -1,7 +1,11 @@
 <template>
   <div>
     <CarteTouche />
+    <br><br><br>
+    <hr>
     <DiagrammeTouche />
+    <br><br><br>
+    <hr>
     <LineTouche />
   </div>
 </template>

@@ -9,6 +9,7 @@
     <div class="nav-links" :class="{ 'show-menu': isMenuOpen }" @mouseleave="closeMenu">
       
     <router-link to="/">Accueil</router-link>
+    <router-link to="/rapport">Rapport</router-link>
     <router-link to="/diabetique">Diabetique</router-link>
     <router-link to="/mort">Mort</router-link>
     <div class="dropdown">

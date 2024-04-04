@@ -44,6 +44,12 @@ const routes = [
     meta: { requiresAuth: false, requiresAdmin: false}
   },
   {
+    path: '/rapport',
+    name: 'rapport',
+    component: () => import('../views/RapportView.vue'),
+    meta: { requiresAuth: false, requiresAdmin: false}
+  },
+  {
     path: '/diabetique',
     name: 'diabetique',
     component: () => import('../views/ToucheView.vue'),
