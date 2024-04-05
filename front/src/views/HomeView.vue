@@ -32,7 +32,7 @@
         <div class="gallery-item gallery-item-2">
           <img src="../assets/diagramme.jpg" alt="Image 2" />
           <span class="image-title">Diabetique</span>
-          <span class="image-text">nombre de diabetique/age/pays/sexe</span>
+          <span class="image-text">nombre de diabetique/pays/sexe</span>
         </div>
       </router-link>
       <router-link to="/mort">
@@ -237,7 +237,7 @@ export default {
   //border-bottom-right-radius: 824px;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
   box-shadow: 45px 45px 90px #808080, -45px -45px 90px #ffffff;
-  margin-top: -4%;
+  margin-top: -6%;
 }
 .par1 {
   font-size : 3vw;
