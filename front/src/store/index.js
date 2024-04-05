@@ -13,6 +13,7 @@ export default new Vuex.Store({
     users : [],
     cartes : [],
     diagrammes : [],
+    diagrammemort : [],
     lines : [],
     modifs : [],
     token: localStorage.getItem('token') || '',
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     updateDiagrammes(state, diagramme){
       state.diagrammes = diagramme;
+    },
+    updateDiagrammeMort(state, diagrammemort){
+        state.diagrammemort = diagrammemort;
     },
     setToken(state, token) {
       state.token = token;
@@ -166,7 +170,23 @@ export default new Vuex.Store({
       return await mortService.getInfoLineMort();
     },
 
+    async getDiagrammeMort({commit},{annee,codeCont,developpement}){
+      console.log("--------",annee);
+      console.log("--------",codeCont);
+      console.log("--------",developpement);
+      let response = await mortService.getDiagrammeMort(annee,codeCont,developpement);
+      if(response.status === 200){
+        commit('updateDiagrammeMort',response.data)
+      } else{
+        console.log("Erreur Get Diagramme Mort Store");
+      }
+    },
 
+    // eslint-disable-next-line no-unused-vars
+    async getInfoDiagrammeMort({commit},{annee,codeCont,developpement}){
+      console.log("--------get Info",commit);
+      return await mortService.getInfoDiagrammeMort(annee,codeCont,developpement);
+    },
 
     /////////////////////////
     ///       TOUCHE      ///
@@ -218,6 +238,8 @@ export default new Vuex.Store({
       console.log("--------",commit);
       return await toucheService.getInfoLineTouche();
     },
+
+
 
 
 

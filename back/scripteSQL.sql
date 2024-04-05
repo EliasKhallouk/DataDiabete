@@ -337,7 +337,7 @@ INSERT INTO TRANCHE_AGE (Age_Mini, Age_Maxi) VALUES (65, 99);
 
 -- Insertions pour la table MODIFURL
 INSERT INTO MODIFURL VALUES (1, '/front/src/assets/carte2.jpg',1);
-INSERT INTO MODIFURL VALUES (2, '/front/src/assets/diagramme.png',1);
+INSERT INTO MODIFURL VALUES (2, '/front/src/assets/diagramme.jpg',1);
 INSERT INTO MODIFURL VALUES (3, '/front/src/assets/histogramme.jpg',1);
 
 -- Insertions pour la table MODIFTEXT
