@@ -12,7 +12,7 @@ async function getDiagramme(annee, codeSexe, codeCont) {
         let res = null;
 
         let query = 'SELECT ' +
-            'LOWER(SUBSTRING(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2) AS libelle_pays_fr, 2, LENGTH(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2) AS libelle_pays_fr) - 2)) AS iso_pays_car, ' +
+            'LOWER(SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS iso_pays_car, ' +
             'SUM(CASE WHEN rd.Code_Sexe = 0 THEN rd.Nbr_Diabetique ELSE 0 END) + ' +
             'SUM(CASE WHEN rd.Code_Sexe = 1 THEN rd.Nbr_Diabetique ELSE 0 END) AS Nbr_Diabetique, ' +
             'rd.Annee, ' +
@@ -64,7 +64,7 @@ async function getDiagrammeMort(annee, codeCont, developpement) {
                 if (developpement == 0) {
                     codeDev = false;
                 }
-                res = await client.query('SELECT SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2) AS libelle_pays_fr, rd.Nbr_Morts, rd.Annee, p.continent_id, p.Développement_non_oui ' +
+                res = await client.query('SELECT (SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS libelle_pays_fr, rd.Nbr_Morts, rd.Annee, p.continent_id, p.Développement_non_oui ' +
                     'FROM PAYS p ' +
                     'INNER JOIN report_deces rd ON p.Id_Pays = rd.Id_Pays ' +
                     'WHERE rd.Annee = $1 ' +
@@ -74,7 +74,7 @@ async function getDiagrammeMort(annee, codeCont, developpement) {
                     'LIMIT 10',
                     [annee, codeCont, codeDev]);
             } else {
-                res = await client.query('SELECT SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2) AS libelle_pays_fr, rd.Nbr_Morts, rd.Annee, p.continent_id ' +
+                res = await client.query('SELECT (SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS libelle_pays_fr, rd.Nbr_Morts, rd.Annee, p.continent_id ' +
                     'FROM PAYS p ' +
                     'INNER JOIN report_deces rd ON p.Id_Pays = rd.Id_Pays ' +
                     'WHERE rd.Annee = $1 ' +
@@ -89,7 +89,7 @@ async function getDiagrammeMort(annee, codeCont, developpement) {
                 if (developpement == 0) {
                     codeDev = false;
                 }
-                res = await client.query('SELECT SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2) AS libelle_pays_fr, rd.Nbr_Morts, rd.Annee, p.continent_id, p.Développement_non_oui ' +
+                res = await client.query('SELECT (SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS libelle_pays_fr, rd.Nbr_Morts, rd.Annee, p.continent_id, p.Développement_non_oui ' +
                     'FROM PAYS p ' +
                     'INNER JOIN report_deces rd ON p.Id_Pays = rd.Id_Pays ' +
                     'WHERE rd.Annee = $1 ' +
@@ -98,7 +98,7 @@ async function getDiagrammeMort(annee, codeCont, developpement) {
                     'LIMIT 10',
                     [annee, codeDev]);
             } else {
-                res = await client.query('SELECT SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2) AS libelle_pays_fr, rd.Nbr_Morts, rd.Annee, p.continent_id ' +
+                res = await client.query('SELECT (SUBSTRING(p.libelle_pays_fr, 2, LENGTH(p.libelle_pays_fr) - 2)) AS libelle_pays_fr, rd.Nbr_Morts, rd.Annee, p.continent_id ' +
                     'FROM PAYS p ' +
                     'INNER JOIN report_deces rd ON p.Id_Pays = rd.Id_Pays ' +
                     'WHERE rd.Annee = $1 ' +
