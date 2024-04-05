@@ -21,25 +21,25 @@
 
     <div class="gallery" id="carousel">
       <div class="gallery-container" id="gallery-anchor">
-        <router-link to="/carte">
+        <router-link to="/rapport">
         <div class="gallery-item gallery-item-1">
           <img src="../assets/carte2.jpg" alt="Image 1" />
-          <span class="image-title">Carte</span>
-          <span class="image-text">nombre de décés/pays/année</span>
+          <span class="image-title">Rapport</span>
+          <span class="image-text">visualisation</span>
         </div>
       </router-link>
-      <router-link to="/diagramme">
+      <router-link to="/diabetique">
         <div class="gallery-item gallery-item-2">
-          <img src="../assets/diagramme.png" alt="Image 2" />
-          <span class="image-title">Diagramme</span>
+          <img src="../assets/diagramme.jpg" alt="Image 2" />
+          <span class="image-title">Diabetique</span>
           <span class="image-text">nombre de diabetique/age/pays/sexe</span>
         </div>
       </router-link>
-      <router-link to="/histogramme">
+      <router-link to="/mort">
         <div class="gallery-item gallery-item-3">
           <img src="../assets/histogramme.jpg" alt="Image 3" />
-          <span class="image-title">Histogramme</span>
-          <span class="image-text">prix de l'insuline et de l'assurance/pays</span>
+          <span class="image-title">Mort</span>
+          <span class="image-text">nombre de décés/pays/année</span>
         </div>
       </router-link>
 
