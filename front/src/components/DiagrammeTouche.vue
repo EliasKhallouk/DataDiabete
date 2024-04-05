@@ -29,6 +29,16 @@
       et bien plus encore, sur les pays les plus touché. Ces visualisations vous aident à identifier les
       tendances et les disparités dans la prévalence  du diabète à travers le monde.
     </p>
+    <div class="stats-group">
+      <div id="gauche">
+        <p>Moyenne : {{ moyenne }}</p>
+        <p>Ecart-type : {{ ecartType }}</p>
+      </div>
+      <div id="droite">
+        <p>Plus grand: {{max}}</p>
+        <p>Plus petit: {{min}}</p>
+      </div>
+    </div>
     <button @click="toggleTable" class="button">{{ showTable ? 'Afficher le tableau' : 'Rétrécir le tableau'  }}</button>
     <table>
       <thead>
@@ -67,6 +77,7 @@
       </tr>
       </tbody>
     </table>
+
   </div>
 </template>
 
@@ -84,6 +95,10 @@ export default {
     codeSexe: 2,
     codeCont:8,
     showTable: true,
+    moyenne: null,
+    ecartType: null,
+    max: null,
+    min: null,
     chartOptions: {
       chart: {
         type: "column",
@@ -127,7 +142,7 @@ export default {
     },
   }),
   methods: {
-    ...mapActions(["getDiagramme"]),
+    ...mapActions(["getDiagramme", "getInfoDiagramme"]),
     toggleTable() {
       this.showTable = !this.showTable;
     },
@@ -171,9 +186,20 @@ export default {
                   "(TOP 10) Diagramme du nombre de personnes atteintes de diabète en " +
                   this.annee,
             });
+
+          })
+          .catch((error) => console.log(error));
+      this.getInfoDiagramme({ annee: this.annee, codeSexe: this.codeSexe, codeCont: this.codeCont })
+          .then(result => {
+            console.log ("diagrammeresult==", result);
+            this.moyenne = result.moyenne;
+            this.ecartType = result.ecartType;
+            this.max = result.max;
+            this.min = result.min;
           })
           .catch((error) => console.log(error));
     },
+
   },
   mounted() {
     console.log("annee==", this.annee);
@@ -195,6 +221,15 @@ export default {
                 color: "orange", // Default color if codeSexe is not specified
               }))
           );
+        })
+        .catch((error) => console.log(error));
+    this.getInfoDiagramme({ annee: this.annee, codeSexe: this.codeSexe, codeCont: this.codeCont })
+        .then(result => {
+          console.log ("diagrammeresult==", this.annee, this.codeSexe, this.codeCont, result);
+          this.moyenne = result.moyenne;
+          this.ecartType = result.ecartType;
+          this.max = result.max;
+          this.min = result.min;
         })
         .catch((error) => console.log(error));
   },
@@ -260,5 +295,48 @@ input{
   background-color: #f25c54;
 }
 
+.stats-group {
+  --b: .5em; /* border width */
+  --c: 3em; /* corner size */
+  --r: 2em; /* corner rounding */
+  position: relative;
+  margin: 1em auto;
+  border: solid var(--b) transparent;
+  padding: 1em;
+  max-width: 804px;
+  font: 1.25em ubuntu, sans-serif;
 
+  &::before {
+     position: absolute;
+     z-index: -1;
+     inset: calc(-1*var(--b));
+     border: inherit;
+     border-radius: var(--r);
+     background: linear-gradient(orange, deeppink, purple) border-box;
+     --corner:
+         conic-gradient(from -90deg at var(--c) var(--c), red 25%, #0000 0)
+         0 0/ calc(100% - var(--c))  calc(100% - var(--c)) border-box;
+     --inner: conic-gradient(red 0 0 ) padding-box;
+     -webkit-mask: var(--corner), var(--inner);
+     -webkit-mask-composite: source-out;
+     mask: var(--corner) subtract, var(--inner);
+     content: ''
+   }
+}
+
+.stats-group #gauche {
+  float:left;
+  width:60%;
+}
+.stats-group #droite {
+  margin-left:60%
+}
+
+select {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-left: 10px;
+}
 </style>

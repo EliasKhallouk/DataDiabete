@@ -198,6 +198,13 @@ export default new Vuex.Store({
         }
     },
 
+    // eslint-disable-next-line no-unused-vars
+    async getInfoDiagramme({commit},{annee,codeSexe,codeCont}){
+        console.log("--------get Info",commit);
+        return await toucheService.getInfoDiagramme(annee,codeSexe,codeCont);
+
+    },
+
     async getLineTouche({commit}){
       let response = await toucheService.getLineTouche();
       if(response.status === 200){
